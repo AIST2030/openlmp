@@ -110,17 +110,20 @@ else
   echo "  ✗ main 推送失败。请确认 token 有 public_repo 权限。"; exit 1
 fi
 
-# ---------- 5. AtomGit ----------
+# ---------- 5. AtomGit（开放原子基金会） ----------
 echo ""
 echo "[5/6] AtomGit"
 if [ -n "$AT_USER" ]; then
-  AT_URL="https://gitcode.com/$AT_USER/$REPO.git"
+  AT_URL="https://atomgit.com/$AT_USER/$REPO.git"
   git remote remove atomgit 2>/dev/null || true
   git remote add atomgit "$AT_URL"
-  echo "  提示：AtomGit 推送需要访问令牌。若弹出输入框，粘贴 AtomGit 的个人访问令牌。"
-  if git push -u atomgit main; then
-    echo "  ✓ main 已推送 → $AT_URL"
-    for t in $TAGS; do git push atomgit "$t" 2>/dev/null || true; done
+  echo "  仓库地址：$AT_URL"
+  echo "  认证：用户名填你的 AtomGit 账号，密码位置粘贴【访问令牌】"
+  echo "  令牌获取：AtomGit → 个人设置 → 访问令牌 → 新建（勾 repo 读写权限）"
+  if git push -u atomgit "$(git rev-parse --abbrev-ref HEAD)"; then
+    echo "  ✓ 当前分支已推送 → $AT_URL"
+    for t in $TAGS; do git push atomgit "$t" 2>/dev/null || echo "  ⚠ tag $t 推送失败"; done
+    echo "  ✓ tags 已推送"
   else
     echo "  ⚠ AtomGit 推送失败（不影响 GitHub 那份）"
   fi
