@@ -40,11 +40,25 @@
 
 ```bash
 # 校验本子库全部 Skill
-python ../runtime/lmp.py validate business/skills
+python runtime/lmp.py validate business/skills
 
-# 列出某个框架
-python ../runtime/lmp.py list business/skills   # 若执行器支持传路径；否则直接看 registry/registry.json
+# 列出本子库全部框架
+python runtime/lmp.py list --dir business/skills
+
+# 按业务问题本地检索（零网络请求）
+python runtime/lmp.py recommend "要不要进新市场" --dir business/skills
+
+# 打印某个框架的执行剧本
+python runtime/lmp.py run swot --dir business/skills
+
+# 装进你的 AI（SkillHub，腾讯出品）
+skillhub install aist2030-openlmp-business
+
+# 学习方法库（主库 107 个方法）
+skillhub install aist2030-openlmp
 ```
+
+> `--dir` 让同一个执行器既能服务主库也能服务子库：主库命令省略该参数即用 `skills/`。
 
 索引见 [`registry/registry.json`](registry/registry.json)（含每个框架的 CID）。
 全部以 **CC0-1.0** 释出，可自由商用。

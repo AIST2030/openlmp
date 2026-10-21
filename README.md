@@ -26,6 +26,16 @@ python runtime/lmp.py selftest
 
 零第三方依赖，Python 3.8+。**不需要注册、不需要 API Key、不需要下载任何模型。**
 
+**装进你的 AI（SkillHub，腾讯出品）：**
+
+```bash
+# 学习方法库（107 个方法，含思维方法/分析方法）
+skillhub install aist2030-openlmp
+
+# 商业框架库（15 个商业决策框架，面向创业者/企业家/商业运营）
+skillhub install aist2030-openlmp-business
+```
+
 ---
 
 ## 这不是 AI 教育产品
@@ -93,7 +103,7 @@ python runtime/lmp.py selftest
 python runtime/lmp.py selftest
 ```
 
-7 类测试，其中 3 类是**反向测试**（故意注入违规，必须被拒绝）：
+11 项自检，其中 3 项是**反向测试**（故意注入违规，必须被拒绝）：
 
 | 测试 | 注入的违规 | 期望 |
 |---|---|---|

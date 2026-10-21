@@ -105,9 +105,10 @@ FORBIDDEN = "error"
 
 
 # ---------------------------------------------------------------- 工具函数
-def load_skills():
+def load_skills(skill_dir=None):
     out = []
-    for p in sorted(glob.glob(os.path.join(SKILL_DIR, "*.json"))):
+    base = skill_dir or SKILL_DIR
+    for p in sorted(glob.glob(os.path.join(base, "*.json"))):
         base = os.path.basename(p)
         if base.startswith("_"):
             continue  # _template 不是 Skill
@@ -286,11 +287,11 @@ def cmd_validate(args):
 
 # ---------------------------------------------------------------- 命令
 def cmd_list(args):
-    skills = load_skills()
+    skills = load_skills(getattr(args, "dir", None))
     by_cat = {}
     for s in skills:
         by_cat.setdefault(s.get("category", "?"), []).append(s)
-    print("OpenLMP v0.1 — 已收录 %d 个学习方法（全部 CC0 公共领域）\n" % len(skills))
+    print("OpenLMP v0.1 — 已收录 %d 个方法（全部 CC0 公共领域）\n" % len(skills))
     for cat in sorted(by_cat):
         print("【%s】" % cat)
         for s in by_cat[cat]:
@@ -304,7 +305,7 @@ def cmd_list(args):
 
 
 def cmd_show(args):
-    skills = {s["id"]: s for s in load_skills()}
+    skills = {s["id"]: s for s in load_skills(getattr(args, "dir", None))}
     if args.id not in skills:
         print("没有这个方法。可用：%s" % ", ".join(sorted(skills)))
         return 1
@@ -333,7 +334,7 @@ def cmd_recommend(args):
     """本地关键词检索，零网络。"""
     query = args.query
     qt = _tokenize(query)
-    skills = load_skills()
+    skills = load_skills(getattr(args, "dir", None))
     scored = []
     for s in skills:
         # 字段权重：名称 > 描述 > 适用场景（名称命中说明用户问的正是这个方法）
@@ -383,7 +384,7 @@ def cmd_recommend(args):
 
 
 def cmd_run(args):
-    skills = {s["id"]: s for s in load_skills()}
+    skills = {s["id"]: s for s in load_skills(getattr(args, "dir", None))}
     if args.id not in skills:
         print("没有这个方法。可用：%s" % ", ".join(sorted(skills)))
         return 1
@@ -702,7 +703,7 @@ def main():
         prog="lmp", description="OpenLMP 参考执行器 v0.1（零依赖，全本地）")
     sub = ap.add_subparsers(dest="cmd")
 
-    sub.add_parser("list", help="列出全部 Skill")
+    p_list = sub.add_parser("list", help="列出全部 Skill")
     p_show = sub.add_parser("show", help="查看单个 Skill")
     p_show.add_argument("id")
     p_val = sub.add_parser("validate", help="按 schema + 纯度规则校验")
@@ -712,6 +713,9 @@ def main():
     p_run = sub.add_parser("run", help="打印某方法的执行剧本")
     p_run.add_argument("id")
     p_run.add_argument("--topic", default="")
+    for p in (p_list, p_show, p_rec, p_run):
+        p.add_argument("--dir", default=None,
+                       help="Skill 目录（默认主库 skills/；子库如 business/skills）")
     sub.add_parser("review", help="今日到期复习队列")
     p_grade = sub.add_parser("grade", help="记录一次复习结果并推进间隔")
     p_grade.add_argument("id")
