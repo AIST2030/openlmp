@@ -41,20 +41,26 @@ python runtime/lmp.py selftest
 
 ---
 
-## 已收录的 10 个方法
+## 已收录的 22 个方法
 
-| Skill | 名称 | 类别 | 循证 |
-|---|---|---|---|
-| `active-recall` | 主动回忆练习 | 记忆巩固 | 强 |
-| `spaced-repetition` | 间隔重复调度（SM-2） | 记忆巩固 | 强 |
-| `deliberate-practice` | 刻意练习 | 技能习得 | 强 |
-| `transfer-question` | 迁移提问训练 | 元认知 | 强 |
-| `elaborative-interrogation` | 精细追问法 | 理解构建 | 强 |
-| `feynman` | 费曼学习法 | 理解构建 | 中 |
-| `retrieval-spread` | 高频短时提取 | 记忆巩固 | 中 |
-| `dual-coding` | 双重编码 | 记忆巩固 | 中 |
-| `concept-map` | 概念图构建 | 知识管理 | 中 |
-| `learning-journal` | 学习日志与错因归因 | 元认知 | 中 |
+**记忆巩固** · `active-recall` 主动回忆练习（强） · `spaced-repetition` 间隔重复调度（强） · `retrieval-spread` 高频短时提取（中） · `dual-coding` 双重编码（中）
+
+**理解构建** · `feynman` 费曼学习法（中） · `elaborative-interrogation` 精细追问法（强） · `sq3r` SQ3R 教材精读（中） · `socratic` 苏格拉底式追问（中）
+
+**技能习得** · `deliberate-practice` 刻意练习（强） · `project-based-learning` 721 行动学习（经验）
+
+**知识管理** · `concept-map` 概念图构建（中） · `zettelkasten` 卡片盒笔记（经验） · `progressive-summarization` 渐进式总结（经验）
+
+**评测验证** · `error-notebook` 错题本溯源（强） · `critical-thinking` 批判性思维核查（强） · `closed-book-writing` 合书写作（强）
+
+**计划执行** · `goal-decomposition` 目标四级拆解（中） · `pomodoro-diagnose` 专注节奏诊断（经验）
+
+**元认知** · `learning-journal` 学习日志与错因归因（中） · `diary-question` 今天学到了什么（中） · `transfer-question` 迁移提问训练（强）
+
+**协作学习** · `pair-learning` 结对学习（中）
+
+「强/中/经验」= 循证等级（high / medium / anecdotal），标注在每个 Skill 的 `evidence` 字段。
+标 `high` 的必须给文献引用，CI 会拦截虚标。
 
 全部以 **CC0-1.0** 释出到公共领域（见 `LICENSE`）。
 
@@ -92,6 +98,21 @@ python runtime/lmp.py selftest
 
 CI 在 Python 3.8 / 3.11 / 3.12 三个版本上自动跑同一套检查，
 并验证**无任何第三方依赖**。
+
+---
+
+## 为什么值得信：一个方法不会自己说好话
+
+每个 Skill 都有 **`when_not_to_use`**（什么时候别用我）字段，
+检索命中时会明确告诉你「这情况请改用 X」。
+
+这不是免责声明，是功能 —— 一个只会说自己好的方法库，是营销话术，不是方法库。
+
+```bash
+$ python runtime/lmp.py recommend "想学会写代码"
+spaced-repetition  间隔重复调度
+  若你的情况是「只考一次的短期突击」→ 改用：active-recall
+```
 
 ---
 
