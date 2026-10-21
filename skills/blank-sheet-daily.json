@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "blank-sheet-daily",
+  "name": "白纸默写法",
+  "name_en": "Daily Blank-Sheet Recall",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "评测验证",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "每天固定拿一张白纸，限时把当天所学默写出来，用还原度衡量真实掌握，并看长期曲线。",
+  "when_to_use": [
+    "想每天检验掌握度",
+    "学了但说不清学会了什么",
+    "追踪长期保持曲线"
+  ],
+  "when_not_to_use": [
+    "当天几乎没学新内容（无料可默）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [],
+    "properties": {
+      "minutes": {
+        "type": "integer",
+        "default": 10,
+        "description": "每日默写限时分钟"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "setup",
+      "name": "定时定点",
+      "duration_min": 3,
+      "instruction": "固定每天一个时段，如睡前，和一张白纸作为每日默写仪式；先想后写。",
+      "checkpoint": "时段与形式已固定；且连续执行天数已记录",
+      "output": "默写计划"
+    },
+    {
+      "id": "dump",
+      "name": "限时默写",
+      "duration_min": 10,
+      "instruction": "在 minutes 内，不看任何资料，把当天所学尽量写出或画出；想不出的留空并标记。",
+      "checkpoint": "在限定时间内产出默写稿；且想不出处被留空标记",
+      "output": "默写稿"
+    },
+    {
+      "id": "diff",
+      "name": "对照补全",
+      "duration_min": 6,
+      "instruction": "现在才对照当天材料，标出默写稿中遗漏和错误的部分，只标注不改写原文。",
+      "checkpoint": "遗漏与错误被逐条标出；且标注阶段未改动默写稿",
+      "output": "差异标注"
+    },
+    {
+      "id": "trend",
+      "name": "记录还原度",
+      "duration_min": 4,
+      "instruction": "估算本次还原度，即写出内容占当天要点的比例，记入曲线；连续走低就回头补前几日缺口。",
+      "checkpoint": "给出了本次还原度数值并入曲线；且连续走低时标出了应补的日期",
+      "output": "还原度曲线",
+      "fail_to": "dump"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我默写时是凭记忆，还是脑子在翻当天的笔记？",
+      "还原度低，是没学会还是当时没记全？"
+    ],
+    "success_criteria": [
+      "还原度曲线整体平稳或上升",
+      "能据曲线定位保持率骤降的知识点"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "minutes"
+    ],
+    "output": [
+      "默写稿",
+      "差异标注",
+      "还原度曲线"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：固定纸笔每日默写并画曲线"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

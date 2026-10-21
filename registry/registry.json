@@ -3,7 +3,7 @@
   "lmp": "0.1",
   "generated_at": "2026-10-22",
   "note": "本清单不是唯一真理。任何人都可本地维护并提供 diff；我们不设唯一官方 registry。",
-  "count": 50,
+  "count": 78,
   "skills": [
     {
       "id": "active-recall",
@@ -48,6 +48,34 @@
       "file": "skills/bisect-debug.json"
     },
     {
+      "id": "blank-sheet-daily",
+      "name": "白纸默写法",
+      "name_en": "Daily Blank-Sheet Recall",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "评测验证",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:7b3comh0sjm9ginpcaft9s9vep288h2u",
+      "file": "skills/blank-sheet-daily.json"
+    },
+    {
+      "id": "blooms-taxonomy",
+      "name": "布鲁姆分层推进",
+      "name_en": "Bloom's Taxonomy Ladder",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "理解构建",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:qn2jouvek4g5psrgr9mg0slrqde8f82e",
+      "file": "skills/blooms-taxonomy.json"
+    },
+    {
       "id": "calibration-training",
       "name": "校准训练",
       "name_en": "Calibration Training",
@@ -60,6 +88,20 @@
       ],
       "cid": "lmp:dgdh6h6acpdir0tov26e762q6u50rjdj",
       "file": "skills/calibration-training.json"
+    },
+    {
+      "id": "case-study",
+      "name": "案例研习",
+      "name_en": "Case Study Method",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "理解构建",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:o00p8eq1dr7iu7objrjjtdrbuasp5vpa",
+      "file": "skills/case-study.json"
     },
     {
       "id": "chunking",
@@ -116,6 +158,20 @@
       ],
       "cid": "lmp:njkad2ka5q2a8qg1q1mfk1h1ohcjshpv",
       "file": "skills/concept-map.json"
+    },
+    {
+      "id": "constructivist-learning",
+      "name": "建构主义学习",
+      "name_en": "Constructivist Learning",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "理解构建",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:cig361tgckalddrsuem8p2n4hs0efftf",
+      "file": "skills/constructivist-learning.json"
     },
     {
       "id": "contrast-cases",
@@ -230,6 +286,20 @@
       "file": "skills/dual-coding.json"
     },
     {
+      "id": "dual-goal",
+      "name": "双重目标法",
+      "name_en": "Dual Goals",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "计划执行",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:5vtgr189ebssq19gpv5njp3u85i5rap1",
+      "file": "skills/dual-goal.json"
+    },
+    {
       "id": "elaborative-interrogation",
       "name": "精细追问法",
       "name_en": "Elaborative Interrogation",
@@ -258,6 +328,20 @@
       "file": "skills/elaborative-rehearsal.json"
     },
     {
+      "id": "energy-management",
+      "name": "精力管理",
+      "name_en": "Energy Management",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "计划执行",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:1c9vfuj95obao887rcusnod2dbejourt",
+      "file": "skills/energy-management.json"
+    },
+    {
       "id": "error-notebook",
       "name": "错题本溯源",
       "name_en": "Error Notebook",
@@ -272,6 +356,20 @@
       "file": "skills/error-notebook.json"
     },
     {
+      "id": "familiarity-count",
+      "name": "回看计数法",
+      "name_en": "Familiarity Counting",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "元认知",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:odqa6pfgfdv6d2esq9uq860gkacric05",
+      "file": "skills/familiarity-count.json"
+    },
+    {
       "id": "feynman",
       "name": "费曼学习法",
       "name_en": "Feynman Technique",
@@ -284,6 +382,34 @@
       ],
       "cid": "lmp:kiv2252di24io0lpaa5dmfphj614fo73",
       "file": "skills/feynman.json"
+    },
+    {
+      "id": "first-principles",
+      "name": "第一性原理",
+      "name_en": "First Principles Thinking",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "理解构建",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:915rppff844dv6pd9daqugq5cajecc52",
+      "file": "skills/first-principles.json"
+    },
+    {
+      "id": "four-step-review",
+      "name": "四步复盘",
+      "name_en": "Four-Step Retrospective",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "元认知",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:en0dv8nke6lvi9741v26ouk1f8at56db",
+      "file": "skills/four-step-review.json"
     },
     {
       "id": "goal-decomposition",
@@ -314,6 +440,20 @@
       "file": "skills/if-then-planning.json"
     },
     {
+      "id": "inquiry-learning",
+      "name": "探究式学习",
+      "name_en": "Inquiry-Based Learning",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "理解构建",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:2clro4vs9hht0mtt34at125fk1u947qd",
+      "file": "skills/inquiry-learning.json"
+    },
+    {
       "id": "interleaving",
       "name": "交错练习",
       "name_en": "Interleaving",
@@ -340,6 +480,20 @@
       ],
       "cid": "lmp:mfa1ln1q829aqidf7rabrhlda7ea65fs",
       "file": "skills/learning-journal.json"
+    },
+    {
+      "id": "life-wheel",
+      "name": "生命之花",
+      "name_en": "Life Wheel",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "元认知",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:4ismibt83s5hqst7fsmaj2h1a46ifks9",
+      "file": "skills/life-wheel.json"
     },
     {
       "id": "mental-rehearsal",
@@ -384,6 +538,62 @@
       "file": "skills/method-of-loci.json"
     },
     {
+      "id": "micro-habits",
+      "name": "微习惯",
+      "name_en": "Micro-Habits",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "计划执行",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:hfprms4pg8ueiuhvt63481htbl8ukat7",
+      "file": "skills/micro-habits.json"
+    },
+    {
+      "id": "mind-map",
+      "name": "思维导图",
+      "name_en": "Mind Mapping",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "知识管理",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:4nmjl7jrpprgne1tvc3v2utt6pc9to7g",
+      "file": "skills/mind-map.json"
+    },
+    {
+      "id": "mnemonic-association",
+      "name": "谐音联想法",
+      "name_en": "Mnemonic Association",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "记忆巩固",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:t5po8amps024ejl868drtrlmbld4gfai",
+      "file": "skills/mnemonic-association.json"
+    },
+    {
+      "id": "morning-evening-review",
+      "name": "晨间晚间复盘",
+      "name_en": "Morning-Evening Review",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "元认知",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:falqd4qa8o4rmt7tmnom4f3knql809bp",
+      "file": "skills/morning-evening-review.json"
+    },
+    {
       "id": "note-flow-code",
       "name": "笔记流水线",
       "name_en": "Capture-Organize-Distill-Express",
@@ -412,6 +622,20 @@
       "file": "skills/pair-learning.json"
     },
     {
+      "id": "peer-instruction",
+      "name": "同伴教学法",
+      "name_en": "Peer Instruction",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "协作学习",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:9c8risj7dk0qv0qfehmoqoaif6t6vqv4",
+      "file": "skills/peer-instruction.json"
+    },
+    {
       "id": "peer-review-loop",
       "name": "同伴互评",
       "name_en": "Peer Review Loop",
@@ -424,6 +648,20 @@
       ],
       "cid": "lmp:718crlajk0fpnhcd0n9cb79mdb5vvtup",
       "file": "skills/peer-review-loop.json"
+    },
+    {
+      "id": "pomodoro",
+      "name": "番茄工作法",
+      "name_en": "Pomodoro Technique",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "计划执行",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:sprdpsddkracb8tmibho6ojpdk6oie8j",
+      "file": "skills/pomodoro.json"
     },
     {
       "id": "pomodoro-diagnose",
@@ -510,6 +748,20 @@
       "file": "skills/retrieval-spread.json"
     },
     {
+      "id": "reverse-learning",
+      "name": "逆向学习法",
+      "name_en": "Reverse Learning",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "计划执行",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:5m5gsdkmrbala1qjctm1dep3qkhctb4r",
+      "file": "skills/reverse-learning.json"
+    },
+    {
       "id": "rubric-check",
       "name": "量规自检",
       "name_en": "Rubric Self-Assessment",
@@ -552,6 +804,34 @@
       "file": "skills/self-explanation.json"
     },
     {
+      "id": "shadowing",
+      "name": "影子跟读法",
+      "name_en": "Shadowing",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "技能习得",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:hk7i5vpp8eha18me9cic834j9ma43t7u",
+      "file": "skills/shadowing.json"
+    },
+    {
+      "id": "simon-learning",
+      "name": "西蒙学习法",
+      "name_en": "Simon Learning Method",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "技能习得",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:il8some2t09u1fa38vn910pui72b8v7t",
+      "file": "skills/simon-learning.json"
+    },
+    {
       "id": "sleep-consolidation",
       "name": "睡眠巩固",
       "name_en": "Sleep Consolidation",
@@ -564,6 +844,34 @@
       ],
       "cid": "lmp:rjoj6g7i9q9ar4ihetq62tpciu0mo3o2",
       "file": "skills/sleep-consolidation.json"
+    },
+    {
+      "id": "sleep-wake-memory",
+      "name": "睡前醒后记忆",
+      "name_en": "Sleep-Wake Memory",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "记忆巩固",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:vbg88o81e5a38n4brjj8eoqv2tlkggdb",
+      "file": "skills/sleep-wake-memory.json"
+    },
+    {
+      "id": "smart-goals",
+      "name": "SMART 目标法",
+      "name_en": "SMART Goals",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "计划执行",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:du3ku6t0oetsjvh0iu4suco28f3dbval",
+      "file": "skills/smart-goals.json"
     },
     {
       "id": "socratic",
@@ -608,6 +916,20 @@
       "file": "skills/sq3r.json"
     },
     {
+      "id": "tally-forgetting",
+      "name": "正字统计法",
+      "name_en": "Tally-the-Forgetting",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "评测验证",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:eipvhgor173jamlenjm86i8k658p8i0q",
+      "file": "skills/tally-forgetting.json"
+    },
+    {
       "id": "teach-back-circle",
       "name": "互讲圈",
       "name_en": "Teach-Back Circle",
@@ -620,6 +942,20 @@
       ],
       "cid": "lmp:3ko6m5vilifmmbmp56f5n5fuguacfhmo",
       "file": "skills/teach-back-circle.json"
+    },
+    {
+      "id": "thick-thin",
+      "name": "薄厚互返法",
+      "name_en": "Thick-then-Thin Reading",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "理解构建",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:prlt8m98hrcn0s6l02gthj2d1ehtsbqj",
+      "file": "skills/thick-thin.json"
     },
     {
       "id": "think-aloud",
@@ -636,6 +972,34 @@
       "file": "skills/think-aloud.json"
     },
     {
+      "id": "thirty-second-recall",
+      "name": "30 秒速览",
+      "name_en": "Thirty-Second Recall",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "评测验证",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:hjv2ckoqg0ek0vs0o956jvgqom8eofiq",
+      "file": "skills/thirty-second-recall.json"
+    },
+    {
+      "id": "three-color-notes",
+      "name": "三色笔记法",
+      "name_en": "Three-Color Notes",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "知识管理",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:g5juavs7lram3epggga72op2l9pvn4bu",
+      "file": "skills/three-color-notes.json"
+    },
+    {
       "id": "three-pass-reading",
       "name": "三遍阅读法",
       "name_en": "Three-Pass Reading",
@@ -648,6 +1012,20 @@
       ],
       "cid": "lmp:03v9fvg2obu9jqqd5dei3lbqt4629sau",
       "file": "skills/three-pass-reading.json"
+    },
+    {
+      "id": "time-capsule-quiz",
+      "name": "时间胶囊出题",
+      "name_en": "Time-Capsule Quiz",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "评测验证",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:u36895b1lpfigdjvs2m97l3r7o0ar18m",
+      "file": "skills/time-capsule-quiz.json"
     },
     {
       "id": "timeboxing",
@@ -690,6 +1068,20 @@
       ],
       "cid": "lmp:71bgqp1ne1i49p135gcfl7tnfrnrdr87",
       "file": "skills/worked-examples.json"
+    },
+    {
+      "id": "zeigarnik-pause",
+      "name": "留一点学习法",
+      "name_en": "Zeigarnik Pause",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "计划执行",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:o741ci6etgi85l9njiid7o0j73n3tqgp",
+      "file": "skills/zeigarnik-pause.json"
     },
     {
       "id": "zettelkasten",

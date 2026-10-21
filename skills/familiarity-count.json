@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "familiarity-count",
+  "name": "回看计数法",
+  "name_en": "Familiarity Counting",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "元认知",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "初读时给每个似曾相识的点计数，把眼熟和真能回忆分开，眼熟是高发的假会信号。",
+  "when_to_use": [
+    "预习时估不准哪些真会",
+    "读一遍感觉都懂却考不出",
+    "分配复习优先级"
+  ],
+  "when_not_to_use": [
+    "全新领域几乎没有旧知可唤起时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "material"
+    ],
+    "properties": {
+      "material": {
+        "type": "string",
+        "description": "要初读并计数的材料"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "preview",
+      "name": "初读并标记眼熟",
+      "duration_min": 12,
+      "instruction": "快速通读材料，遇到好像见过或学过的点就标记并计数，遇到全新的另标一类。",
+      "checkpoint": "每个点被标为眼熟或全新之一；且眼熟点被计数",
+      "output": "眼熟与全新分类"
+    },
+    {
+      "id": "split",
+      "name": "拆分眼熟点",
+      "duration_min": 6,
+      "instruction": "把眼熟点按能说出大意和只是觉得见过说不清再分两堆，分别计数。",
+      "checkpoint": "眼熟点被分为两类；且两类各自计数",
+      "output": "眼熟细分"
+    },
+    {
+      "id": "probe",
+      "name": "对眼熟点做真回忆",
+      "duration_min": 12,
+      "instruction": "只对眼熟点合上材料做真实回忆，能复述的打钩，复述不出的打叉并记录。",
+      "checkpoint": "每个眼熟点都有真回忆结果，钩或叉；且回忆期间未看材料",
+      "output": "真回忆结果"
+    },
+    {
+      "id": "reprioritize",
+      "name": "用数据重排优先级",
+      "duration_min": 5,
+      "instruction": "统计眼熟但复述不出的数量，这是最危险的假会区，列为最高优先级；真能复述的降级。",
+      "checkpoint": "给出了假会区条目数与清单；且假会区被列为最高优先级",
+      "output": "重排优先级",
+      "fail_to": "probe"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的眼熟是真学过，还是这次刚读过？",
+      "假会区的点，我以前是不是一直误以为会了？"
+    ],
+    "success_criteria": [
+      "假会区被识别并优先攻克",
+      "复习优先级由回忆结果而非感觉决定"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "material"
+    ],
+    "output": [
+      "眼熟细分",
+      "真回忆结果",
+      "优先级"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：通读时用两种符号标记并口头复述"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

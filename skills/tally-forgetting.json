@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "tally-forgetting",
+  "name": "正字统计法",
+  "name_en": "Tally-the-Forgetting",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "评测验证",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "每次回忆就用正字给想不出的知识点记一笔，用涂改次数把我忘了多少次可视化，专攻涂得最多的。",
+  "when_to_use": [
+    "反复忘同一批点",
+    "想把遗忘变成可见数据",
+    "安排复习优先级"
+  ],
+  "when_not_to_use": [
+    "第一次记忆的新材料（先记再统计）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "scope"
+    ],
+    "properties": {
+      "scope": {
+        "type": "string",
+        "description": "要统计遗忘的范围"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "baseline",
+      "name": "建正字榜",
+      "duration_min": 5,
+      "instruction": "把范围列成知识点清单，每条留一个正字计数位，初始为 0。",
+      "checkpoint": "清单每条都有计数位；且初始值均为 0",
+      "output": "正字榜"
+    },
+    {
+      "id": "recall",
+      "name": "逐条回忆并计数",
+      "duration_min": 12,
+      "instruction": "逐条回忆，想不出或回忆失败的就在该条记一笔，想出的不记。",
+      "checkpoint": "每条都经过一次回忆尝试；且失败条目的笔画数与失败次数一致",
+      "output": "计数字榜"
+    },
+    {
+      "id": "rank",
+      "name": "按涂改数排序",
+      "duration_min": 4,
+      "instruction": "数出每条的总笔画，从多到少排序，前几名就是最该攻的点。",
+      "checkpoint": "给出了按笔画数排序的列表；且前几名被标为优先攻坚",
+      "output": "优先级排序"
+    },
+    {
+      "id": "attack",
+      "name": "只攻前几名",
+      "duration_min": 18,
+      "instruction": "只对笔画最多的前 3 名专项复习并重测，重测仍失败的补一笔；其余本轮不动。",
+      "checkpoint": "仅对前 3 名进行了专项复习；且重测结果被记录",
+      "output": "攻坚结果",
+      "fail_to": "recall"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是在诚实计数，还是只想快点划完？",
+      "笔画最多的点，是真不会还是从没记住过？"
+    ],
+    "success_criteria": [
+      "前几名攻坚后笔画数下降",
+      "同一知识点不再连续多轮上榜"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "scope"
+    ],
+    "output": [
+      "正字榜",
+      "优先级排序",
+      "攻坚结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸上画正字统计"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

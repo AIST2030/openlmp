@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "energy-management",
+  "name": "精力管理",
+  "name_en": "Energy Management",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把任务按体能、情绪、专注几个能量维度排进个人高低谷时段，把高价值事放到高能量时，而非只管理时间。",
+  "when_to_use": [
+    "时间表排满了却总完不成",
+    "重要事总被排在低效时段",
+    "下午就疲乏"
+  ],
+  "when_not_to_use": [
+    "任务时间被外部固定、无调度自由度时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "tasks"
+    ],
+    "properties": {
+      "tasks": {
+        "type": "string",
+        "description": "要按能量安排的待办清单"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "audit",
+      "name": "记录一周能量曲线",
+      "duration_min": 30,
+      "instruction": "连续几天，每小时给体能、情绪、专注三项各打 1-5 分，画出自己的高低谷。",
+      "checkpoint": "记录了至少 5 天的逐时段评分；且画出了能量曲线",
+      "output": "能量曲线"
+    },
+    {
+      "id": "classify",
+      "name": "给任务标能量需求",
+      "duration_min": 8,
+      "instruction": "把待办按所需能量分级：高难度或创造类、常规类、恢复类。",
+      "checkpoint": "每条任务被标为高能量、常规或恢复三类之一",
+      "output": "任务分级"
+    },
+    {
+      "id": "match",
+      "name": "高价值配高能量",
+      "duration_min": 10,
+      "instruction": "把最重要且需高能量的任务排到个人能量高峰时段；恢复类和琐事排到低谷。",
+      "checkpoint": "高能量时段被分配给高价值任务；且低谷时段安排了恢复或琐事",
+      "output": "能量排程"
+    },
+    {
+      "id": "recover",
+      "name": "插入恢复节律",
+      "duration_min": 15,
+      "instruction": "在高峰块之间安排短恢复，如走动、冥想、小憩，并记录恢复后专注度是否回升。",
+      "checkpoint": "高峰块之间插入了恢复时段；且记录了恢复后专注度变化",
+      "output": "恢复记录",
+      "fail_to": "classify"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是按能量排的，还是按惯性把难事排到了犯困时段？",
+      "恢复真的让我回升了，还是只是拖延？"
+    ],
+    "success_criteria": [
+      "高价值任务完成率上升",
+      "高峰时段专注度评分高于低谷时段"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "tasks"
+    ],
+    "output": [
+      "能量曲线",
+      "能量排程",
+      "恢复记录"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸质记录能量曲线并手排日程"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

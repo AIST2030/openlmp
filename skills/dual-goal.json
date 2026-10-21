@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "dual-goal",
+  "name": "双重目标法",
+  "name_en": "Dual Goals",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "同时设一个冲刺目标和一个保底目标：够到冲刺最好，够不到也先锁定保底，避免一次失败就全盘放弃。",
+  "when_to_use": [
+    "目标有难度、怕一次达不到就泄气",
+    "状态波动大的长期任务",
+    "想保住最低完成线"
+  ],
+  "when_not_to_use": [
+    "标准明确、非达即败的任务（勿为退缩留后门）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "goal"
+    ],
+    "properties": {
+      "goal": {
+        "type": "string",
+        "description": "要设双层级的目标"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "define",
+      "name": "定两级目标",
+      "duration_min": 6,
+      "instruction": "写一个冲刺目标和一个保底目标，两者用同一衡量标准、不同数值。",
+      "checkpoint": "冲刺与保底两个目标都已写出；且二者用同一衡量标准、仅数值不同",
+      "output": "双目标"
+    },
+    {
+      "id": "plan",
+      "name": "分别定路线",
+      "duration_min": 10,
+      "instruction": "为冲刺目标准备完整计划，同时标出其中哪些步是保底目标的最小必需步。",
+      "checkpoint": "冲刺计划已列出；且标出了保底所需的最小步骤子集",
+      "output": "分级计划"
+    },
+    {
+      "id": "run",
+      "name": "先锁保底再冲刺",
+      "duration_min": 30,
+      "instruction": "执行时优先保证保底所需步骤全部完成，再投入冲刺增量；状态差时至少守住保底。",
+      "checkpoint": "保底步骤被优先完成；且状态差的日期也有保底动作记录",
+      "output": "执行记录"
+    },
+    {
+      "id": "settle",
+      "name": "到期分级结算",
+      "duration_min": 8,
+      "instruction": "到期分别判定冲刺与保底是否达成并记录差距；若仅达保底，明确差在哪、下次冲刺要补什么。",
+      "checkpoint": "两级目标各有达成判定；未达冲刺者写出了差距与补救方向",
+      "output": "结算报告",
+      "fail_to": "define"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "保底是不是被我当成了轻易放弃的借口？",
+      "只达保底时，我清楚差在哪吗？"
+    ],
+    "success_criteria": [
+      "保底目标达成率高于单一目标时期",
+      "每次只达保底都伴随明确的差距分析"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "goal"
+    ],
+    "output": [
+      "双目标",
+      "分级计划",
+      "结算报告"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面定双目标并分级记录"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

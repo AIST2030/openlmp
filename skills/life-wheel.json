@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "life-wheel",
+  "name": "生命之花",
+  "name_en": "Life Wheel",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "元认知",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "在多个生活维度给自己打分，一眼看出哪块鼓、哪块瘪，用失衡可视化代替感觉还行的自我欺骗。",
+  "when_to_use": [
+    "觉得生活失衡却说不出哪失衡",
+    "季度或年度自我盘点",
+    "决定下一阶段重点"
+  ],
+  "when_not_to_use": [
+    "正处于单一维度冲刺期（短期不平衡是正常的）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [],
+    "properties": {
+      "dims": {
+        "type": "integer",
+        "default": 8,
+        "description": "维度数量"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "define",
+      "name": "选定维度",
+      "duration_min": 10,
+      "instruction": "选定 8 个维度，如健康、家庭、朋友、成长、工作、财务、休闲、贡献，各写一句这个维度好是什么样。",
+      "checkpoint": "维度数等于指定值；且每维有一句好的样子描述",
+      "output": "维度定义"
+    },
+    {
+      "id": "score",
+      "name": "逐维打分",
+      "duration_min": 12,
+      "instruction": "每个维度按当前真实状态打 1-10 分，打分时写下支撑这个分的一条事实，不凭感觉。",
+      "checkpoint": "每维都有 1-10 分；且每分附了一条支撑事实",
+      "output": "打分与依据"
+    },
+    {
+      "id": "map",
+      "name": "画成轮图",
+      "duration_min": 6,
+      "instruction": "把八个分数画成一个轮子，标出最高和最低的两块，直观看不平衡处。",
+      "checkpoint": "产出了轮图；且最高与最低各一块被标出",
+      "output": "生命之花轮图"
+    },
+    {
+      "id": "act",
+      "name": "只补最低一块",
+      "duration_min": 8,
+      "instruction": "为最低分维度定一个下周期的小改进动作，只补这一块，其余维持；下周期重打分看变化。",
+      "checkpoint": "为最低维度定了一个具体改进动作；且其余维度本轮不动",
+      "output": "改进计划",
+      "fail_to": "score"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的打分有事实支撑，还是全是感觉？",
+      "只补最低一块，我忍得住不动其他吗？"
+    ],
+    "success_criteria": [
+      "最低维度分数下周期上升",
+      "各维度分差逐周期收窄"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "dims"
+    ],
+    "output": [
+      "打分依据",
+      "轮图",
+      "改进计划"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸上画八分轮并逐维打分"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

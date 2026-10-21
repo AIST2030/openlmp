@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "sleep-wake-memory",
+  "name": "睡前醒后记忆",
+  "name_en": "Sleep-Wake Memory",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "记忆巩固",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把难记的材料安排在睡前过一遍、醒后先测一遍，利用睡眠巩固和前后摄干扰少的窗口提升保持率。",
+  "when_to_use": [
+    "记了就忘",
+    "有连夜的记忆任务",
+    "想利用睡眠巩固"
+  ],
+  "when_not_to_use": [
+    "第二天一早就考的临场内容（直接集中背更即时）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "material"
+    ],
+    "properties": {
+      "material": {
+        "type": "string",
+        "description": "要睡前编码的材料"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "schedule",
+      "name": "选定材料与时段",
+      "duration_min": 4,
+      "instruction": "选定要记的材料，安排在睡前 30 分钟内过一遍，并约定次日醒后先测再干别的事。",
+      "checkpoint": "写下了材料与睡前时段；且约定醒后先测",
+      "output": "记忆计划"
+    },
+    {
+      "id": "encode",
+      "name": "睡前精细编码",
+      "duration_min": 20,
+      "instruction": "睡前逐条过材料，每条用自己的话复述并想一个例子；不解的标记，不硬背。",
+      "checkpoint": "每条都有自述复述；且不解处被标记",
+      "output": "睡前编码记录"
+    },
+    {
+      "id": "retrieve",
+      "name": "醒后先测",
+      "duration_min": 10,
+      "instruction": "醒来第一件事，在看手机前合上材料，把能想起的写出或说出，标出想不出的。",
+      "checkpoint": "醒后已先于其他活动完成一次回忆；且想不出的条目标出",
+      "output": "晨间回忆结果"
+    },
+    {
+      "id": "target",
+      "name": "只补晨间缺口",
+      "duration_min": 12,
+      "instruction": "只对晨间想不出的条目重点巩固，已想起的快速过；连续几天重复此循环。",
+      "checkpoint": "仅晨间缺口条目被重点巩固；且循环天数已记录",
+      "output": "巩固记录",
+      "fail_to": "encode"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我醒后是真的先测，还是先刷了手机？",
+      "晨间想不出的，是没编码好还是没睡够？"
+    ],
+    "success_criteria": [
+      "晨间回忆率高于无睡前编码时",
+      "连续几晚缺口逐晚减少"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "material"
+    ],
+    "output": [
+      "记忆计划",
+      "晨间回忆结果",
+      "巩固记录"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：睡前列清单、醒后口头自测"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

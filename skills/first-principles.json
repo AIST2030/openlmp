@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "first-principles",
+  "name": "第一性原理",
+  "name_en": "First Principles Thinking",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "理解构建",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "抛开别人都这么做的类比和经验，把问题拆到最基本、不可再分的事实，再从这些事实重新推理出路。",
+  "when_to_use": [
+    "面对从来如此的做法想质疑",
+    "类比推理走进死胡同",
+    "评估一个方案是否真的必要"
+  ],
+  "when_not_to_use": [
+    "已被充分验证的标准做法（重新推导性价比低）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "problem"
+    ],
+    "properties": {
+      "problem": {
+        "type": "string",
+        "description": "要用第一性原理重拆的问题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "strip",
+      "name": "剥掉类比和惯例",
+      "duration_min": 10,
+      "instruction": "写下关于这个问题「大家都这么认为或这么做」的 3 条默认假设，逐条标注哪些是事实、哪些只是惯例。",
+      "checkpoint": "列出 3 条默认假设；且每条被标注为事实或惯例",
+      "output": "假设剥离表"
+    },
+    {
+      "id": "bedrock",
+      "name": "沉到基本事实",
+      "duration_min": 15,
+      "instruction": "把问题继续往下拆，直到剩下不可再争辩的基本事实，如物理约束、定义、已被证的量，列出这些基石。",
+      "checkpoint": "基石至少 3 条；且每条为不可再争辩的事实而非观点",
+      "output": "基石清单"
+    },
+    {
+      "id": "rebuild",
+      "name": "从基石重推",
+      "duration_min": 20,
+      "instruction": "只使用基石清单，从零推理出一个方案，禁止引用被标为惯例的假设。",
+      "checkpoint": "方案仅由基石推出；且推理过程未引用任何被标为惯例的假设",
+      "output": "重推方案"
+    },
+    {
+      "id": "compare",
+      "name": "与旧方案对比",
+      "duration_min": 10,
+      "instruction": "把重推方案与现有做法并列，逐条比差异与代价，得出保留、替换或折中的结论。",
+      "checkpoint": "列出了差异与代价；且给出了保留、替换、折中之一的明确结论",
+      "output": "对比结论",
+      "fail_to": "bedrock"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的基石真的是事实，还是换了个说法的惯例？",
+      "重推时我有没有偷偷把老假设放回来？"
+    ],
+    "success_criteria": [
+      "方案每一步都能追溯到某条基石",
+      "能说清新旧方案差异的根源"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "problem"
+    ],
+    "output": [
+      "基石清单",
+      "重推方案",
+      "对比结论"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸笔完成剥离、基石、重推"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "lmp": "0.1",
+  "id": "shadowing",
+  "name": "影子跟读法",
+  "name_en": "Shadowing",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "技能习得",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "放着母语音频慢半拍同步复述，强迫耳朵、嘴巴、节奏对齐，专治看得懂但说不出、听得清却反应慢。",
+  "when_to_use": [
+    "练口语语感和发音节奏",
+    "听力反应慢",
+    "学到会读不会说的阶段"
+  ],
+  "when_not_to_use": [
+    "完全零基础的语音（先学音标再跟读）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "audio"
+    ],
+    "properties": {
+      "audio": {
+        "type": "string",
+        "description": "带文稿的母语音频"
+      },
+      "lag_ms": {
+        "type": "integer",
+        "default": 500,
+        "description": "落后原声的毫秒数"
+      },
+      "rounds": {
+        "type": "integer",
+        "default": 3,
+        "description": "跟读轮数"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "prep",
+      "name": "选材并通听",
+      "duration_min": 8,
+      "instruction": "选一段 30-60 秒、带文稿的母语音频，先不看文稿完整听一遍，标出听不懂的位置。",
+      "checkpoint": "音频时长在 30-60 秒；且标出了听不懂的位置",
+      "output": "标疑点的音频"
+    },
+    {
+      "id": "shadow",
+      "name": "慢半拍跟读",
+      "duration_min": 15,
+      "instruction": "播放音频，比原声晚约 lag_ms 毫秒复述，尽量模仿语调重音；跟不上就暂停重来，不跳过。",
+      "checkpoint": "完成 rounds 轮跟读；且每轮均晚于原声开口，未与原声同时",
+      "output": "跟读记录"
+    },
+    {
+      "id": "diff",
+      "name": "对照文稿找差距",
+      "duration_min": 8,
+      "instruction": "现在看文稿，标出跟读中漏词、错音、语调跑偏的位置，逐条记下。",
+      "checkpoint": "列出了漏词、错音、语调三类差距；且每类定位到具体词句",
+      "output": "差距清单"
+    },
+    {
+      "id": "loop",
+      "name": "收窄差距重跟",
+      "duration_min": 12,
+      "instruction": "针对差距清单重跟，每轮统计仍出错的条目数，直到该轮新增出错为 0 或达到 rounds 上限。",
+      "checkpoint": "给出了每轮出错条目数；且末轮出错数不高于首轮",
+      "output": "收窄结果",
+      "fail_to": "shadow"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是真的在跟，还是等原声念完才开口？",
+      "差距清单里的问题，下一轮真的少了吗？"
+    ],
+    "success_criteria": [
+      "末轮漏词与错音数不超过首轮一半",
+      "不看文稿也能跟上语速"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "audio",
+      "lag_ms",
+      "rounds"
+    ],
+    "output": [
+      "差距清单",
+      "收窄结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无音频时：由 Agent 朗读，用户慢半拍复述"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

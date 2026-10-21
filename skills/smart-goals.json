@@ -1,0 +1,110 @@
+{
+  "lmp": "0.1",
+  "id": "smart-goals",
+  "name": "SMART 目标法",
+  "name_en": "SMART Goals",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把愿望改写成同时满足具体、可衡量、可达成、相关、有时限五条的目标，缺一不可。",
+  "when_to_use": [
+    "目标总是落不了地",
+    "计划写得很虚无法验收",
+    "季度或年度规划"
+  ],
+  "when_not_to_use": [
+    "探索期方向未明时（先探索再定目标）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "wish"
+    ],
+    "properties": {
+      "wish": {
+        "type": "string",
+        "description": "想改写成目标的愿望"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "specific",
+      "name": "具体化",
+      "duration_min": 5,
+      "instruction": "把愿望改写成含明确对象和动作的陈述，删掉更好、提升一类空词。",
+      "checkpoint": "目标含明确对象与动作；且不含更好、提升、一些等空词",
+      "output": "具体化目标"
+    },
+    {
+      "id": "measurable",
+      "name": "可衡量",
+      "duration_min": 5,
+      "instruction": "给目标加一个数字或可观察的达成标志，并写清怎么算达标。",
+      "checkpoint": "目标附带数值或可观察标志；且写明了达标判定方式",
+      "output": "衡量标准"
+    },
+    {
+      "id": "achievable",
+      "name": "掂量可达成",
+      "duration_min": 6,
+      "instruction": "对照现有资源与时间判断目标是否够得着；过高的拆小，过低的调高，并说明依据。",
+      "checkpoint": "给出了可达成性判断；且对过高或过低给出了调整及依据",
+      "output": "调整后目标"
+    },
+    {
+      "id": "relevant",
+      "name": "对齐大方向",
+      "duration_min": 4,
+      "instruction": "写一句这个目标服务于哪个更上层的目标，说不出关联就标记为待定或放弃。",
+      "checkpoint": "写出了所服务的上层目标；无关联者被标记待定或放弃",
+      "output": "关联说明"
+    },
+    {
+      "id": "timebound",
+      "name": "定时限",
+      "duration_min": 4,
+      "instruction": "给目标设定明确的起止日期和至少一个中间检查点，并落到日历。",
+      "checkpoint": "目标有起止日期；且至少设定 1 个中间检查点并落到日历",
+      "output": "带期限目标",
+      "fail_to": "specific"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "五条里我是不是只在具体上下了功夫？",
+      "这个目标月底我真能判断达成没有吗？"
+    ],
+    "success_criteria": [
+      "目标五要素齐全",
+      "到期可直接判定达成或未达成"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "wish"
+    ],
+    "output": [
+      "带期限目标"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面逐条过 SMART 五问"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

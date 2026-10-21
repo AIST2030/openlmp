@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "mind-map",
+  "name": "思维导图",
+  "name_en": "Mind Mapping",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "知识管理",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "以中心词为根向外辐射分层，每枝只用关键词，用颜色和图像强化记忆，把一本书或一科知识画成一棵树。",
+  "when_to_use": [
+    "梳理一科或一本书的结构",
+    "记忆量大需要视觉锚点",
+    "备课或演讲前组织思路"
+  ],
+  "when_not_to_use": [
+    "需要严格逻辑推导的过程（导图会弱化推理链）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "要画成导图的主题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "center",
+      "name": "定中心与主干",
+      "duration_min": 8,
+      "instruction": "在纸或白板中央写下中心主题，向外拉出 4-7 条主干，每条一个核心方面，只用关键词。",
+      "checkpoint": "主干 4-7 条；且每条均为关键词而非句子",
+      "output": "中心与主干"
+    },
+    {
+      "id": "branch",
+      "name": "向外分层",
+      "duration_min": 20,
+      "instruction": "每条主干继续向下分叉，子枝同样只写关键词；同一层的枝保持粒度一致。",
+      "checkpoint": "每条主干至少有 2 级子枝；且同层枝粒度一致，无长短句混用",
+      "output": "分层导图"
+    },
+    {
+      "id": "code",
+      "name": "上色与配图",
+      "duration_min": 12,
+      "instruction": "给每个主干分配一种颜色，在关键枝上画简单图标；每张图旁只配一个关键词。",
+      "checkpoint": "每个主干有唯一颜色；且至少 3 个关键枝配有图标加单一关键词",
+      "output": "着色导图"
+    },
+    {
+      "id": "recall",
+      "name": "盖图复述",
+      "duration_min": 10,
+      "instruction": "盖住导图，凭记忆复述中心与各主干；复述不出的枝用粗笔标出，作为薄弱点回补。",
+      "checkpoint": "完成了盖图复述；且复述失败的枝被标出",
+      "output": "复述与薄弱点",
+      "fail_to": "center"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我写的是关键词，还是偷偷写了整句？",
+      "盖图后能从头讲到尾吗，哪条枝断了？"
+    ],
+    "success_criteria": [
+      "盖图能复述全部主干",
+      "薄弱枝经回补后复述成功"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic"
+    ],
+    "output": [
+      "分层导图",
+      "薄弱点清单"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：手绘导图并口头复述"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "lmp": "0.1",
+  "id": "time-capsule-quiz",
+  "name": "时间胶囊出题",
+  "name_en": "Time-Capsule Quiz",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "评测验证",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "学习时由现在的你给未来的你出题并封存，到期后由未来的你作答，用时间差检验记忆是否真的留下来。",
+  "when_to_use": [
+    "想检验长期记忆而非临时记忆",
+    "对抗学完就忘",
+    "给自己设计阶段性测验"
+  ],
+  "when_not_to_use": [
+    "明天就要考（时间隔太短无意义）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "要封存测验的主题"
+      },
+      "days": {
+        "type": "integer",
+        "default": 7,
+        "description": "多少天后开封"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "author",
+      "name": "现在出题封存",
+      "duration_min": 15,
+      "instruction": "学完当场，就本主题出 5-8 道能考住自己的题并附答案，标注出题日期，封存到指定日期再看。",
+      "checkpoint": "出题 5-8 道且每题附答案；且标注了出题与开封日期",
+      "output": "封存题卡"
+    },
+    {
+      "id": "seal",
+      "name": "设定开封日",
+      "duration_min": 3,
+      "instruction": "把开封日设为 days 天后并在日历设提醒；封存后到日前不得偷看。",
+      "checkpoint": "开封日已设定并落到日历；且承诺到期前不偷看",
+      "output": "开封计划"
+    },
+    {
+      "id": "open",
+      "name": "到期独立作答",
+      "duration_min": 20,
+      "instruction": "到期后先不看书独立作答全部题目并记录用时；不会的题明确标注想不出。",
+      "checkpoint": "全部题目被独立作答；且想不出的题被明确标注",
+      "output": "作答记录"
+    },
+    {
+      "id": "score",
+      "name": "对答案算保持率",
+      "duration_min": 8,
+      "instruction": "对答案，计算答对率即保持率，按题目标注哪些全忘、哪些半忘，作为回补重点。",
+      "checkpoint": "给出了保持率数值；且题目被分为全忘、半忘、记得三类",
+      "output": "保持率报告",
+      "fail_to": "open"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我出题是奔着考住未来的我，还是随便写了送分题？",
+      "保持率低，是当时没学会还是真忘了？"
+    ],
+    "success_criteria": [
+      "保持率随时间推移仍不低于目标线",
+      "全忘类题目被回补后重考答对"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic",
+      "days"
+    ],
+    "output": [
+      "封存题卡",
+      "保持率报告"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：手写题卡装入信封写开封日"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

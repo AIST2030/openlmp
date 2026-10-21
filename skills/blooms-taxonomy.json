@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "blooms-taxonomy",
+  "name": "布鲁姆分层推进",
+  "name_en": "Bloom's Taxonomy Ladder",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "理解构建",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "按记忆、理解、应用、分析、评价、创造六层逐级推进，每层都要产出对应层次的证据，防止停在看着懂的低层。",
+  "when_to_use": [
+    "学一门系统性学科",
+    "复习时不知道练到什么程度够",
+    "自测学习深度"
+  ],
+  "when_not_to_use": [
+    "只需记住少量事实的场景"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "要分层推进的主题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "ladder",
+      "name": "列出六级任务",
+      "duration_min": 12,
+      "instruction": "为该主题写六级各一条任务：记忆等于默写定义，理解等于改写释义，应用等于解新题，分析等于拆解结构，评价等于给方案排序并说理由，创造等于组合成新方案。",
+      "checkpoint": "六级各有 1 条任务；且每条任务的动词与所在层级匹配",
+      "output": "六级任务单"
+    },
+    {
+      "id": "climb",
+      "name": "自下而上闯关",
+      "duration_min": 40,
+      "instruction": "从记忆级开始逐级完成，本级产出被判定达标后才进上一级；跳级需说明理由。",
+      "checkpoint": "每级都有对应产出；且未出现无产出就进级的记录，跳级均有理由说明",
+      "output": "各级产出"
+    },
+    {
+      "id": "locate",
+      "name": "标出卡壳层级",
+      "duration_min": 8,
+      "instruction": "记录每一级是否一次通过，标出需要回头补的层级，那才是你真实的水平上限。",
+      "checkpoint": "每级标注了是否一次通过；且指出了需回补的层级",
+      "output": "层级诊断"
+    },
+    {
+      "id": "drill",
+      "name": "只补卡壳层",
+      "duration_min": 20,
+      "instruction": "针对卡壳层设计 2 条同级练习重做，其余层级本轮不重复练。",
+      "checkpoint": "为卡壳层各设计了 2 条同级练习并完成；且未对已过关层级重复练习",
+      "output": "补练结果",
+      "fail_to": "climb"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是真的逐层闯上来的，还是一直在记忆层打转？",
+      "卡壳的那层，说得出差在哪吗？"
+    ],
+    "success_criteria": [
+      "六个层级都有对应产出",
+      "卡壳层经补练后能一次通过"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic"
+    ],
+    "output": [
+      "六级任务单",
+      "各级产出",
+      "层级诊断"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：对话式逐层提问检验"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}
