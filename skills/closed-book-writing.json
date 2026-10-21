@@ -5,21 +5,44 @@
   "name_en": "Closed-Book Writing",
   "version": "0.1.0",
   "license": "CC0-1.0",
-  "authors": ["OpenLMP 公共领域贡献"],
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
   "category": "评测验证",
   "evidence": "high",
   "evidence_refs": [
     "Kang, McDermott & Roediger 2007, Psychological Science 18(6) 409-414（测试效应：先提取再学比先学再提取效果更好）"
   ],
   "description": "合上资料先写 10 分钟，再打开资料补充。用「写不出的地方」精确标出你的真实缺口，而不是靠重读掩盖。",
-  "when_to_use": ["备考写作/论述题", "准备汇报或分享", "读完后想检验掌握程度"],
-  "when_not_to_use": ["第一次接触这个主题（没东西可写）"],
+  "when_to_use": [
+    "备考写作/论述题",
+    "准备汇报或分享",
+    "读完后想检验掌握程度"
+  ],
+  "when_not_to_use": [
+    "第一次接触这个主题（没东西可写）"
+  ],
   "params": {
     "type": "object",
-    "required": ["topic"],
-    "properties": { "topic": { "type": "string" }, "duration_min": { "type": "integer", "default": 10 } }
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "要合书默写的主题或范围，如「TCP 三次握手」「第三章函数」"
+      },
+      "duration_min": {
+        "type": "integer",
+        "default": 10,
+        "description": "合书默写的时长上限（分钟），到点必须停笔对照"
+      }
+    }
   },
-  "requires": { "tools": [], "assets": [] },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
   "steps": [
     {
       "id": "blank-draft",
@@ -67,13 +90,28 @@
       "盲写的时候我是不是偷偷看了资料？",
       "圈出来的缺口，是不是正好就是考试/汇报会问我「你不知道怎么答」的地方？"
     ],
-    "success_criteria": ["次日复测覆盖率 ≥70%", "同类问题的空心率逐次下降"]
+    "success_criteria": [
+      "次日复测覆盖率 ≥70%",
+      "同类问题的空心率逐次下降"
+    ]
   },
   "agent_contract": {
-    "input": ["topic"], "output": ["blind draft", "gap map"],
-    "side_effects": ["写本地文件"],
+    "input": [
+      "topic"
+    ],
+    "output": [
+      "blind draft",
+      "gap map"
+    ],
+    "side_effects": [
+      "写本地文件"
+    ],
     "degrade_to": "Agent 绝不能在 step1 到 step3 之间泄露答案或引用；如用户表示看过资料，必须显式记录为「已污染」，该轮测试结果作废"
   },
   "resources": [],
-  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
 }

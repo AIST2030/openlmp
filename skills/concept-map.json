@@ -5,19 +5,42 @@
   "name_en": "Concept Mapping",
   "version": "0.1.0",
   "license": "CC0-1.0",
-  "authors": ["OpenLMP 公共领域贡献"],
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
   "category": "知识管理",
   "evidence": "medium",
   "evidence_refs": [],
   "description": "把概念间的有向关系画成图，用「连接词」迫使自己说清关系类型，而不是只堆名词。",
-  "when_to_use": ["一章/一门课学完要收口", "跨章节串主线", "写作前梳理结构"],
-  "when_not_to_use": ["只学一两个孤立知识点（用不上图）"],
+  "when_to_use": [
+    "一章/一门课学完要收口",
+    "跨章节串主线",
+    "写作前梳理结构"
+  ],
+  "when_not_to_use": [
+    "只学一两个孤立知识点（用不上图）"
+  ],
   "params": {
     "type": "object",
-    "required": ["topic"],
-    "properties": { "topic": { "type": "string" }, "max_nodes": { "type": "integer", "default": 20 } }
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "要画概念图的主题，先用一个具体问题或概念界定边界"
+      },
+      "max_nodes": {
+        "type": "integer",
+        "default": 20,
+        "description": "概念节点上限，防止无限画下去导致只画不学"
+      }
+    }
   },
-  "requires": { "tools": [], "assets": [] },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
   "steps": [
     {
       "id": "list",
@@ -53,12 +76,30 @@
     }
   ],
   "evaluate": {
-    "self_check": ["这张图能不能在不复看笔记的情况下讲给别人听？", "放不进任何分类的概念，说明我缺的是什么知识？"],
-    "success_criteria": ["图的层级能独立复述", "孤立概念清单逐次变短"]
+    "self_check": [
+      "这张图能不能在不复看笔记的情况下讲给别人听？",
+      "放不进任何分类的概念，说明我缺的是什么知识？"
+    ],
+    "success_criteria": [
+      "图的层级能独立复述",
+      "孤立概念清单逐次变短"
+    ]
   },
   "agent_contract": {
-    "input": ["topic", "max_nodes"], "output": ["concept map"], "side_effects": [], "degrade_to": "无法绘图时：输出 mermaid 文本或缩进列表表达同一张图"
+    "input": [
+      "topic",
+      "max_nodes"
+    ],
+    "output": [
+      "concept map"
+    ],
+    "side_effects": [],
+    "degrade_to": "无法绘图时：输出 mermaid 文本或缩进列表表达同一张图"
   },
   "resources": [],
-  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
 }

@@ -33,7 +33,8 @@
         "description": "搭档，需大致同水平"
       },
       "topic": {
-        "type": "string"
+        "type": "string",
+        "description": "结对共同攻克的主题，需双方都具备基础才能讨论"
       }
     }
   },

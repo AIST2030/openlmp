@@ -5,23 +5,49 @@
   "name_en": "Deliberate Practice",
   "version": "0.1.0",
   "license": "CC0-1.0",
-  "authors": ["OpenLMP 公共领域贡献"],
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
   "category": "技能习得",
   "evidence": "high",
-  "evidence_refs": ["Ericsson et al. 1993, Psychological Review 100(3) 363-406"],
+  "evidence_refs": [
+    "Ericsson et al. 1993, Psychological Review 100(3) 363-406"
+  ],
   "description": "把大技能拆成刚好超出当前能力一点点的小任务，重复、即时反馈、逐次纠错。",
-  "when_to_use": ["练技能（乐器/编程/运动/写作/演讲）", "已经重复很多次但没进步"],
-  "when_not_to_use": ["只是要记住知识（用 active-recall）", "刚开始学，还没有基本动作"],
+  "when_to_use": [
+    "练技能（乐器/编程/运动/写作/演讲）",
+    "已经重复很多次但没进步"
+  ],
+  "when_not_to_use": [
+    "只是要记住知识（用 active-recall）",
+    "刚开始学，还没有基本动作"
+  ],
   "params": {
     "type": "object",
-    "required": ["skill", "current_level"],
+    "required": [
+      "skill",
+      "current_level"
+    ],
     "properties": {
-      "skill": { "type": "string" },
-      "current_level": { "type": "string", "description": "当前水平描述" },
-      "session_min": { "type": "integer", "default": 45 }
+      "skill": {
+        "type": "string",
+        "description": "要刻意练习的具体子技能，如「写 SQL 的 JOIN」「冷启动开场白」"
+      },
+      "current_level": {
+        "type": "string",
+        "description": "当前水平描述"
+      },
+      "session_min": {
+        "type": "integer",
+        "default": 45,
+        "description": "单次练习时长，超时即停（刻意练习要求全程专注不疲劳）"
+      }
     }
   },
-  "requires": { "tools": [], "assets": [] },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
   "steps": [
     {
       "id": "diagnose",
@@ -61,14 +87,32 @@
       "这一小时里，我是在重复已经会的东西，还是在攻最不会的那一点？",
       "我拿到的反馈是「再练练」这种废话吗？"
     ],
-    "success_criteria": ["同一练习的成功率逐次上升", "能说出一条以前不知道的规则"]
+    "success_criteria": [
+      "同一练习的成功率逐次上升",
+      "能说出一条以前不知道的规则"
+    ]
   },
   "agent_contract": {
-    "input": ["skill", "current_level", "session_min"],
-    "output": ["bottleneck", "drill list", "loop log", "one rule"],
-    "side_effects": ["仅写本地文件"],
+    "input": [
+      "skill",
+      "current_level",
+      "session_min"
+    ],
+    "output": [
+      "bottleneck",
+      "drill list",
+      "loop log",
+      "one rule"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
     "degrade_to": "无法获取真实操作反馈时（无视频/无传感数据）：明确告知用户「缺反馈源」，改为纯自评 + 录像复盘，不假装给了客观反馈"
   },
   "resources": [],
-  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
 }

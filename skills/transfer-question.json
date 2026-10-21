@@ -5,19 +5,51 @@
   "name_en": "Transfer of Training",
   "version": "0.1.0",
   "license": "CC0-1.0",
-  "authors": ["OpenLMP 公共领域贡献"],
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
   "category": "元认知",
   "evidence": "high",
-  "evidence_refs": ["Bromley 1990, Educational Researcher 19(4) 102-111"],
+  "evidence_refs": [
+    "Bromley 1990, Educational Researcher 19(4) 102-111"
+  ],
   "description": "每学一个概念，立刻问「这在什么别的场景能用」，把知识从课堂搬到真实问题。",
-  "when_to_use": ["考试能做但实际不会用", "学了理论不会落地", "准备面试/实操"],
-  "when_not_to_use": ["纯事实记忆阶段（还没到迁移环节）"],
+  "when_to_use": [
+    "考试能做但实际不会用",
+    "学了理论不会落地",
+    "准备面试/实操"
+  ],
+  "when_not_to_use": [
+    "纯事实记忆阶段（还没到迁移环节）"
+  ],
   "params": {
     "type": "object",
-    "required": ["concept"],
-    "properties": { "concept": { "type": "string" }, "domains": { "type": "array", "items": { "type": "string" }, "default": ["工作", "生活", "另一个学科"] } }
+    "required": [
+      "concept"
+    ],
+    "properties": {
+      "concept": {
+        "type": "string",
+        "description": "要检验迁移能力的目标概念"
+      },
+      "domains": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "工作",
+          "生活",
+          "另一个学科"
+        ],
+        "description": "要迁移到哪些不同的应用领域（至少 2 个，跨领域才叫迁移）"
+      }
+    }
   },
-  "requires": { "tools": [], "assets": [] },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
   "steps": [
     {
       "id": "real-case",
@@ -53,12 +85,33 @@
     }
   ],
   "evaluate": {
-    "self_check": ["我举的场景是真的发生过，还是我编的？", "我说的迁移是换个说法，还是真的能解决不同的问题？"],
-    "success_criteria": ["能主动举出至少一个教科书没写的应用", "真问题上有可观测的改变"]
+    "self_check": [
+      "我举的场景是真的发生过，还是我编的？",
+      "我说的迁移是换个说法，还是真的能解决不同的问题？"
+    ],
+    "success_criteria": [
+      "能主动举出至少一个教科书没写的应用",
+      "真问题上有可观测的改变"
+    ]
   },
   "agent_contract": {
-    "input": ["concept", "domains"], "output": ["scenario", "mapping", "analogy", "action"], "side_effects": [], "degrade_to": "Agent 不得虚构用户经历：若用户说不出真实场景，必须引导提问而非代为编造"
+    "input": [
+      "concept",
+      "domains"
+    ],
+    "output": [
+      "scenario",
+      "mapping",
+      "analogy",
+      "action"
+    ],
+    "side_effects": [],
+    "degrade_to": "Agent 不得虚构用户经历：若用户说不出真实场景，必须引导提问而非代为编造"
   },
   "resources": [],
-  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
 }

@@ -5,23 +5,48 @@
   "name_en": "70-20-10 Action Learning",
   "version": "0.1.0",
   "license": "CC0-1.0",
-  "authors": ["OpenLMP 公共领域贡献"],
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
   "category": "技能习得",
   "evidence": "anecdotal",
   "evidence_refs": [],
   "description": "10% 学理论 / 70% 做真实任务 / 20% 复盘，把学习时间强制分配到动手比例上，避免「只学不用」。",
-  "when_to_use": ["要学职业技能（写作/编程/设计/数据）", "读了三个月书没产出", "公司内训"],
-  "when_not_to_use": ["纯理论学科（数学定理、法条）", "还不会用就想上手（先补最小基础）"],
+  "when_to_use": [
+    "要学职业技能（写作/编程/设计/数据）",
+    "读了三个月书没产出",
+    "公司内训"
+  ],
+  "when_not_to_use": [
+    "纯理论学科（数学定理、法条）",
+    "还不会用就想上手（先补最小基础）"
+  ],
   "params": {
     "type": "object",
-    "required": ["skill", "real_task"],
+    "required": [
+      "skill",
+      "real_task"
+    ],
     "properties": {
-      "skill": { "type": "string" },
-      "real_task": { "type": "string", "description": "一个真实存在的、有人要的产出" },
-      "weeks": { "type": "integer", "default": 6 }
+      "skill": {
+        "type": "string",
+        "description": "要通过项目练的能力，须有真实可交付的产出物"
+      },
+      "real_task": {
+        "type": "string",
+        "description": "一个真实存在的、有人要的产出"
+      },
+      "weeks": {
+        "type": "integer",
+        "default": 6,
+        "description": "项目周期（周）。周期太短形不成反馈闭环，太长会烂尾"
+      }
     }
   },
-  "requires": { "tools": [], "assets": [] },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
   "steps": [
     {
       "id": "task-first",
@@ -69,13 +94,30 @@
       "这次学的东西，真的被用在交付物上了吗？",
       "我记录卡点的时刻，是不是都记得当时在想什么？"
     ],
-    "success_criteria": ["每轮都有真实交付物", "卡点记录逐轮变少"]
+    "success_criteria": [
+      "每轮都有真实交付物",
+      "卡点记录逐轮变少"
+    ]
   },
   "agent_contract": {
-    "input": ["skill", "real_task", "weeks"], "output": ["real task brief", "复盘"],
-    "side_effects": ["写本地文件"],
+    "input": [
+      "skill",
+      "real_task",
+      "weeks"
+    ],
+    "output": [
+      "real task brief",
+      "复盘"
+    ],
+    "side_effects": [
+      "写本地文件"
+    ],
     "degrade_to": "用户没有真实任务需求时：Agent 必须提示「先去找一个真实需求」，**禁止**用虚拟练习项目替代——这是本方法的核心机制，替代即失效"
   },
   "resources": [],
-  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
 }

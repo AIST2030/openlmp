@@ -5,7 +5,9 @@
   "name_en": "Error Notebook",
   "version": "0.1.0",
   "license": "CC0-1.0",
-  "authors": ["OpenLMP 公共领域贡献"],
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
   "category": "评测验证",
   "evidence": "high",
   "evidence_refs": [
@@ -13,17 +15,38 @@
     "Bahrick et al. 1993, Psychological Science 4(3) 316-321（间隔提取优于间隔重复阅读）"
   ],
   "description": "错一道要会一类：每道错题必须归到错因类型并配同类变式题，考的是「迁移」不是「记住这道」。",
-  "when_to_use": ["刷题正确率上不去", "同一类型题反复错", "考前复盘"],
-  "when_not_to_use": ["刚开始学（错得太多无从归类，先按步骤学）"],
+  "when_to_use": [
+    "刷题正确率上不去",
+    "同一类型题反复错",
+    "考前复盘"
+  ],
+  "when_not_to_use": [
+    "刚开始学（错得太多无从归类，先按步骤学）"
+  ],
   "params": {
     "type": "object",
-    "required": ["wrong_items"],
+    "required": [
+      "wrong_items"
+    ],
     "properties": {
-      "wrong_items": { "type": "array", "items": { "type": "object" }, "description": "做错的题目与当时思路" },
-      "same_day_retest": { "type": "boolean", "default": true }
+      "wrong_items": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "description": "做错的题目与当时思路"
+      },
+      "same_day_retest": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否当天重测一遍错题（默认是；隔天测会显著提高遗忘率）"
+      }
     }
   },
-  "requires": { "tools": [], "assets": [] },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
   "steps": [
     {
       "id": "capture",
@@ -79,13 +102,29 @@
       "我的错因记录里有多少是「当时我怎么想的」的真实记录？",
       "变式题是不是真的换了问法，还是只是换了数字？"
     ],
-    "success_criteria": ["同类错误复现率逐周下降", "「已解决」类别数持续增加"]
+    "success_criteria": [
+      "同类错误复现率逐周下降",
+      "「已解决」类别数持续增加"
+    ]
   },
   "agent_contract": {
-    "input": ["wrong_items"], "output": ["错因分布", "drill result", "closure"],
-    "side_effects": ["写本地文件"],
+    "input": [
+      "wrong_items"
+    ],
+    "output": [
+      "错因分布",
+      "drill result",
+      "closure"
+    ],
+    "side_effects": [
+      "写本地文件"
+    ],
     "degrade_to": "无法生成变式题时：让用户自己出题并回答，Agent 只负责检查分类与归因是否成立"
   },
   "resources": [],
-  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
 }
