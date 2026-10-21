@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "business-model-canvas",
+  "name": "商业模式画布",
+  "name_en": "Business Model Canvas",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业分析",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "用九宫格一次说清客户、价值、渠道、收入、资源、活动、伙伴、成本，把商业模式摆到一页纸。",
+  "when_to_use": [
+    "设计或审视商业模式",
+    "创业立项梳理",
+    "向他人讲清商业模式"
+  ],
+  "when_not_to_use": [
+    "只想验证单一假设（用精益画布更轻）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "business"
+    ],
+    "properties": {
+      "business": {
+        "type": "string",
+        "description": "要梳理商业模式的业务"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "fill",
+      "name": "逐格填写",
+      "duration_min": 20,
+      "instruction": "按九格逐格填写客户细分、价值主张、渠道、客户关系、收入来源、核心资源、关键活动、重要伙伴、成本结构。",
+      "checkpoint": "九格全部填写；且每格内容具体非空话",
+      "output": "九宫格草稿"
+    },
+    {
+      "id": "coherence",
+      "name": "检查一致性",
+      "duration_min": 10,
+      "instruction": "检查价值主张与客户细分是否匹配、渠道能否触达、收入能否覆盖成本，标出不匹配处。",
+      "checkpoint": "标出了不匹配环节；且覆盖主张、客户、渠道、收入、成本五者对账",
+      "output": "一致性检查"
+    },
+    {
+      "id": "risk",
+      "name": "找最弱一格",
+      "duration_min": 5,
+      "instruction": "选出九格中最薄弱或最不确定的一格，它是模式的最大风险点。",
+      "checkpoint": "标出了最薄弱一格",
+      "output": "风险点"
+    },
+    {
+      "id": "test",
+      "name": "设计验证",
+      "duration_min": 8,
+      "instruction": "针对最弱一格设计一个最小验证动作和判定标准。",
+      "checkpoint": "给出了最弱格的验证动作与判定标准",
+      "output": "验证计划",
+      "fail_to": "fill"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "九格我是真填满了，还是几格空的？",
+      "最弱格是真风险还是我回避的地方？"
+    ],
+    "success_criteria": [
+      "九格完整且对账一致",
+      "最弱格有可执行验证"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "business"
+    ],
+    "output": [
+      "九宫格草稿",
+      "一致性检查",
+      "验证计划"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面画九宫格逐格填写"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

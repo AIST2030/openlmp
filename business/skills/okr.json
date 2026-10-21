@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "okr",
+  "name": "OKR 目标管理",
+  "name_en": "OKR",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业管理",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "设定一个有挑战的目标和 3-4 个可衡量的关键结果，用关键结果的完成度驱动目标，聚焦优先事项。",
+  "when_to_use": [
+    "团队对齐聚焦重点",
+    "想设定有挑战的目标",
+    "季度目标管理"
+  ],
+  "when_not_to_use": [
+    "目标常规无挑战（用任务清单即可）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "team"
+    ],
+    "properties": {
+      "team": {
+        "type": "string",
+        "description": "要设 OKR 的团队"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "objective",
+      "name": "定目标",
+      "duration_min": 6,
+      "instruction": "写一个定性的、有挑战、能鼓舞人的目标，一个周期只定一个主目标。",
+      "checkpoint": "目标唯一且定性有挑战",
+      "output": "目标 O"
+    },
+    {
+      "id": "kr",
+      "name": "定关键结果",
+      "duration_min": 10,
+      "instruction": "为目标定 3-4 个可衡量的关键结果，每个带基线值和目标值。",
+      "checkpoint": "关键结果 3-4 个；且每个有基线与目标值",
+      "output": "关键结果 KR"
+    },
+    {
+      "id": "align",
+      "name": "对齐与拆解",
+      "duration_min": 8,
+      "instruction": "把每个 KR 拆到团队或个人，确认每人知道自己负责哪个 KR 的哪部分。",
+      "checkpoint": "每个 KR 都有负责人；且拆解到人",
+      "output": "责任对齐"
+    },
+    {
+      "id": "track",
+      "name": "定期打分",
+      "duration_min": 10,
+      "instruction": "每周给每个 KR 打 0 到 1 的完成分，低于预期就调整资源或改 KR，不攒到期末。",
+      "checkpoint": "每周有 KR 打分；且低分 KR 有调整动作",
+      "output": "打分记录",
+      "fail_to": "kr"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的 KR 是真可衡量，还是定性描述？",
+      "打分我是诚实打的还是都打高分？"
+    ],
+    "success_criteria": [
+      "KR 完成度可量化",
+      "低分 KR 被及时调整"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "team"
+    ],
+    "output": [
+      "目标与 KR",
+      "责任对齐",
+      "打分记录"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面写 O 与 KR 并每周打分"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

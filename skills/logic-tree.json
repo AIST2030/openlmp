@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "logic-tree",
+  "name": "逻辑树分解",
+  "name_en": "Logic Tree",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "思维方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把核心问题作为树根，逐层拆成彼此独立、可分别验证的子问题，用树定位该先攻哪一枝。",
+  "when_to_use": [
+    "大问题无从下手",
+    "要把问题拆到可执行/可验证",
+    "排优先级"
+  ],
+  "when_not_to_use": [
+    "问题本身已足够小（直接解决）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "question"
+    ],
+    "properties": {
+      "question": {
+        "type": "string",
+        "description": "要分解的核心问题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "root",
+      "name": "定树根问题",
+      "duration_min": 4,
+      "instruction": "把核心问题写成一句待解答的问句，作为逻辑树的根。",
+      "checkpoint": "树根被写成一句明确的问句",
+      "output": "树根问题"
+    },
+    {
+      "id": "branch",
+      "name": "逐层拆子问题",
+      "duration_min": 12,
+      "instruction": "把根问题按 MECE 拆成第一层子问题，每个子问题可独立验证；继续下拆到可行动作为止。",
+      "checkpoint": "第一层子问题相互独立且可验证；且已下拆到可行动层",
+      "output": "逻辑树"
+    },
+    {
+      "id": "locate",
+      "name": "标最可能枝",
+      "duration_min": 6,
+      "instruction": "给每个末端子问题标一个最可能的原因或最优先的处理项，选出要优先验证的分支。",
+      "checkpoint": "每个末端子问题都被标注；且选出了优先分支",
+      "output": "优先级标注"
+    },
+    {
+      "id": "verify",
+      "name": "验证优先枝",
+      "duration_min": 12,
+      "instruction": "只对优先分支收集证据验证，成立则沿树下钻，不成立则换并列分支。",
+      "checkpoint": "优先分支被验证；且记录了下钻或换支的结论",
+      "output": "验证结论",
+      "fail_to": "branch"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的子问题是能独立验证的，还是又一句大话？",
+      "优先枝是真可能，还是看着顺眼？"
+    ],
+    "success_criteria": [
+      "逻辑树可下钻到可行动层",
+      "优先分支验证有明确结论"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "question"
+    ],
+    "output": [
+      "逻辑树",
+      "验证结论"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸上画树并逐层拆解"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

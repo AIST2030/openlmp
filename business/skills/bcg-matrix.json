@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "bcg-matrix",
+  "name": "BCG 矩阵",
+  "name_en": "BCG Matrix",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业分析",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "按市场增长率和相对份额把业务分到明星、金牛、问题、瘦狗四象限，据象限配资源。",
+  "when_to_use": [
+    "多业务线配资源",
+    "决定投入还是砍掉",
+    "产品组合审视"
+  ],
+  "when_not_to_use": [
+    "单一业务（无需组合管理）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "businesses"
+    ],
+    "properties": {
+      "businesses": {
+        "type": "string",
+        "description": "要分类的业务或产品清单"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "place",
+      "name": "放四象限",
+      "duration_min": 12,
+      "instruction": "给每个业务按市场增长率高低和相对份额高低，放入明星、金牛、问题、瘦狗四象限。",
+      "checkpoint": "每个业务都归入唯一象限；且高低有数据依据",
+      "output": "BCG 矩阵"
+    },
+    {
+      "id": "role",
+      "name": "定各象限角色",
+      "duration_min": 6,
+      "instruction": "给四象限定角色：明星加投、金牛供血、问题选择性投、瘦狗收缩或退出。",
+      "checkpoint": "四个象限各有明确角色定位",
+      "output": "角色定位"
+    },
+    {
+      "id": "allocate",
+      "name": "配资源",
+      "duration_min": 8,
+      "instruction": "据角色给每个业务分配资源，金牛的产出优先供明星。",
+      "checkpoint": "每个业务有资源处置；且金牛产出被导向明星",
+      "output": "资源配置"
+    },
+    {
+      "id": "review",
+      "name": "定期复评",
+      "duration_min": 6,
+      "instruction": "定期用新数据重放矩阵，看业务是否发生象限迁移，据此再调配。",
+      "checkpoint": "完成了复评；且记录了象限迁移",
+      "output": "复评结果",
+      "fail_to": "place"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "高低划分有数据还是拍的？",
+      "金牛的血真的输送给明星了吗？"
+    ],
+    "success_criteria": [
+      "每个业务有明确处置",
+      "资源配置随象限迁移调整"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "businesses"
+    ],
+    "output": [
+      "BCG 矩阵",
+      "资源配置"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面画四象限并逐业务落位"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

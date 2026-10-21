@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "decision-matrix",
+  "name": "决策矩阵",
+  "name_en": "Decision Matrix",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "分析方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "给候选方案按若干维度打分并加权求和，用可比较的分数替代拍脑袋取舍。",
+  "when_to_use": [
+    "多个方案难取舍",
+    "想透明化决策依据",
+    "团队需对齐选择"
+  ],
+  "when_not_to_use": [
+    "只有一个方案（无从比较）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "options"
+    ],
+    "properties": {
+      "options": {
+        "type": "string",
+        "description": "候选方案列表"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "criteria",
+      "name": "定维度与权重",
+      "duration_min": 8,
+      "instruction": "选定 3-5 个决策维度，按重要性分配权重，权重之和为 1。",
+      "checkpoint": "维度 3-5 个；且权重之和等于 1",
+      "output": "维度与权重"
+    },
+    {
+      "id": "score",
+      "name": "逐方案打分",
+      "duration_min": 12,
+      "instruction": "每个方案在每个维度按统一标准打分，并写下打分理由。",
+      "checkpoint": "每个方案每个维度都有分；且每分有理由",
+      "output": "打分矩阵"
+    },
+    {
+      "id": "weight",
+      "name": "加权求和排序",
+      "duration_min": 6,
+      "instruction": "把每个方案的各维度分乘以权重后求和，按总分排序。",
+      "checkpoint": "给出了每个方案加权总分；且按总分排序",
+      "output": "排序结果"
+    },
+    {
+      "id": "sensitivity",
+      "name": "做敏感性检查",
+      "duration_min": 8,
+      "instruction": "把最高与最低权重对调一次，看排序是否翻转；翻转则说明结果对权重敏感，需重估权重。",
+      "checkpoint": "完成了一次权重对调；且记录了排序是否翻转",
+      "output": "敏感性结论",
+      "fail_to": "score"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "打分是真按标准，还是凭好恶？",
+      "排序翻转时我重估权重了吗？"
+    ],
+    "success_criteria": [
+      "给出可复算的加权总分",
+      "结论对权重扰动有明确稳健性判断"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "options"
+    ],
+    "output": [
+      "打分矩阵",
+      "排序结果",
+      "敏感性结论"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面画矩阵并手算加权分"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

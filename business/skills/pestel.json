@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "pestel",
+  "name": "PESTEL 宏观扫描",
+  "name_en": "PESTEL Analysis",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业分析",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "从政治、经济、社会、技术、环境、法律六个维度扫描宏观环境，判断大势对对象的影响方向。",
+  "when_to_use": [
+    "进入新市场或新地域",
+    "评估宏观大势影响",
+    "战略规划的环境扫描"
+  ],
+  "when_not_to_use": [
+    "微观运营问题（用不上宏观扫描）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "scope"
+    ],
+    "properties": {
+      "scope": {
+        "type": "string",
+        "description": "要扫描宏观环境的对象或市场"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "scan",
+      "name": "逐维扫描",
+      "duration_min": 15,
+      "instruction": "对政治、经济、社会、技术、环境、法律六个维度，各列 1-2 个影响对象的外部因素。",
+      "checkpoint": "六维度各有因素；且每条标注了对对象是利好还是利空",
+      "output": "PESTEL 清单"
+    },
+    {
+      "id": "direction",
+      "name": "判影响方向",
+      "duration_min": 8,
+      "instruction": "给每个因素标一个影响方向，即助推或阻碍，和强弱，只基于事实不臆测。",
+      "checkpoint": "每个因素有方向与强弱判断",
+      "output": "影响方向表"
+    },
+    {
+      "id": "key",
+      "name": "找关键外力",
+      "duration_min": 5,
+      "instruction": "选出强弱最高的 2-3 个因素作为关键外力，它们最可能改变格局。",
+      "checkpoint": "关键外力 2-3 个被选出；且依据强弱排序",
+      "output": "关键外力"
+    },
+    {
+      "id": "respond",
+      "name": "定应对",
+      "duration_min": 6,
+      "instruction": "对每个关键外力写一条应对动作，借势或避险，并带上时间。",
+      "checkpoint": "每个关键外力都有应对动作；且动作带时间",
+      "output": "应对计划",
+      "fail_to": "scan"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的因素是查证的事实还是感觉？",
+      "关键外力真的强弱最高吗？"
+    ],
+    "success_criteria": [
+      "每个关键外力有应对",
+      "应对基于影响方向"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "scope"
+    ],
+    "output": [
+      "PESTEL 清单",
+      "应对计划"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面六格逐维扫描"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

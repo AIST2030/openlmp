@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "spiral-learning",
+  "name": "螺旋学习法",
+  "name_en": "Spiral Learning",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "理解构建",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "对一个知识体做多轮覆盖，每轮都比上一轮更深更细，先建立整体轮廓再逐层加深，而非一轮求全。",
+  "when_to_use": [
+    "面对庞大知识体不知从何下手",
+    "一轮啃不透",
+    "想先有全局再钻细节"
+  ],
+  "when_not_to_use": [
+    "范围很小、一轮即可掌握时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "scope"
+    ],
+    "properties": {
+      "scope": {
+        "type": "string",
+        "description": "要螺旋学习的知识范围"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "outline",
+      "name": "画整体轮廓",
+      "duration_min": 15,
+      "instruction": "第一轮只求全局：快速过完整个范围，画出它由哪几大块组成，不深究细节。",
+      "checkpoint": "画出了整体分块图；且本轮未陷入单一细节",
+      "output": "整体轮廓图"
+    },
+    {
+      "id": "deepen",
+      "name": "逐轮加深",
+      "duration_min": 30,
+      "instruction": "第二轮起每轮选中一块加深一层，同时用一页纸复述其它块的当前理解，保持全局不凉。",
+      "checkpoint": "本轮有指定加深块；且其它块被一页纸复述保温",
+      "output": "加深记录与保温页"
+    },
+    {
+      "id": "connect",
+      "name": "连接各块",
+      "duration_min": 10,
+      "instruction": "每轮结束时写一条本轮加深块与其它块的关联，逐步把块连成网。",
+      "checkpoint": "每轮产出至少一条块间关联",
+      "output": "关联积累"
+    },
+    {
+      "id": "assess",
+      "name": "评估进入下轮",
+      "duration_min": 8,
+      "instruction": "评估当前轮的理解深度，决定是继续加深本块还是进入下一块，写下判断依据。",
+      "checkpoint": "给出了继续或转块的判断及依据",
+      "output": "轮次决策",
+      "fail_to": "deepen"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是在逐轮加深，还是第一轮就卡死在一块？",
+      "保温页让我保住了全局吗？"
+    ],
+    "success_criteria": [
+      "各块理解深度逐轮递增",
+      "能说出块与块之间的关联"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "scope"
+    ],
+    "output": [
+      "整体轮廓图",
+      "关联积累"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸上画轮廓并逐轮加深复述"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

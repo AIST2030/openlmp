@@ -1,0 +1,102 @@
+{
+  "lmp": "0.1",
+  "id": "mece",
+  "name": "MECE 分解",
+  "name_en": "MECE Principle",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "思维方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把一个问题分解成若干子项，做到相互独立、完全穷尽，既不重叠也不遗漏。",
+  "when_to_use": [
+    "分解问题怕重叠或漏项",
+    "搭分析框架",
+    "列原因/类型清单"
+  ],
+  "when_not_to_use": [
+    "早期发散阶段（先发散再收敛套 MECE）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "problem"
+    ],
+    "properties": {
+      "problem": {
+        "type": "string",
+        "description": "要分解的问题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "draft",
+      "name": "先列子项",
+      "duration_min": 8,
+      "instruction": "把问题按一个标准先分解成若干子项，写下所用标准。",
+      "checkpoint": "列出了至少 3 个子项；且写明了分解标准",
+      "output": "初版分解"
+    },
+    {
+      "id": "check-mutually",
+      "name": "查重叠",
+      "duration_min": 6,
+      "instruction": "两两比对子项，找出能同时归入多项的情况，合并或重新界定边界。",
+      "checkpoint": "完成两两比对；且重叠项被合并或划清边界",
+      "output": "去重后分解"
+    },
+    {
+      "id": "check-exhaustive",
+      "name": "查遗漏",
+      "duration_min": 6,
+      "instruction": "设想一个原问题的具体实例，检查它能否落到某一子项；落不下的即为遗漏，补上。",
+      "checkpoint": "用至少 2 个实例验证；且落不下的实例触发了补项",
+      "output": "补全后分解"
+    },
+    {
+      "id": "freeze",
+      "name": "定稿框架",
+      "duration_min": 4,
+      "instruction": "确认子项既无重叠又覆盖全部实例后，定稿为可复用框架并写下标准。",
+      "checkpoint": "框架无重叠且通过实例覆盖测试；且标准被写明",
+      "output": "MECE 框架",
+      "fail_to": "check-mutually"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我查重叠是真比对了，还是目测？",
+      "我的实例真的能检验遗漏吗？"
+    ],
+    "success_criteria": [
+      "子项相互独立无重叠",
+      "新实例总能落到唯一子项"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "problem"
+    ],
+    "output": [
+      "MECE 框架"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面列项并两两比对"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "lmp": "0.1",
+  "id": "prep",
+  "name": "PREP 表达",
+  "name_en": "PREP Expression",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业表达",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "按观点、理由、例证、重申观点四步组织一段表达，让每段话都有论点有支撑。",
+  "when_to_use": [
+    "即兴发言想有结构",
+    "写短文或回复",
+    "训练清晰表达"
+  ],
+  "when_not_to_use": [
+    "长篇报告（用金字塔原理更全）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "point"
+    ],
+    "properties": {
+      "point": {
+        "type": "string",
+        "description": "要表达的观点"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "point",
+      "name": "亮观点",
+      "duration_min": 3,
+      "instruction": "第一句直接说出你的观点，不含糊不铺垫。",
+      "checkpoint": "第一句为明确观点句",
+      "output": "观点 P"
+    },
+    {
+      "id": "reason",
+      "name": "给理由",
+      "duration_min": 5,
+      "instruction": "紧跟一句支撑观点的核心理由，说明为什么这么看。",
+      "checkpoint": "写出了支撑观点的理由",
+      "output": "理由 R"
+    },
+    {
+      "id": "example",
+      "name": "举例证",
+      "duration_min": 8,
+      "instruction": "补一个具体例子或数据佐证理由，例子要能真的支撑理由。",
+      "checkpoint": "例子与理由相关且能佐证",
+      "output": "例证 E"
+    },
+    {
+      "id": "restate",
+      "name": "重申观点",
+      "duration_min": 3,
+      "instruction": "最后一句重申观点并可带一个行动或结论，收束全段。",
+      "checkpoint": "末句重申了观点或给出行动",
+      "output": "重申 P",
+      "fail_to": "reason"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的观点是真的明确，还是和稀泥？",
+      "例子真能支撑理由吗？"
+    ],
+    "success_criteria": [
+      "四步齐全且顺序正确",
+      "例子与观点强相关"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "point"
+    ],
+    "output": [
+      "PREP 段落"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头按四步组织"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

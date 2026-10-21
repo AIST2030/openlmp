@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "lateral-listing",
+  "name": "横向列方案",
+  "name_en": "Lateral Option Listing",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "思维方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "遇事先横向列出多个可选方案再排优先级，用先发散列全、再收敛排序，避免一条路走到黑。",
+  "when_to_use": [
+    "习惯性只想一个方案",
+    "想比较多个选项",
+    "避免过早收敛"
+  ],
+  "when_not_to_use": [
+    "唯一可行方案明确时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "goal"
+    ],
+    "properties": {
+      "goal": {
+        "type": "string",
+        "description": "要寻求方案的目标"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "list",
+      "name": "列多个方案",
+      "duration_min": 10,
+      "instruction": "针对目标先不加评判地列出至少 5 个可选方案，哪怕有的看着不靠谱。",
+      "checkpoint": "方案至少 5 个；且列出阶段未评判",
+      "output": "方案池"
+    },
+    {
+      "id": "criteria",
+      "name": "定排序标准",
+      "duration_min": 5,
+      "instruction": "写下 2-3 个排序标准，如成本、速度、风险，并分配权重。",
+      "checkpoint": "标准 2-3 个；且权重之和为 1",
+      "output": "排序标准"
+    },
+    {
+      "id": "rank",
+      "name": "按标准排序",
+      "duration_min": 10,
+      "instruction": "用标准给每个方案打分并排序，写出每个方案的长处与短处。",
+      "checkpoint": "每个方案都有打分；且长短处被写明",
+      "output": "排序结果"
+    },
+    {
+      "id": "pick",
+      "name": "定主案与备案",
+      "duration_min": 5,
+      "instruction": "选得分最高的作主案，同时保留一个备案及其切换触发条件。",
+      "checkpoint": "定出了主案；且备案与切换条件被写明",
+      "output": "主案与备案",
+      "fail_to": "criteria"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是真列了多个，还是列了三个凑数？",
+      "排序是按标准还是按第一印象？"
+    ],
+    "success_criteria": [
+      "方案数达标且经标准排序",
+      "有明确主案与备案"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "goal"
+    ],
+    "output": [
+      "方案池",
+      "排序结果",
+      "主案与备案"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸上列方案并按标准排序"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

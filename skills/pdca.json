@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "pdca",
+  "name": "PDCA 循环",
+  "name_en": "PDCA Cycle",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "分析方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "按计划、执行、检查、处理四步循环推进，每轮把结果反馈回计划，让改进持续滚动。",
+  "when_to_use": [
+    "改进一项工作或流程",
+    "想建立持续迭代机制",
+    "质量或效率提升"
+  ],
+  "when_not_to_use": [
+    "一次性任务（无循环必要）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "goal"
+    ],
+    "properties": {
+      "goal": {
+        "type": "string",
+        "description": "本轮要改进的目标"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "plan",
+      "name": "定计划",
+      "duration_min": 8,
+      "instruction": "写下本轮要改进的目标、具体动作和预期指标。",
+      "checkpoint": "目标、动作、预期指标三者的书面记录齐备",
+      "output": "计划"
+    },
+    {
+      "id": "do",
+      "name": "执行",
+      "duration_min": 20,
+      "instruction": "按计划执行，记录实际发生的情况与数据。",
+      "checkpoint": "计划动作被执行；且记录了实际数据",
+      "output": "执行记录"
+    },
+    {
+      "id": "check",
+      "name": "检查对比",
+      "duration_min": 6,
+      "instruction": "把实际指标与预期指标对比，标出达成项与偏差。",
+      "checkpoint": "实际与预期逐项对比；且偏差被标出",
+      "output": "检查结果"
+    },
+    {
+      "id": "handle",
+      "name": "处理并进入下轮",
+      "duration_min": 6,
+      "instruction": "达成项固化为标准，未达成项分析原因并写入下一轮计划，明确下一轮的计划。",
+      "checkpoint": "达成项被固化；未达成项进入下一轮计划",
+      "output": "处理与下轮计划",
+      "fail_to": "plan"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "检查是真对比数据，还是凭感觉？",
+      "未达成项我写进下一轮了吗？"
+    ],
+    "success_criteria": [
+      "每轮都有进入下一轮的明确改进",
+      "关键指标逐轮趋近目标"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "goal"
+    ],
+    "output": [
+      "计划",
+      "检查结果",
+      "下轮计划"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面四步循环记录"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

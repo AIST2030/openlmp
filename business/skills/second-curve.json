@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "second-curve",
+  "name": "第二曲线",
+  "name_en": "Second Curve",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业战略",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "在主营业务见顶前提前布局并投入新增长曲线，用第一曲线的资源养第二曲线接力。",
+  "when_to_use": [
+    "主业增长见顶",
+    "想提前布局新增长",
+    "避免被单一业务锁死"
+  ],
+  "when_not_to_use": [
+    "主业仍在高速增长且无资源余量时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "business"
+    ],
+    "properties": {
+      "business": {
+        "type": "string",
+        "description": "当前主营业务"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "diagnose",
+      "name": "判断主业阶段",
+      "duration_min": 8,
+      "instruction": "用增长数据和市场饱和度判断主业处于导入、成长、成熟还是衰退，标出距见顶的时间。",
+      "checkpoint": "给出了主业阶段判断；且估出了距见顶时间",
+      "output": "阶段诊断"
+    },
+    {
+      "id": "scout",
+      "name": "寻找第二曲线",
+      "duration_min": 12,
+      "instruction": "列出 2-3 个可能的新增长方向，各写它为什么能接力、需要什么资源。",
+      "checkpoint": "候选方向 2-3 个；且各有接力理由与资源需求",
+      "output": "候选曲线"
+    },
+    {
+      "id": "seed",
+      "name": "投入种子资源",
+      "duration_min": 10,
+      "instruction": "用主业现金流给最有潜力的方向投一小笔种子资源和一个小团队，设独立考核。",
+      "checkpoint": "种子资源与团队到位；且第二曲线有独立考核",
+      "output": "种子项目"
+    },
+    {
+      "id": "handover",
+      "name": "规划接力",
+      "duration_min": 6,
+      "instruction": "定下第二曲线接力的触发条件和时间表，避免与主业抢同一资源。",
+      "checkpoint": "接力条件与时间表写明；且资源冲突有规避",
+      "output": "接力计划",
+      "fail_to": "scout"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是真在布局第二曲线，还是主业一忙就停了？",
+      "种子项目有独立空间吗？"
+    ],
+    "success_criteria": [
+      "第二曲线获得持续投入",
+      "接力条件明确可触发"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "business"
+    ],
+    "output": [
+      "阶段诊断",
+      "候选曲线",
+      "接力计划"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面诊断主业并列候选方向"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

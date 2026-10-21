@@ -95,6 +95,8 @@ REQUIRED_FIELDS = ["lmp", "id", "name", "version", "license", "description", "st
 VALID_CATEGORIES = [
     "理解构建", "记忆巩固", "技能习得", "知识管理",
     "计划执行", "元认知", "协作学习", "评测验证",
+    "思维方法", "分析方法",
+    "商业分析", "商业战略", "商业管理", "商业表达",
 ]
 
 # 违规严重度：error 阻止收录，warn 提示人工复核

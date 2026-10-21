@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "swot",
+  "name": "SWOT 分析",
+  "name_en": "SWOT Analysis",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业分析",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "从优势、劣势、机会、威胁四象限盘点一个对象，再据四象限交叉推导策略，把盘点变成行动。",
+  "when_to_use": [
+    "战略盘点",
+    "立项或投标前自评",
+    "竞争分析"
+  ],
+  "when_not_to_use": [
+    "只想知道单一维度优劣时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "subject"
+    ],
+    "properties": {
+      "subject": {
+        "type": "string",
+        "description": "要盘点的对象，如产品/项目/公司"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "list",
+      "name": "列四象限事实",
+      "duration_min": 10,
+      "instruction": "针对对象从优势、劣势、机会、威胁四方面各列至少 2 条事实；优势与劣势看内部，机会与威胁看外部。",
+      "checkpoint": "四方面各至少 2 条；且优势劣势为内部、机会威胁为外部",
+      "output": "SWOT 清单"
+    },
+    {
+      "id": "cross",
+      "name": "交叉推导",
+      "duration_min": 10,
+      "instruction": "用四象限交叉：优势抓机会、劣势补机会、优势抗威胁、劣势避威胁，各出一条策略。",
+      "checkpoint": "四类交叉各出一条策略",
+      "output": "交叉策略"
+    },
+    {
+      "id": "prioritize",
+      "name": "排优先级",
+      "duration_min": 6,
+      "instruction": "给每条策略按影响力和可行性打分，选出本周期要执行的 1-2 条。",
+      "checkpoint": "每条策略有影响力与可行性评分；且选出 1-2 条",
+      "output": "优先策略"
+    },
+    {
+      "id": "act",
+      "name": "落到行动",
+      "duration_min": 6,
+      "instruction": "把选中的策略写成带负责人和时间的行动项。",
+      "checkpoint": "选中策略被拆成带时间的行动项",
+      "output": "行动计划",
+      "fail_to": "cross"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我把内部和外部因素分清了吗？",
+      "策略是四象限推出来的，还是另想的？"
+    ],
+    "success_criteria": [
+      "策略可由 SWOT 推出",
+      "至少一条策略进入执行"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "subject"
+    ],
+    "output": [
+      "SWOT 清单",
+      "交叉策略",
+      "行动计划"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面画四象限并交叉推导"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

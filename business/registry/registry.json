@@ -1,0 +1,219 @@
+{
+  "registry": "openlmp-business-index",
+  "lmp": "0.1",
+  "generated_at": "2026-10-22",
+  "note": "商业方法子库索引。与主库同 schema，category 用商业四类。本清单不是唯一真理。",
+  "count": 15,
+  "skills": [
+    {
+      "id": "ansoff",
+      "name": "安索夫矩阵",
+      "name_en": "Ansoff Matrix",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业分析",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:o1tfkpa9r02sr83dsu5055j0dcm4qvg7",
+      "file": "skills/ansoff.json"
+    },
+    {
+      "id": "balanced-scorecard",
+      "name": "平衡计分卡",
+      "name_en": "Balanced Scorecard",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业管理",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:19hkglvve77v9hj45ujlt36kpu011l46",
+      "file": "skills/balanced-scorecard.json"
+    },
+    {
+      "id": "bcg-matrix",
+      "name": "BCG 矩阵",
+      "name_en": "BCG Matrix",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业分析",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:fpr03klsrr6h03arn9nafd94n161nan8",
+      "file": "skills/bcg-matrix.json"
+    },
+    {
+      "id": "business-model-canvas",
+      "name": "商业模式画布",
+      "name_en": "Business Model Canvas",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业分析",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:8l9l15scbatqnqpvbodkkgn25v50jgbg",
+      "file": "skills/business-model-canvas.json"
+    },
+    {
+      "id": "flywheel",
+      "name": "飞轮效应",
+      "name_en": "Flywheel Effect",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业战略",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:vvvacrva0nqkb8mtsc5n7ffkl8vqoll9",
+      "file": "skills/flywheel.json"
+    },
+    {
+      "id": "kpi",
+      "name": "KPI 绩效指标",
+      "name_en": "KPI",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业管理",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:q7akfuassjgnraj79e36b8pv0he2lprr",
+      "file": "skills/kpi.json"
+    },
+    {
+      "id": "okr",
+      "name": "OKR 目标管理",
+      "name_en": "OKR",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业管理",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:e09bhq1tfc5e7uak8qs5dcrosfd8drg4",
+      "file": "skills/okr.json"
+    },
+    {
+      "id": "pestel",
+      "name": "PESTEL 宏观扫描",
+      "name_en": "PESTEL Analysis",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业分析",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:2tvkn97r206dpkbgmrt6qjlghsh39hrk",
+      "file": "skills/pestel.json"
+    },
+    {
+      "id": "porter-five-forces",
+      "name": "波特五力",
+      "name_en": "Porter's Five Forces",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业分析",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:rpjp4df5uhn5fqe8tbt106o6odefp4h5",
+      "file": "skills/porter-five-forces.json"
+    },
+    {
+      "id": "positioning",
+      "name": "定位理论",
+      "name_en": "Positioning",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业战略",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:tb61crvb6cnrfa1moaje5gloh4favvrk",
+      "file": "skills/positioning.json"
+    },
+    {
+      "id": "prep",
+      "name": "PREP 表达",
+      "name_en": "PREP Expression",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业表达",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:mvkd6a05l8am7a9shhrtrerfrl1iktkv",
+      "file": "skills/prep.json"
+    },
+    {
+      "id": "pyramid-principle",
+      "name": "金字塔原理",
+      "name_en": "Pyramid Principle",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业表达",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:hh59lb6d9qpdirtu353sr06usm121v2c",
+      "file": "skills/pyramid-principle.json"
+    },
+    {
+      "id": "second-curve",
+      "name": "第二曲线",
+      "name_en": "Second Curve",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业战略",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:etkeb7jru5nsqcsun4hflalfrckhgakm",
+      "file": "skills/second-curve.json"
+    },
+    {
+      "id": "swot",
+      "name": "SWOT 分析",
+      "name_en": "SWOT Analysis",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业分析",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:jshvpih41fp52bcq37ir7h6p6ljdkku7",
+      "file": "skills/swot.json"
+    },
+    {
+      "id": "value-chain",
+      "name": "价值链分析",
+      "name_en": "Value Chain Analysis",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "商业分析",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:cdf8ufeoli0ibknp42nhe891iofplhrr",
+      "file": "skills/value-chain.json"
+    }
+  ]
+}

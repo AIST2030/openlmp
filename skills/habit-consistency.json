@@ -1,0 +1,102 @@
+{
+  "lmp": "0.1",
+  "id": "habit-consistency",
+  "name": "习惯性学习法",
+  "name_en": "Habitual Learning",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把学习固化成固定时间、固定地点、固定开场的自动流程，用环境一致性降低每次启动的意志消耗。",
+  "when_to_use": [
+    "每次开始学习都要下很大决心",
+    "状态时好时坏",
+    "想让它变成默认动作"
+  ],
+  "when_not_to_use": [
+    "日程高度不固定、无法保证同时同地时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [],
+    "properties": {
+      "cue": {
+        "type": "string",
+        "default": "",
+        "description": "固定触发线索，如每天早饭后"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "fix",
+      "name": "固定时空",
+      "duration_min": 5,
+      "instruction": "选定一个每天最可能兑现的时段和一个专属地点，写下'每天X时在Y地学习'。",
+      "checkpoint": "时段与地点已写死；且该时段每日可得",
+      "output": "固定时空约定"
+    },
+    {
+      "id": "ritual",
+      "name": "设固定开场",
+      "duration_min": 5,
+      "instruction": "设计一个 60 秒的开场动作，如泡茶、放固定歌单、翻开固定本子，作为进入信号。",
+      "checkpoint": "开场动作已设计且可在 60 秒内完成；且与学习地点绑定",
+      "output": "开场仪式"
+    },
+    {
+      "id": "run",
+      "name": "到点即执行",
+      "duration_min": 25,
+      "instruction": "每天到点就地执行开场动作后开始学习，不等'有状态'；做了就记一格。",
+      "checkpoint": "连续天数有记录；且每次都以开场动作启动",
+      "output": "执行记录"
+    },
+    {
+      "id": "protect",
+      "name": "保护不中断",
+      "duration_min": 5,
+      "instruction": "出现中断风险时启用最小版（只做 5 分钟）保住连续，而不是跳过一整天。",
+      "checkpoint": "中断日启用了最小版；且连续记录未被清零",
+      "output": "保护记录",
+      "fail_to": "ritual"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是到点就启动，还是在等状态？",
+      "中断时我保了最小版，还是直接跳过了？"
+    ],
+    "success_criteria": [
+      "连续执行天数稳定增长",
+      "启动所需的意志感下降"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "cue"
+    ],
+    "output": [
+      "执行记录",
+      "保护记录"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：固定本子画连续格"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

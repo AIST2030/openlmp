@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "tree-memory",
+  "name": "树状图记忆法",
+  "name_en": "Tree-Diagram Memory",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "记忆巩固",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "按含义的包含关系把知识组织成一棵层级树，从上位到下位逐层默背，用结构顺序代替零散死记。",
+  "when_to_use": [
+    "知识有清晰层级，如分类体系",
+    "一堆并列名词记不住",
+    "想把零散点挂到结构上"
+  ],
+  "when_not_to_use": [
+    "知识是网络关系而非层级（用概念图更合适）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "scope"
+    ],
+    "properties": {
+      "scope": {
+        "type": "string",
+        "description": "要组织成树的知识范围"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "root",
+      "name": "定树根与主干",
+      "duration_min": 6,
+      "instruction": "确定最上位概念作树根，向下分出若干主干，每个主干是该根下的一个大类。",
+      "checkpoint": "树根唯一明确；且主干至少 3 个",
+      "output": "树根与主干"
+    },
+    {
+      "id": "branch",
+      "name": "逐层分到叶",
+      "duration_min": 15,
+      "instruction": "每个主干继续按包含关系向下分，直到分到最小可记单元；同层按同一标准划分。",
+      "checkpoint": "每个主干都分到了叶节点；且同层按同一标准划分",
+      "output": "完整层级树"
+    },
+    {
+      "id": "climb",
+      "name": "逐层默背",
+      "duration_min": 10,
+      "instruction": "从树根开始逐层默背，盖住某层复述其下所有子项，卡住的枝标记。",
+      "checkpoint": "每层都完成了一次盖层复述；卡住的枝被标记",
+      "output": "默背记录"
+    },
+    {
+      "id": "repair",
+      "name": "只补断枝",
+      "duration_min": 8,
+      "instruction": "只重背标记的断枝及其到根的路径，其余不动；隔日重测整棵树。",
+      "checkpoint": "仅断枝被重背；且安排了隔日整树重测",
+      "output": "补背结果",
+      "fail_to": "climb"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的分层是按包含关系，还是随便归类？",
+      "盖层后我能从上位推出下位吗？"
+    ],
+    "success_criteria": [
+      "整棵树可逐层复述",
+      "断枝经补背后减少"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "scope"
+    ],
+    "output": [
+      "层级树",
+      "补背结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸上画树并逐层默背"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

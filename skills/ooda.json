@@ -1,0 +1,105 @@
+{
+  "lmp": "0.1",
+  "id": "ooda",
+  "name": "OODA 循环",
+  "name_en": "OODA Loop",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "分析方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "按观察、判断、决策、行动四步快速循环，用缩短回路应对变化，比一次规划到底更灵活。",
+  "when_to_use": [
+    "环境变化快需快速应变",
+    "竞争或对抗场景",
+    "信息不完整需边做边调"
+  ],
+  "when_not_to_use": [
+    "环境稳定、一次规划即可的长周期任务"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "situation"
+    ],
+    "properties": {
+      "situation": {
+        "type": "string",
+        "description": "当前处境描述"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "observe",
+      "name": "观察",
+      "duration_min": 8,
+      "instruction": "收集当前环境的可观察事实，标注哪些确定、哪些待确认。",
+      "checkpoint": "列出了观察事实；且区分了确定与待确认",
+      "output": "观察清单"
+    },
+    {
+      "id": "orient",
+      "name": "判断",
+      "duration_min": 6,
+      "instruction": "基于观察形成对形势的判断，写出关键假设和最可能的走向。",
+      "checkpoint": "写出了形势判断；且列出关键假设",
+      "output": "判断"
+    },
+    {
+      "id": "decide",
+      "name": "决策",
+      "duration_min": 5,
+      "instruction": "基于判断定下一步行动，只定一个最优先动作。",
+      "checkpoint": "定出了唯一优先动作",
+      "output": "决策"
+    },
+    {
+      "id": "act",
+      "name": "行动并回观察",
+      "duration_min": 15,
+      "instruction": "执行该动作，完成后立刻回到观察，用新结果更新判断，进入下一循环。",
+      "checkpoint": "动作被执行；且回到观察形成循环",
+      "output": "行动与循环记录",
+      "fail_to": "observe"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的观察是全的，还是只看了想看的？",
+      "循环真的转起来了吗，还是做完一轮就停？"
+    ],
+    "success_criteria": [
+      "循环持续运转",
+      "每轮判断比上轮更接近实际"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "situation"
+    ],
+    "output": [
+      "观察清单",
+      "判断",
+      "决策",
+      "循环记录"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：按四步口头快速过并记录"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

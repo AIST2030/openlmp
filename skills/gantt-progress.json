@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "gantt-progress",
+  "name": "甘特进度法",
+  "name_en": "Gantt Progress Tracking",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把计划画成甘特图并按完成百分比着色，用视觉进度替代'感觉在推进'，滞后一眼可见。",
+  "when_to_use": [
+    "多任务并行难掌握度",
+    "计划总是虎头蛇尾",
+    "想量化进度"
+  ],
+  "when_not_to_use": [
+    "只有一两个任务的简单待办（列清单即可）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "tasks"
+    ],
+    "properties": {
+      "tasks": {
+        "type": "string",
+        "description": "要排期的任务及起止"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "bar",
+      "name": "画甘特条",
+      "duration_min": 10,
+      "instruction": "把每个任务按起止时间画成横条，横轴为时间，纵轴为任务。",
+      "checkpoint": "每个任务都有一条含起止的横条；且横轴时间刻度一致",
+      "output": "甘特图"
+    },
+    {
+      "id": "shade",
+      "name": "按百分比着色",
+      "duration_min": 5,
+      "instruction": "每周给每条按真实完成度着色一段，写下完成百分比，不凭感觉估。",
+      "checkpoint": "每条都有本周着色段与百分比；且百分比有据可依",
+      "output": "进度甘特图"
+    },
+    {
+      "id": "lag",
+      "name": "标滞后条",
+      "duration_min": 5,
+      "instruction": "对照计划与实际着色，标出落后于时间轴的条，算出滞后天数。",
+      "checkpoint": "落后条被标出；且每条给出了滞后天数",
+      "output": "滞后清单"
+    },
+    {
+      "id": "rebalance",
+      "name": "只调整最滞后条",
+      "duration_min": 8,
+      "instruction": "对滞后最严重的任务做增援或改期，只动它不动全局；下周复看是否追上。",
+      "checkpoint": "仅最滞后任务被调整；且记录了下周复看安排",
+      "output": "调整记录",
+      "fail_to": "shade"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "百分比是有据的，还是拍脑袋？",
+      "我是不是只更新好看的那些条？"
+    ],
+    "success_criteria": [
+      "滞后条数量逐周下降",
+      "计划整体按期完成率上升"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "tasks"
+    ],
+    "output": [
+      "进度甘特图",
+      "滞后清单"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸笔画横条并每周着色"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

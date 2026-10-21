@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "porter-five-forces",
+  "name": "波特五力",
+  "name_en": "Porter's Five Forces",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业分析",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "用现有竞争、潜在进入者、替代品、供方与买方议价力五种力量评估一个行业的吸引力。",
+  "when_to_use": [
+    "评估要不要进入一个行业",
+    "分析行业利润空间",
+    "竞争格局判断"
+  ],
+  "when_not_to_use": [
+    "单个企业微观运营优化"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "industry"
+    ],
+    "properties": {
+      "industry": {
+        "type": "string",
+        "description": "要评估的行业"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "assess",
+      "name": "逐力评估",
+      "duration_min": 15,
+      "instruction": "对现有竞争、潜在进入者、替代品、供方议价、买方议价五种力量各评一个强中弱，并写一条支撑事实。",
+      "checkpoint": "五种力量各有强弱评级；且每条有事实支撑",
+      "output": "五力评级"
+    },
+    {
+      "id": "profit",
+      "name": "判行业吸引力",
+      "duration_min": 6,
+      "instruction": "据五力强弱判断行业整体吸引力：力量越弱行业越有利可图。",
+      "checkpoint": "给出了行业吸引力结论；且结论可由五力推出",
+      "output": "吸引力结论"
+    },
+    {
+      "id": "strong",
+      "name": "定位最强力量",
+      "duration_min": 4,
+      "instruction": "标出对行业利润威胁最大的那股力量，它是主要矛盾。",
+      "checkpoint": "标出了最强威胁力量",
+      "output": "主要矛盾"
+    },
+    {
+      "id": "strategy",
+      "name": "定对策",
+      "duration_min": 6,
+      "instruction": "针对最强力量写一条应对策略，如建立壁垒、差异化或重新定位。",
+      "checkpoint": "给出了针对最强力量的应对策略",
+      "output": "对策",
+      "fail_to": "assess"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "五力评级有事实支撑吗？",
+      "我是不是漏评了替代品这一力？"
+    ],
+    "success_criteria": [
+      "五力齐全且有据",
+      "对策对准最强力量"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "industry"
+    ],
+    "output": [
+      "五力评级",
+      "吸引力结论",
+      "对策"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面五力逐条评级"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

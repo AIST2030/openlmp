@@ -11,7 +11,7 @@
 ## 30 秒上手
 
 ```bash
-# 看有哪些方法（当前 78 个）
+# 看有哪些方法（当前 107 个）
 python runtime/lmp.py list
 
 # 遇到问题，本地检索推荐（零网络请求）
@@ -41,27 +41,33 @@ python runtime/lmp.py selftest
 
 ---
 
-## 已收录的 78 个方法
+## 已收录的 107 个方法
 
-**记忆巩固（12）** · `active-recall` 主动回忆练习（强） · `spaced-repetition` 间隔重复调度（强） · `retrieval-spread` 高频短时提取（中） · `dual-coding` 双重编码（中） · `interleaving` 交错练习（强） · `method-of-loci` 记忆宫殿（中） · `sleep-wake-memory` 睡前醒后记忆（经验） · `mnemonic-association` 谐音联想（经验）
+**记忆巩固（15）** · `active-recall` 主动回忆练习（强） · `spaced-repetition` 间隔重复调度（强） · `retrieval-spread` 高频短时提取（中） · `dual-coding` 双重编码（中） · `interleaving` 交错练习（强） · `method-of-loci` 记忆宫殿（中） · `sleep-wake-memory` 睡前醒后记忆（经验） · `mnemonic-association` 谐音联想（经验） · `tree-memory` 树状图记忆（经验） · `emotion-anchoring` 情绪联动（经验） · `backstitch-review` 回针缝复习（经验）
 
-**理解构建（14）** · `feynman` 费曼学习法（中） · `elaborative-interrogation` 精细追问法（强） · `sq3r` SQ3R 教材精读（中） · `socratic` 苏格拉底式追问（中） · `first-principles` 第一性原理（经验） · `inquiry-learning` 探究式学习（中） · `case-study` 案例研习（中） · `blooms-taxonomy` 布鲁姆分层（中） · `constructivist-learning` 建构主义（中） · `thick-thin` 薄厚互返（经验）
+**理解构建（15）** · `feynman` 费曼学习法（中） · `elaborative-interrogation` 精细追问法（强） · `sq3r` SQ3R 教材精读（中） · `socratic` 苏格拉底式追问（中） · `first-principles` 第一性原理（经验） · `inquiry-learning` 探究式学习（中） · `case-study` 案例研习（中） · `blooms-taxonomy` 布鲁姆分层（中） · `constructivist-learning` 建构主义（中） · `thick-thin` 薄厚互返（经验） · `spiral-learning` 螺旋学习（经验）
 
-**技能习得（8）** · `deliberate-practice` 刻意练习（强） · `project-based-learning` 721 行动学习（经验） · `simon-learning` 西蒙学习法（经验） · `shadowing` 影子跟读（中）
+**技能习得（8）** · `deliberate-practice` 刻意练习（强） · `project-based-learning` 721 行动学习（经验） · `simon-learning` 西蒙学习法（经验） · `shadowing` 影子跟读（中） 等 8 个
 
-**知识管理（8）** · `concept-map` 概念图构建（中） · `zettelkasten` 卡片盒笔记（经验） · `progressive-summarization` 渐进式总结（经验） · `mind-map` 思维导图（中） · `three-color-notes` 三色笔记（经验）
+**知识管理（11）** · `concept-map` 概念图构建（中） · `zettelkasten` 卡片盒笔记（经验） · `progressive-summarization` 渐进式总结（经验） · `mind-map` 思维导图（中） · `three-color-notes` 三色笔记（经验） · `sq4r` SQ4R 阅读（中） · `two-column-notes` 二等分笔记（经验） · `qa-notes` 一问一答笔记（经验）
 
-**评测验证（10）** · `error-notebook` 错题本溯源（强） · `critical-thinking` 批判性思维核查（强） · `closed-book-writing` 合书写作（强） · `time-capsule-quiz` 时间胶囊出题（经验） · `tally-forgetting` 正字统计（经验） · `thirty-second-recall` 30 秒速览（经验） · `blank-sheet-daily` 白纸默写（经验）
+**评测验证（12）** · `error-notebook` 错题本溯源（强） · `critical-thinking` 批判性思维核查（强） · `closed-book-writing` 合书写作（强） · `time-capsule-quiz` 时间胶囊出题（经验） · `tally-forgetting` 正字统计（经验） · `thirty-second-recall` 30 秒速览（经验） · `blank-sheet-daily` 白纸默写（经验） · `pen-not-erasable` 圆珠笔法（经验） · `write-to-recall` 书写记忆检查（经验）
 
-**计划执行（12）** · `goal-decomposition` 目标四级拆解（中） · `pomodoro-diagnose` 专注节奏诊断（经验） · `pomodoro` 番茄工作法（经验） · `smart-goals` SMART 目标（经验） · `dual-goal` 双重目标（经验） · `reverse-learning` 逆向学习（经验） · `zeigarnik-pause` 留一点学习（经验） · `micro-habits` 微习惯（经验） · `energy-management` 精力管理（经验）
+**计划执行（15）** · `goal-decomposition` 目标四级拆解（中） · `pomodoro-diagnose` 专注节奏诊断（经验） · `pomodoro` 番茄工作法（经验） · `smart-goals` SMART 目标（经验） · `dual-goal` 双重目标（经验） · `reverse-learning` 逆向学习（经验） · `zeigarnik-pause` 留一点学习（经验） · `micro-habits` 微习惯（经验） · `energy-management` 精力管理（经验） · `gantt-progress` 甘特进度（经验） · `habit-consistency` 习惯性学习（经验） · `goal-backward` 目标逆向（经验）
 
-**元认知（10）** · `learning-journal` 学习日志与错因归因（中） · `diary-question` 今天学到了什么（中） · `transfer-question` 迁移提问训练（强） · `familiarity-count` 回看计数（中） · `morning-evening-review` 晨间晚间复盘（经验） · `life-wheel` 生命之花（经验） · `four-step-review` 四步复盘（经验）
+**元认知（11）** · `learning-journal` 学习日志与错因归因（中） · `diary-question` 今天学到了什么（中） · `transfer-question` 迁移提问训练（强） · `familiarity-count` 回看计数（中） · `morning-evening-review` 晨间晚间复盘（经验） · `life-wheel` 生命之花（经验） · `four-step-review` 四步复盘（经验） · `effort-outcome-matrix` 努力分解矩阵（经验）
 
-**协作学习（4）** · `pair-learning` 结对学习（中） · `peer-instruction` 同伴教学（中）
+**协作学习（4）** · `pair-learning` 结对学习（中） · `peer-instruction` 同伴教学（中） 等 4 个
+
+**思维方法（7）** · `five-whys` 5Why 追因（经验） · `five-w1h` 5W1H 拆解（经验） · `mece` MECE 分解（经验） · `logic-tree` 逻辑树（经验） · `six-hats` 六顶思考帽（经验） · `scamper` SCAMPER 创意（经验） · `lateral-listing` 横向列方案（经验）
+
+**分析方法（9）** · `pareto` 帕累托分析（经验） · `fishbone` 鱼骨图（经验） · `decision-matrix` 决策矩阵（经验） · `pdca` PDCA 循环（经验） · `ooda` OODA 循环（经验） · `gap-analysis` 差距分析（经验） · `hypothesis-method` 假设法（经验） · `elimination` 排除法（经验） · `reductio` 反证法（经验）
 
 「强/中/经验」= 循证等级（high / medium / anecdotal），标注在每个 Skill 的 `evidence` 字段。
 标 `high` 的必须给文献引用，CI 会拦截虚标。
 完整可检索清单见 `registry/registry.json`（含每个方法的 CID 内容寻址标识）。
+
+> 商业与管理框架（SWOT、波特五力、商业模式画布、OKR……）另入 **[商业子库 `business/`](business/README.md)**，与主库同协议、独立成库。
 
 全部以 **CC0-1.0** 释出到公共领域（见 `LICENSE`）。
 
@@ -143,7 +149,7 @@ CODE_OF_CONDUCT.md               贡献者准则
 LICENSE                         CC0-1.0 官方全文
 schema/skill-0.1.json            Skill JSON Schema
 schema/learner-state-0.1.json    本地状态 Schema
-skills/*.json                    方法库（78 个 + 样板）
+skills/*.json                    方法库（107 个 + 样板）
 runtime/lmp.py                   参考执行器（零依赖）
 registry/registry.json           内容寻址清单（CID）
 docs/                            目标对齐、发布策略、路线图

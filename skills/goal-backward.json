@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "goal-backward",
+  "name": "目标逆向思维",
+  "name_en": "Goal-Backward Planning",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "从想要的结果出发倒推现在该做的关键动作，用终点约束过程，砍掉与目标无关的分支。",
+  "when_to_use": [
+    "事情杂不知从何入手",
+    "想只做关键动作",
+    "过程容易跑偏"
+  ],
+  "when_not_to_use": [
+    "目标本身不明（先用 SMART 明确）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "goal"
+    ],
+    "properties": {
+      "goal": {
+        "type": "string",
+        "description": "想达成的终点目标"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "define",
+      "name": "写清终点",
+      "duration_min": 5,
+      "instruction": "用一句话写下要达成的终点状态，并含可判定的达标标准。",
+      "checkpoint": "终点被写成一句含判定标准的陈述",
+      "output": "终点定义"
+    },
+    {
+      "id": "milestone",
+      "name": "倒推里程碑",
+      "duration_min": 10,
+      "instruction": "从终点往回推，列出达成前必须完成的 3-5 个里程碑，越靠近终点越具体。",
+      "checkpoint": "里程碑 3-5 个；且按距终点远近排列",
+      "output": "里程碑链"
+    },
+    {
+      "id": "key",
+      "name": "找当前关键动作",
+      "duration_min": 6,
+      "instruction": "只看离终点最近的未完成里程碑，推出当下唯一该做的关键动作。",
+      "checkpoint": "定出了唯一当前关键动作；且它服务于最近里程碑",
+      "output": "当前关键动作"
+    },
+    {
+      "id": "prune",
+      "name": "剪无关分支",
+      "duration_min": 6,
+      "instruction": "把当前在做但与任何里程碑无关的事列出并暂停，把时间让给关键动作。",
+      "checkpoint": "无关事项被列出并暂停；且关键动作获得时间",
+      "output": "剪枝记录",
+      "fail_to": "milestone"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的里程碑真是从终点倒推的吗，还是正着排的？",
+      "我剪的是真无关，还是不顺手的？"
+    ],
+    "success_criteria": [
+      "动作链可回溯到终点",
+      "无关事项被有效暂停"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "goal"
+    ],
+    "output": [
+      "里程碑链",
+      "当前关键动作",
+      "剪枝记录"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面从终点往回画里程碑"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

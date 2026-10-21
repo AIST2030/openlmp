@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "five-w1h",
+  "name": "5W1H 拆解法",
+  "name_en": "5W1H Analysis",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "思维方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "从事、因、时、地、人、法六个维度把一个对象或问题拆全，用维度清单防止遗漏。",
+  "when_to_use": [
+    "分析一个事件或方案怕漏维度",
+    "写方案前先把要素想全",
+    "信息杂乱待理清"
+  ],
+  "when_not_to_use": [
+    "只需单点深入时（六维反而稀释焦点）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "subject"
+    ],
+    "properties": {
+      "subject": {
+        "type": "string",
+        "description": "要六维拆解的对象"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "frame",
+      "name": "列出六维问题",
+      "duration_min": 5,
+      "instruction": "把六个维度各写成一个针对本对象的问题：是什么、为什么、何时、何地、涉及谁、如何做。",
+      "checkpoint": "六个维度各有一个针对本对象的问题",
+      "output": "六维问题清单"
+    },
+    {
+      "id": "fill",
+      "name": "逐维填写",
+      "duration_min": 15,
+      "instruction": "逐维回答，能查证的回答事实，查不到的标注待查，不编造。",
+      "checkpoint": "六个维度都有回答或待查标记；且无编造内容",
+      "output": "六维回答"
+    },
+    {
+      "id": "gap",
+      "name": "找维度缺口",
+      "duration_min": 6,
+      "instruction": "检查哪个维度回答最薄或待查最多，那通常是盲区，列为优先补全项。",
+      "checkpoint": "标出了最薄弱维度；且列出待补全清单",
+      "output": "缺口清单"
+    },
+    {
+      "id": "synthesize",
+      "name": "汇成结论",
+      "duration_min": 6,
+      "instruction": "把六维回答汇成一段结论，明确指出哪个维度对结论影响最大。",
+      "checkpoint": "产出结论段；且指出了影响最大的维度",
+      "output": "综合结论",
+      "fail_to": "fill"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "六个维度我是都认真答了，还是有几个空的？",
+      "最薄的那个维度，我是不是在回避？"
+    ],
+    "success_criteria": [
+      "六维均有实质回答",
+      "结论可由六维回答支撑"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "subject"
+    ],
+    "output": [
+      "六维回答",
+      "综合结论"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面六格逐维填写"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

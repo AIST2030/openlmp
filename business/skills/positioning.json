@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "positioning",
+  "name": "定位理论",
+  "name_en": "Positioning",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业战略",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "在目标客户心智中为一个品牌或产品占据一个独特且清晰的位置，用差异化对抗同质竞争。",
+  "when_to_use": [
+    "同质化竞争想差异化",
+    "品牌或产品定位不清",
+    "想占据一个清晰心智位置"
+  ],
+  "when_not_to_use": [
+    "全新品类尚无对手（先做品类教育）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "brand"
+    ],
+    "properties": {
+      "brand": {
+        "type": "string",
+        "description": "要定位的品牌或产品"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "competitor",
+      "name": "列竞品心智占位",
+      "duration_min": 10,
+      "instruction": "列出主要竞品在客户心智中已占据的位置，找出无人占据或占据薄弱的空位。",
+      "checkpoint": "列出了竞品占位；且标出了空位",
+      "output": "竞品占位图"
+    },
+    {
+      "id": "define",
+      "name": "定义独特位置",
+      "duration_min": 8,
+      "instruction": "为品牌写一句在目标客户心智中的独特定位，须与竞品占位明显不同。",
+      "checkpoint": "定位句写出；且与竞品占位不重合",
+      "output": "定位陈述"
+    },
+    {
+      "id": "support",
+      "name": "找支撑点",
+      "duration_min": 8,
+      "instruction": "列出 2-3 个能支撑这一定位的产品或事实依据，支撑不住就调整定位。",
+      "checkpoint": "定位有 2-3 个支撑点；且支撑点属实",
+      "output": "支撑点"
+    },
+    {
+      "id": "align",
+      "name": "对齐动作",
+      "duration_min": 6,
+      "instruction": "检查产品、传播、渠道是否都在强化这一定位，标出偏离的动作并纠正。",
+      "checkpoint": "标出了偏离定位的动作；且给出了纠正",
+      "output": "对齐结果",
+      "fail_to": "define"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的定位是真差异，还是换了说法的同质？",
+      "支撑点撑得起定位吗？"
+    ],
+    "success_criteria": [
+      "定位与竞品明显区隔",
+      "各触点动作对齐定位"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "brand"
+    ],
+    "output": [
+      "定位陈述",
+      "支撑点",
+      "对齐结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面列竞品占位并找空位"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

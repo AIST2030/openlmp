@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "hypothesis-method",
+  "name": "假设法",
+  "name_en": "Hypothesis-Driven Analysis",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "分析方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "先提出一个最可能的假设，再针对性验证，用假设聚焦信息收集，避免全面撒网。",
+  "when_to_use": [
+    "信息多、时间少需聚焦",
+    "排查问题想快速定位",
+    "想提高分析效率"
+  ],
+  "when_not_to_use": [
+    "对领域毫无概念、提不出合理假设时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "question"
+    ],
+    "properties": {
+      "question": {
+        "type": "string",
+        "description": "要分析验证的问题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "propose",
+      "name": "提最可能假设",
+      "duration_min": 6,
+      "instruction": "针对问题提出一个最可能的假设，并写下如果假设成立会观察到什么。",
+      "checkpoint": "假设被提出；且附了可观察判据",
+      "output": "假设与判据"
+    },
+    {
+      "id": "target",
+      "name": "定向收集",
+      "duration_min": 12,
+      "instruction": "只收集能验证或推翻该假设的信息，不碰无关信息。",
+      "checkpoint": "收集的信息均指向假设判据；且无关信息被排除",
+      "output": "定向证据"
+    },
+    {
+      "id": "test",
+      "name": "判定",
+      "duration_min": 6,
+      "instruction": "对照判据判定假设成立、被推翻或证据不足。",
+      "checkpoint": "给出了成立、推翻或不足之一的判定",
+      "output": "判定结果"
+    },
+    {
+      "id": "iterate",
+      "name": "换假设再来",
+      "duration_min": 10,
+      "instruction": "假设被推翻或证据不足时，提出下一个最可能假设并重复定向验证。",
+      "checkpoint": "被推翻或不足时提出了新假设；且重复了定向验证",
+      "output": "迭代记录",
+      "fail_to": "propose"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我先有假设再找证据，还是反过来？",
+      "被推翻时我痛快换假设了吗？"
+    ],
+    "success_criteria": [
+      "用较少信息得出可靠判定",
+      "假设收敛到被证实项"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "question"
+    ],
+    "output": [
+      "假设与判据",
+      "判定结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头提假设并定向查证"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "flywheel",
+  "name": "飞轮效应",
+  "name_en": "Flywheel Effect",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业战略",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "找出能自我强化的关键动作循环，让每个环节推动下一环节，越转越快形成复利。",
+  "when_to_use": [
+    "想找到增长飞轮",
+    "各动作各自为战没形成复利",
+    "想用系统替代单点发力"
+  ],
+  "when_not_to_use": [
+    "业务初期关键环节尚未验证（先验证单点）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "business"
+    ],
+    "properties": {
+      "business": {
+        "type": "string",
+        "description": "要找飞轮的业务"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "loop",
+      "name": "画出飞轮",
+      "duration_min": 12,
+      "instruction": "找出 3-5 个能互相推动的关键动作，画成一个闭环，每步写出它如何推动下一步。",
+      "checkpoint": "飞轮 3-5 步成环；且每步有推动下一步的说明",
+      "output": "飞轮图"
+    },
+    {
+      "id": "entry",
+      "name": "选入口",
+      "duration_min": 5,
+      "instruction": "选一个最容易推动的环节作为飞轮入口，先让它转起来。",
+      "checkpoint": "选定了入口环节；且它是最易推动的",
+      "output": "飞轮入口"
+    },
+    {
+      "id": "push",
+      "name": "单点突破",
+      "duration_min": 15,
+      "instruction": "集中资源推动入口环节，观察它是否带动下一环，记录传导效果。",
+      "checkpoint": "入口环节被集中推动；且记录了向下一环的传导",
+      "output": "传导记录"
+    },
+    {
+      "id": "measure",
+      "name": "测转速",
+      "duration_min": 6,
+      "instruction": "用一个核心指标测飞轮转速，定期看它是否在加快，慢了就找卡住的环节。",
+      "checkpoint": "设了转速指标；且定期记录了转速变化",
+      "output": "转速曲线",
+      "fail_to": "loop"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的飞轮是真闭环，还是硬凑的因果？",
+      "入口环节真的带动下一环了吗？"
+    ],
+    "success_criteria": [
+      "飞轮形成闭环传导",
+      "转速指标持续加快"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "business"
+    ],
+    "output": [
+      "飞轮图",
+      "传导记录",
+      "转速曲线"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面画闭环并找入口"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

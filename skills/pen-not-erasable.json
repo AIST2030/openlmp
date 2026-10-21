@@ -1,0 +1,102 @@
+{
+  "lmp": "0.1",
+  "id": "pen-not-erasable",
+  "name": "圆珠笔学习法",
+  "name_en": "Non-Erasable Pen Method",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "评测验证",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "用不能擦的笔作答和订正，让错误痕迹留在纸上，复盘时按出错密度定位薄弱，而不是一擦了之。",
+  "when_to_use": [
+    "习惯一错就擦、看不到自己错在哪",
+    "想积累个人错误样本",
+    "复盘缺数据"
+  ],
+  "when_not_to_use": [
+    "正式考试或需整洁提交的场合"
+  ],
+  "params": {
+    "type": "object",
+    "required": [],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "default": "",
+        "description": "本次练习范围"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "setup",
+      "name": "换不可擦笔",
+      "duration_min": 2,
+      "instruction": "练习一律改用不能擦的笔；提前约定错误用划线保留、不改写，只在其后补正。",
+      "checkpoint": "确认使用不可擦笔；且写明了错误保留与补正规则",
+      "output": "工具与规则"
+    },
+    {
+      "id": "answer",
+      "name": "留痕作答",
+      "duration_min": 20,
+      "instruction": "正常作答，错了不擦，用单线划掉错误部分并在旁边写正解，保留原始错误可见。",
+      "checkpoint": "错误处被划掉而非擦除；且每处错误旁有补正",
+      "output": "带痕迹的作答"
+    },
+    {
+      "id": "tally",
+      "name": "统计出错密度",
+      "duration_min": 6,
+      "instruction": "数出每类错误的划改次数，标出次数最多的错误类型和对应知识点。",
+      "checkpoint": "给出了各类错误次数；且标出了最高频错误类型",
+      "output": "出错密度表"
+    },
+    {
+      "id": "target",
+      "name": "只攻最高频",
+      "duration_min": 12,
+      "instruction": "针对最高频错误类型专项重练，重练仍错继续划线保留；其余类型本轮不动。",
+      "checkpoint": "仅最高频错误类型被专项重练；且重练错误仍被保留",
+      "output": "专项结果",
+      "fail_to": "answer"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是不是又在找橡皮？",
+      "出错密度最高的，是真不会还是粗心？"
+    ],
+    "success_criteria": [
+      "同类错误划改次数逐轮下降",
+      "能据痕迹定位个人薄弱知识点"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic"
+    ],
+    "output": [
+      "出错密度表",
+      "专项结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：任何不可擦笔均可执行"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

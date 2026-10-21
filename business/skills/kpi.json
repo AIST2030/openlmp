@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "kpi",
+  "name": "KPI 绩效指标",
+  "name_en": "KPI",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业管理",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把战略拆成少数可量化的关键绩效指标，用指标牵引行为并定期复盘达成。",
+  "when_to_use": [
+    "想把战略变成可追踪数字",
+    "团队缺量化牵引",
+    "绩效管理"
+  ],
+  "when_not_to_use": [
+    "目标无法量化或处于探索期（用 OKR 更合适）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "role"
+    ],
+    "properties": {
+      "role": {
+        "type": "string",
+        "description": "要设 KPI 的团队或岗位"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "derive",
+      "name": "从目标导 KPI",
+      "duration_min": 8,
+      "instruction": "从团队目标出发，导出 3-5 个能反映目标达成的关键指标，每个注明它服务哪个目标。",
+      "checkpoint": "KPI 3-5 个；且每个标注了对应目标",
+      "output": "KPI 清单"
+    },
+    {
+      "id": "baseline",
+      "name": "定基线与目标值",
+      "duration_min": 6,
+      "instruction": "给每个 KPI 定当前基线值和周期目标值，目标值要有挑战但可达。",
+      "checkpoint": "每个 KPI 有基线与目标值",
+      "output": "KPI 目标表"
+    },
+    {
+      "id": "instrument",
+      "name": "建采集",
+      "duration_min": 8,
+      "instruction": "定每个 KPI 的数据来源和采集频率，确保数字可自动或半自动取得。",
+      "checkpoint": "每个 KPI 有数据来源与频率",
+      "output": "采集方案"
+    },
+    {
+      "id": "review",
+      "name": "定期复盘",
+      "duration_min": 10,
+      "instruction": "按周期复盘各 KPI 达成，分析未达成的根因并定改进，而非只报数字。",
+      "checkpoint": "每个 KPI 有达成复盘；未达者有根因与改进",
+      "output": "复盘报告",
+      "fail_to": "derive"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "KPI 是真反映目标，还是只挑好看的？",
+      "复盘我是在找根因，还是只报数字？"
+    ],
+    "success_criteria": [
+      "KPI 可由数据取得",
+      "未达 KPI 有根因分析"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "role"
+    ],
+    "output": [
+      "KPI 目标表",
+      "采集方案",
+      "复盘报告"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面列 KPI 并定期手记达成"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

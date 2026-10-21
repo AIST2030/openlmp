@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "balanced-scorecard",
+  "name": "平衡计分卡",
+  "name_en": "Balanced Scorecard",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业管理",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "从财务、客户、内部流程、学习成长四个维度设定指标，用四维平衡避免只盯财务短视。",
+  "when_to_use": [
+    "想平衡长期与短期",
+    "只用财务指标导致短视",
+    "战略落地到多维度"
+  ],
+  "when_not_to_use": [
+    "小微企业维度太多反而重"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "org"
+    ],
+    "properties": {
+      "org": {
+        "type": "string",
+        "description": "要用平衡计分卡的组织"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "four",
+      "name": "四维定指标",
+      "duration_min": 15,
+      "instruction": "在财务、客户、内部流程、学习成长四个维度各定 2-3 个指标，每个注明对应战略。",
+      "checkpoint": "四维度各有 2-3 个指标；且每个标注对应战略",
+      "output": "四维指标"
+    },
+    {
+      "id": "target",
+      "name": "定目标值",
+      "duration_min": 8,
+      "instruction": "给每个指标定基线值和周期目标值。",
+      "checkpoint": "每个指标有基线与目标值",
+      "output": "目标值表"
+    },
+    {
+      "id": "link",
+      "name": "找因果链",
+      "duration_min": 8,
+      "instruction": "画出学习成长驱动内部流程、流程驱动客户、客户驱动财务的因果链，确认指标互相支撑。",
+      "checkpoint": "画出了四维因果链；且指标沿链支撑",
+      "output": "因果链"
+    },
+    {
+      "id": "review",
+      "name": "四维复盘",
+      "duration_min": 10,
+      "instruction": "按周期四维一起复盘，避免只升财务而降其它三维，记录四维均衡度。",
+      "checkpoint": "四维均有复盘；且记录了均衡度",
+      "output": "复盘报告",
+      "fail_to": "four"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是不是又在财务维度放最多指标？",
+      "因果链是真驱动还是硬连？"
+    ],
+    "success_criteria": [
+      "四维指标均衡",
+      "复盘覆盖四维而非只财务"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "org"
+    ],
+    "output": [
+      "四维指标",
+      "因果链",
+      "复盘报告"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面四象限各列指标并连因果"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

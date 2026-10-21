@@ -1,0 +1,102 @@
+{
+  "lmp": "0.1",
+  "id": "pyramid-principle",
+  "name": "金字塔原理",
+  "name_en": "Pyramid Principle",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业表达",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "表达时结论先行、以上统下、归类分组、逻辑递进，先给塔顶结论再用下层论据支撑。",
+  "when_to_use": [
+    "写报告或汇报想清晰有力",
+    "对方时间有限要结论先行",
+    "表达混乱需结构化"
+  ],
+  "when_not_to_use": [
+    "纯创意发散阶段（先发散再套结构）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "要结构化表达的主题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "top",
+      "name": "先写顶层结论",
+      "duration_min": 6,
+      "instruction": "先用一句话写出整个表达的核心结论，放在最顶端。",
+      "checkpoint": "写出了一句核心结论作为塔顶",
+      "output": "顶层结论"
+    },
+    {
+      "id": "group",
+      "name": "归类下层论据",
+      "duration_min": 10,
+      "instruction": "把支撑结论的论据归成 3-5 组作为第二层，组间不重叠。",
+      "checkpoint": "论据归成 3-5 组；且组间不重叠",
+      "output": "第二层分组"
+    },
+    {
+      "id": "order",
+      "name": "逻辑递进",
+      "duration_min": 8,
+      "instruction": "给每组和组内论据按逻辑排序，如时间、结构、重要性，确保读起来有推进感。",
+      "checkpoint": "每组及组内都有明确排序依据",
+      "output": "排序后金字塔"
+    },
+    {
+      "id": "check",
+      "name": "自上而下检验",
+      "duration_min": 6,
+      "instruction": "从塔顶往下问：这个结论被这些组支撑吗？每组被其下论据支撑吗？断链处补上。",
+      "checkpoint": "每层都被下层支撑；且断链处被补齐",
+      "output": "检验后的金字塔",
+      "fail_to": "group"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我真是结论先行，还是先铺垫半天？",
+      "每一层都被下层撑住了吗？"
+    ],
+    "success_criteria": [
+      "塔顶结论一句话说清",
+      "金字塔无断链"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic"
+    ],
+    "output": [
+      "金字塔结构"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面画金字塔并自上而下检验"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

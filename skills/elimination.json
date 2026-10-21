@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "elimination",
+  "name": "排除法",
+  "name_en": "Elimination Method",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "分析方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "逐一排除不可能的选项，用排除缩小范围，剩下的即为最可能解，适合候选有限的排查。",
+  "when_to_use": [
+    "候选有限想快速锁定",
+    "排查故障或谜题",
+    "逐一验证成本低于盲猜"
+  ],
+  "when_not_to_use": [
+    "候选无限或难以逐一验证时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "candidates"
+    ],
+    "properties": {
+      "candidates": {
+        "type": "string",
+        "description": "全部候选选项"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "list",
+      "name": "列全部候选",
+      "duration_min": 6,
+      "instruction": "把可能的选项全部列出，不漏不重。",
+      "checkpoint": "候选清单完整；且无重复项",
+      "output": "候选清单"
+    },
+    {
+      "id": "rule",
+      "name": "定排除判据",
+      "duration_min": 8,
+      "instruction": "为每个候选写一条能判定其是否可能的客观判据。",
+      "checkpoint": "每个候选都有一条客观判据",
+      "output": "判据表"
+    },
+    {
+      "id": "eliminate",
+      "name": "逐条排除",
+      "duration_min": 15,
+      "instruction": "按判据逐一验证，凡被证伪的候选立即移出，并记录排除依据。",
+      "checkpoint": "每个被排除项都有依据；且未被证伪的保留",
+      "output": "剩余候选"
+    },
+    {
+      "id": "converge",
+      "name": "收敛结论",
+      "duration_min": 6,
+      "instruction": "当只剩一个候选时即为结论；若剩多个则补新判据继续排除。",
+      "checkpoint": "给出了单一结论或补充了新判据",
+      "output": "结论",
+      "fail_to": "rule"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的判据是真能证伪，还是怎么说都对？",
+      "剩下的那个，我是排除了其它还是直接猜的？"
+    ],
+    "success_criteria": [
+      "每个排除项有客观依据",
+      "结论收敛到可验证的单一候选"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "candidates"
+    ],
+    "output": [
+      "剩余候选",
+      "结论"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：列表逐条打勾叉排除"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

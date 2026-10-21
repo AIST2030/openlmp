@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "effort-outcome-matrix",
+  "name": "努力分解矩阵",
+  "name_en": "Effort-Outcome Matrix",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "元认知",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把各项努力按'投入高低×结果好坏'分进四象限，对高投入低结果的止损、对低投入高结果的加码。",
+  "when_to_use": [
+    "很努力却不见成效",
+    "想裁掉低效努力",
+    "资源重新分配"
+  ],
+  "when_not_to_use": [
+    "刚起步尚无结果数据可判时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "efforts"
+    ],
+    "properties": {
+      "efforts": {
+        "type": "string",
+        "description": "要评估的若干努力项"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "list",
+      "name": "列努力项并打分",
+      "duration_min": 8,
+      "instruction": "列出近期的努力项，每项按投入高低和结果好坏各评高或低，各附一条事实依据。",
+      "checkpoint": "努力项至少 4 个；且每项有投入、结果两级判断及事实依据",
+      "output": "打分表"
+    },
+    {
+      "id": "place",
+      "name": "填入四象限",
+      "duration_min": 5,
+      "instruction": "按投入和结果把每项放入四象限：高投高果、高投低果、低投高果、低投低果。",
+      "checkpoint": "每个努力项都归入唯一象限；且象限划分无重叠",
+      "output": "四象限图"
+    },
+    {
+      "id": "act",
+      "name": "分象限定动作",
+      "duration_min": 8,
+      "instruction": "高投低果项定止损或改法，低投高果项定加码，其余各定保持或维持观察，逐项写明。",
+      "checkpoint": "每个象限都有对应动作；且每个努力项都有明确处置",
+      "output": "动作清单"
+    },
+    {
+      "id": "recheck",
+      "name": "下周期复评",
+      "duration_min": 6,
+      "instruction": "下周期用新数据重打一次分，看高投低果项是否减少、低投高果项是否增加。",
+      "checkpoint": "完成复评；且对比了两类象限的增减",
+      "output": "复评结果",
+      "fail_to": "place"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "结果好坏是有数据的，还是我感觉？",
+      "高投低果项我是真止损了，只是说说？"
+    ],
+    "success_criteria": [
+      "高投低果项占比下降",
+      "低投高果项获得更多投入"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "efforts"
+    ],
+    "output": [
+      "四象限图",
+      "动作清单"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸上画四象限并逐项落位"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

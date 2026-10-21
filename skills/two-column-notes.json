@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "two-column-notes",
+  "name": "二等分笔记法",
+  "name_en": "Two-Column Notes",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "知识管理",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把纸面一分为二：右栏照记、左栏只做加工（压缩成关键词或提问），逼自己把抄录变成再处理，是康奈尔等法的通用底座。",
+  "when_to_use": [
+    "笔记越记越像抄书",
+    "想给笔记加一道加工工序",
+    "作为康奈尔/卢曼前的通用训练"
+  ],
+  "when_not_to_use": [
+    "只需原样留存的会议记录（左栏加工反而添乱）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "本次笔记主题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "rule",
+      "name": "定两栏规则",
+      "duration_min": 3,
+      "instruction": "把纸竖分为左右两栏，规定右栏照记原内容、左栏只写关键词或对右栏的提问，先写下规则。",
+      "checkpoint": "写明了左右栏各自规则；且左栏限定为关键词或提问",
+      "output": "分栏规则"
+    },
+    {
+      "id": "record",
+      "name": "右栏照记",
+      "duration_min": 18,
+      "instruction": "在右栏如实记录听到或读到的内容，不做加工；数量不限。",
+      "checkpoint": "右栏有完整记录；且右栏未混入加工内容",
+      "output": "右栏原始记录"
+    },
+    {
+      "id": "process",
+      "name": "左栏加工",
+      "duration_min": 12,
+      "instruction": "针对右栏每条，在左栏写一个关键词或一个能考住自己的问题；不许照抄右栏原句。",
+      "checkpoint": "每条右栏内容都有左栏对应；且左栏无照抄右栏的原句",
+      "output": "左栏加工"
+    },
+    {
+      "id": "cover",
+      "name": "盖右栏自测",
+      "duration_min": 8,
+      "instruction": "盖住右栏，只看左栏关键词或问题复述原内容，复述不出的回看并加粗该条左栏提示。",
+      "checkpoint": "完成了盖栏复述；且复述失败处被加粗标记",
+      "output": "自测结果",
+      "fail_to": "process"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "左栏我是真在加工，还是在换种方式抄？",
+      "盖栏后我能还原右栏吗？"
+    ],
+    "success_criteria": [
+      "左栏全部为关键词或问题",
+      "盖栏复述成功率高于无左栏时"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic"
+    ],
+    "output": [
+      "左栏加工",
+      "自测结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸上分两栏记录并盖栏自测"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

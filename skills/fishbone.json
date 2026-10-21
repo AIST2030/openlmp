@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "fishbone",
+  "name": "鱼骨图分析",
+  "name_en": "Fishbone Diagram",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "分析方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "以问题为鱼头，从人、方法、材料、设备、环境等维度逐层拆潜在原因，用多支分类避免只盯单一链条。",
+  "when_to_use": [
+    "问题多因并发",
+    "想系统性枚举原因",
+    "5Why 追不出根因时"
+  ],
+  "when_not_to_use": [
+    "原因单一明确（直接处理即可）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "problem"
+    ],
+    "properties": {
+      "problem": {
+        "type": "string",
+        "description": "要分析原因的问题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "head",
+      "name": "定鱼头问题",
+      "duration_min": 4,
+      "instruction": "把要分析的问题写成一句具体陈述，放在图的一端作鱼头。",
+      "checkpoint": "问题被写成一句具体陈述；且位于图的一端作鱼头",
+      "output": "鱼头问题"
+    },
+    {
+      "id": "bones",
+      "name": "定主骨维度",
+      "duration_min": 6,
+      "instruction": "选定 4-6 个原因维度作大骨，如人、方法、材料、设备、环境、测量。",
+      "checkpoint": "大骨 4-6 个；且每个维度命名明确",
+      "output": "主骨框架"
+    },
+    {
+      "id": "twigs",
+      "name": "逐骨列原因",
+      "duration_min": 15,
+      "instruction": "每个大骨下继续列具体原因作小骨，每根小骨是一个可查证的可能原因。",
+      "checkpoint": "每个大骨下至少 2 根小骨；且每根小骨可查证",
+      "output": "完整鱼骨图"
+    },
+    {
+      "id": "verify",
+      "name": "验证主因",
+      "duration_min": 12,
+      "instruction": "给每根小骨标一个可能程度，选出最可能的 2-3 根去查证，确认或排除。",
+      "checkpoint": "每根小骨标了可能程度；且最可能的 2-3 根被查证",
+      "output": "主因结论",
+      "fail_to": "bones"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的维度分全了吗，还是漏了一类？",
+      "主因是查证出来的，还是看着像？"
+    ],
+    "success_criteria": [
+      "原因枚举覆盖多个维度",
+      "主因经查证被确认"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "problem"
+    ],
+    "output": [
+      "鱼骨图",
+      "主因结论"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸上画鱼头鱼骨并逐骨列因"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

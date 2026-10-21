@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "ansoff",
+  "name": "安索夫矩阵",
+  "name_en": "Ansoff Matrix",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "商业分析",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "按产品与市场的新旧组合出渗透、开发、产品开发、多元化四条增长路径并选主攻。",
+  "when_to_use": [
+    "寻找增长方向",
+    "决定推新品还是拓新市场",
+    "增长策略选择"
+  ],
+  "when_not_to_use": [
+    "只想优化现有业务效率（用运营改进法）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "business"
+    ],
+    "properties": {
+      "business": {
+        "type": "string",
+        "description": "要求增长的业务"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "map",
+      "name": "填四格路径",
+      "duration_min": 10,
+      "instruction": "按产品与市场的新旧组合，填出市场渗透、市场开发、产品开发、多元化四条路径，各写一句做法。",
+      "checkpoint": "四格路径各有一句做法",
+      "output": "安索夫四格"
+    },
+    {
+      "id": "assess",
+      "name": "评估风险收益",
+      "duration_min": 8,
+      "instruction": "给每条路径按风险和潜在收益各评高低，通常渗透最稳、多元化最险。",
+      "checkpoint": "每条路径有风险与收益评级",
+      "output": "路径评级"
+    },
+    {
+      "id": "pick",
+      "name": "选主攻路径",
+      "duration_min": 6,
+      "instruction": "结合自身资源选一条主攻路径和一条备选，写明选择依据。",
+      "checkpoint": "选出了主攻与备选路径；且写明了依据",
+      "output": "主攻路径"
+    },
+    {
+      "id": "plan",
+      "name": "定首步",
+      "duration_min": 6,
+      "instruction": "为主攻路径写第一个可执行动作和验证指标。",
+      "checkpoint": "主攻路径有首步动作与验证指标",
+      "output": "首步计划",
+      "fail_to": "map"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "路径评估是基于资源还是跟风？",
+      "多元化是不是被我想得太美？"
+    ],
+    "success_criteria": [
+      "选定主攻路径且有依据",
+      "首步可执行可验证"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "business"
+    ],
+    "output": [
+      "安索夫四格",
+      "主攻路径",
+      "首步计划"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面画四格并逐格填做法"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}
