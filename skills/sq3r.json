@@ -1,0 +1,77 @@
+{
+  "lmp": "0.1",
+  "id": "sq3r",
+  "name": "SQ3R 教材精读",
+  "name_en": "Survey-Question-Read-Recite-Review",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "理解构建",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "读教材前先扫、提问、带着问题读、复述、回顾，五步把线性阅读变成主动加工。",
+  "when_to_use": ["面对一本没读过的教材或长文档", "读了很多页却什么都没留下", "考试指定教材"],
+  "when_not_to_use": ["只有一两页的资料（直接读更快）", "已经熟悉的材料（用 active-recall）"],
+  "params": {
+    "type": "object",
+    "required": ["material"],
+    "properties": { "material": { "type": "string", "description": "要精读的材料" } }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "survey",
+      "name": "浏览骨架",
+      "instruction": "在 10 分钟内扫完目录、前言、每章小结、图表标题。只看结构不看内容。产出一份「这本书大概在讲什么 + 分几块」清单。",
+      "duration_min": 10,
+      "checkpoint": "列出了全部一级章节标题，且能一句话说出这本书解决什么问题",
+      "output": "骨架清单"
+    },
+    {
+      "id": "question",
+      "name": "生成阅读问题",
+      "instruction": "把骨架转成 5–8 个问题，形式必须是「这本书应该回答的」，不是「我想问的」。例如「作者在这里想解决什么」。",
+      "duration_min": 5,
+      "checkpoint": "问题数 ≥5，且全部指向材料本身而非读者个人偏好",
+      "output": "question list"
+    },
+    {
+      "id": "read",
+      "name": "带问题精读",
+      "instruction": "开始读正文。读完每一节停下来，用自己的话回答对应问题。**回答不出来就标记，不要跳过去继续读。**",
+      "duration_min": 40,
+      "checkpoint": "每个问题都有「已答出」或「卡住」标记；卡住处 ≥1 处被明确记录",
+      "output": "带标注正文"
+    },
+    {
+      "id": "recite",
+      "name": "合上复述",
+      "instruction": "合上材料，凭记忆把每节的核心内容讲一遍（可以对着空气讲）。讲不出的部分回原文补，补完立刻重讲。",
+      "duration_min": 10,
+      "checkpoint": "至少 4 节能独立复述；补完后重讲的段落要标为「已修补」",
+      "output": "复述稿"
+    },
+    {
+      "id": "review",
+      "name": "间隔回顾",
+      "instruction": "把没复述出来的点 + 所有标记过的卡住处，写成本周复习条目，下周一做第一次主动提取。",
+      "duration_min": 5,
+      "checkpoint": "产出了一份 ≥3 条的复习清单，且每条都有 next_due 日期",
+      "output": "srs entries"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我有没有真的在读之前先提问？",
+      "合上书我能讲出几节？如果只有两三节，是不是扫得太慢了？"
+    ],
+    "success_criteria": ["一周后回忆正确率 > 60%", "书的骨架能默写出来"]
+  },
+  "agent_contract": {
+    "input": ["material"], "output": ["question list", "复述稿", "srs entries"],
+    "side_effects": ["写本地文件"],
+    "degrade_to": "材料过长时按章切分，逐章走完整流程，不得跳过 question 步骤"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}

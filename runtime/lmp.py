@@ -197,7 +197,8 @@ def validate_one(obj, path="<memory>"):
     return errs, warns
 
 
-def cmd_validate(paths):
+def cmd_validate(args):
+    paths = list(getattr(args, "paths", None) or [])
     targets = []
     for p in paths:
         if os.path.isdir(p):
@@ -256,27 +257,56 @@ def cmd_show(args):
     return 0
 
 
+def _tokenize(text):
+    """中文用二元切分（CJK bigram），拉丁/数字用词。零依赖，无外部词典。"""
+    t = text.lower()
+    tokens = set()
+    # 拉丁词与数字
+    for w in re.findall(r"[a-z0-9][a-z0-9\-_]*", t):
+        tokens.add(w)
+    # CJK 二元切分：单字信息量太低，二元命中更准
+    for run in re.findall(r"[\u4e00-\u9fff]+", t):
+        if len(run) == 1:
+            tokens.add(run)
+        else:
+            for i in range(len(run) - 1):
+                tokens.add(run[i:i + 2])
+    return tokens
+
+
 def cmd_recommend(args):
     """本地关键词检索，零网络。"""
-    q = args.query.lower()
-    kw = [w for w in re.split(r"[\s,，、。；;]+", q) if w]
+    query = args.query
+    qt = _tokenize(query)
+    skills = load_skills()
     scored = []
-    for s in load_skills():
-        blob_parts = [
-            s.get("name", ""), s.get("name_en", ""), s.get("description", ""),
-            s.get("category", ""), " ".join(s.get("when_to_use", [])),
-            " ".join(s.get("when_not_to_use", [])),
-        ]
-        blob = " ".join(blob_parts).lower()
+    for s in skills:
+        # 字段权重：名称 > 描述 > 适用场景（名称命中说明用户问的正是这个方法）
+        name = " ".join([s.get("name", ""), s.get("name_en", "")])
+        desc = s.get("description", "")
+        use = " ".join(s.get("when_to_use", []))
+        nt, dt = _tokenize(name), _tokenize(desc)
+        ut = _tokenize(use)
         score = 0
-        for w in kw:
-            if w in blob:
-                score += blob.count(w) * 2
-        if s.get("category") in blob:
-            score += 1
+        for w in qt:
+            if w in nt:
+                score += 6
+            if w in dt:
+                score += 3
+            if w in ut:
+                score += 2
+        # 否定指向软惩罚：本 Skill 说「这情况该用别的」时轻度降权。
+        # ⚠️ 刻意不做成硬过滤——一旦惩罚过强会出现「全被压成0 → 诚实报不命中」，
+        #   而这违背协议精神（本方法是帮你找到方法，不是劝退）。
+        #   正确做法是：排后 + 在输出里明示「这情况请改用 X」，让人自己判断。
+        if s.get("when_not_to_use"):
+            nwt = _tokenize(" ".join(s["when_not_to_use"]))
+            if qt & nwt:
+                score = score * 0.5
         if score:
             scored.append((score, s))
-    scored.sort(key=lambda x: -x[0])
+    # 同分时按 id 稳定排序，保证结果可复现
+    scored.sort(key=lambda x: (-x[0], x[1]["id"]))
     if not scored:
         print("没有命中。协议规定：匹配不到就诚实说没有，不要硬凑。")
         return 1
@@ -284,6 +314,15 @@ def cmd_recommend(args):
     for score, s in scored[:5]:
         print("  %-26s %-14s  ← %s" % (s["id"], s["name"], s["description"]))
         print("  %s适用于：%s" % (" " * 26, "；".join(s.get("when_to_use", [])[:2])))
+        # 把「别用我时用谁」显式告诉用户 —— 这是本协议的检索独有设计
+        nua = s.get("when_not_to_use") or []
+        if nua:
+            for x in nua:
+                m = re.findall(r"用\s*([a-z0-9][a-z0-9\-]*)", x)
+                if m:
+                    print("  %s若你的情况是「%s」→ 改用：%s"
+                          % (" " * 26, x[:18], ", ".join(m)))
+                    break
         print("")
     return 0
 

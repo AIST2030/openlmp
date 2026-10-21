@@ -10,8 +10,8 @@
   "evidence": "high",
   "evidence_refs": ["Roediger & Karpicke 2006, Psychological Science 17(3) 249-255"],
   "description": "在「快要忘记」的那一刻复习，用最少的总时长换最长的记忆保持。",
-  "when_to_use": ["需要长期记住大量事实/术语/代码 API", "考前不是重点但需要长期记忆"],
-  "when_not_to_use": ["只考一次的短期突击（用 active-recall 集中刷）"],
+  "when_to_use": ["需要长期记住大量事实/术语", "需要记住代码 API、命令、外语单词等离散项"],
+  "when_not_to_use": ["只考一次的短期突击（用 active-recall 集中刷）", "要学会一项技能而非记住一批事实（用 deliberate-practice 或 project-based-learning）"],
   "params": {
     "type": "object",
     "required": ["items"],

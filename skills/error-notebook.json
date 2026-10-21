@@ -1,0 +1,91 @@
+{
+  "lmp": "0.1",
+  "id": "error-notebook",
+  "name": "错题本溯源",
+  "name_en": "Error Notebook",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "评测验证",
+  "evidence": "high",
+  "evidence_refs": [
+    "Dunlosky et al. 2013, Psychological Science in the Public Interest 14(1) 4-58（提取练习优于重复阅读）",
+    "Bahrick et al. 1993, Psychological Science 4(3) 316-321（间隔提取优于间隔重复阅读）"
+  ],
+  "description": "错一道要会一类：每道错题必须归到错因类型并配同类变式题，考的是「迁移」不是「记住这道」。",
+  "when_to_use": ["刷题正确率上不去", "同一类型题反复错", "考前复盘"],
+  "when_not_to_use": ["刚开始学（错得太多无从归类，先按步骤学）"],
+  "params": {
+    "type": "object",
+    "required": ["wrong_items"],
+    "properties": {
+      "wrong_items": { "type": "array", "items": { "type": "object" }, "description": "做错的题目与当时思路" },
+      "same_day_retest": { "type": "boolean", "default": true }
+    }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "capture",
+      "name": "完整记录现场",
+      "instruction": "每道错题记录：题目原文、你的错误答案、**当时脑子里的推理链**、正确解法。最后一项最关键——不是记正确答案，是记你为什么走错。",
+      "duration_min": 15,
+      "checkpoint": "每道错题都有一段「当时我怎么想的」的原文记录，不是「粗心」两个字",
+      "output": "错题卡"
+    },
+    {
+      "id": "classify",
+      "name": "归到错因类型",
+      "instruction": "每道错题归入且仅归入一类：概念不清/公式记错/审题失误/计算失误/思路方向错/时间不够。**「粗心」不是类型，必须拆成上面某一种。**",
+      "duration_min": 10,
+      "checkpoint": "所有错题都有且仅有一个类型；「粗心」出现次数 = 0",
+      "output": "错因分布"
+    },
+    {
+      "id": "find-pattern",
+      "name": "统计主因",
+      "instruction": "按类型统计占比，找出占比最高的一类。只针对这一类做干预，其他类的题本周不再碰（避免稀释）。",
+      "duration_min": 5,
+      "checkpoint": "明确了本周唯一的主攻错因类别，且其占比 ≥25%（低于则说明分类太细，合并后重算）",
+      "output": "主攻方向"
+    },
+    {
+      "id": "drill-variant",
+      "name": "做同类变式题",
+      "instruction": "针对主攻类别做 3–5 道**变式题**：考点相同但换了数据和问法。禁止重做原题。原题你已知答案，做了等于没做。",
+      "duration_min": 20,
+      "checkpoint": "变式题数 ≥3 且全部为新题；错误率有记录",
+      "output": "drill result"
+    },
+    {
+      "id": "sameday",
+      "name": "当天重测",
+      "instruction": "当晚把变式题的答案全部盖住，重新做一遍变式题（不是原题）。",
+      "duration_min": 8,
+      "checkpoint": "重测正确率 ≥80%；未达标的题目留在本周末再测",
+      "output": "retest"
+    },
+    {
+      "id": "close",
+      "name": "结案或升级",
+      "instruction": "连续两次重测都 ≥90% 的类别标记为「已解决」，不再进错题本。连续三次仍错的类别，说明是当前能力上限，必须回到对应的学习方法（而非继续刷题）。",
+      "duration_min": 5,
+      "checkpoint": "每个类别都有明确结案状态；三次仍错的类别已指向一个具体学习方法",
+      "output": "closure"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的错因记录里有多少是「当时我怎么想的」的真实记录？",
+      "变式题是不是真的换了问法，还是只是换了数字？"
+    ],
+    "success_criteria": ["同类错误复现率逐周下降", "「已解决」类别数持续增加"]
+  },
+  "agent_contract": {
+    "input": ["wrong_items"], "output": ["错因分布", "drill result", "closure"],
+    "side_effects": ["写本地文件"],
+    "degrade_to": "无法生成变式题时：让用户自己出题并回答，Agent 只负责检查分类与归因是否成立"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}

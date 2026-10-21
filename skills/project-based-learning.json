@@ -1,0 +1,81 @@
+{
+  "lmp": "0.1",
+  "id": "project-based-learning",
+  "name": "721 行动学习",
+  "name_en": "70-20-10 Action Learning",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "技能习得",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "10% 学理论 / 70% 做真实任务 / 20% 复盘，把学习时间强制分配到动手比例上，避免「只学不用」。",
+  "when_to_use": ["要学职业技能（写作/编程/设计/数据）", "读了三个月书没产出", "公司内训"],
+  "when_not_to_use": ["纯理论学科（数学定理、法条）", "还不会用就想上手（先补最小基础）"],
+  "params": {
+    "type": "object",
+    "required": ["skill", "real_task"],
+    "properties": {
+      "skill": { "type": "string" },
+      "real_task": { "type": "string", "description": "一个真实存在的、有人要的产出" },
+      "weeks": { "type": "integer", "default": 6 }
+    }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "task-first",
+      "name": "先定真实任务",
+      "instruction": "先定一个**真实存在、有人要、能在数周内交付**的任务（给朋友做一次 PPT / 上线一个小功能 / 写一篇能发表的文章）。没有真任务的，先找一个人问「你最近需要什么帮助」。",
+      "duration_min": 20,
+      "checkpoint": "任务有明确接收方、明确交付物、明确截止日",
+      "output": "real task brief"
+    },
+    {
+      "id": "plan-10",
+      "name": "只学任务卡住的部分（10%）",
+      "instruction": "针对任务倒推：现在卡在哪？只学**当前这一步需要的**那部分知识，不要系统学整门课。记录这次学了什么、用了哪一条。",
+      "duration_min": 30,
+      "checkpoint": "列出了本次要学的 3–5 个具体问题，且每个都直接对应任务中的某个卡点",
+      "output": "targeted syllabus"
+    },
+    {
+      "id": "do-70",
+      "name": "动手做（70%）",
+      "instruction": "直接做，遇到不会就查，查完继续做。**记录每一次「我以为我会但不会」的时刻**——这比做出来的成品更值钱。",
+      "duration_min": 120,
+      "checkpoint": "产出了可交付的中间成果；卡点时刻记录 ≥5 条",
+      "output": "交付物 + 卡点记录"
+    },
+    {
+      "id": "review-20",
+      "name": "复盘（20%）",
+      "instruction": "回答三问：这次做成的关键动作是什么？卡住的地方暴露了我缺什么？下次遇到同类任务，第一步该做什么？写下一条可执行规则。",
+      "duration_min": 30,
+      "checkpoint": "产出一条动词开头的具体规则，且能对照本次产出验证",
+      "output": "复盘 + one rule"
+    },
+    {
+      "id": "iterate",
+      "name": "接下一个更难的任务",
+      "instruction": "如果交付被接受，找一个难度高一级、交付物相似但要求更高的任务。重复本流程。难度必须上升，否则是在原地重复。",
+      "duration_min": 10,
+      "checkpoint": "新任务的难度确实高于上一轮，且差距不是靠加班补的",
+      "output": "next task"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "这次学的东西，真的被用在交付物上了吗？",
+      "我记录卡点的时刻，是不是都记得当时在想什么？"
+    ],
+    "success_criteria": ["每轮都有真实交付物", "卡点记录逐轮变少"]
+  },
+  "agent_contract": {
+    "input": ["skill", "real_task", "weeks"], "output": ["real task brief", "复盘"],
+    "side_effects": ["写本地文件"],
+    "degrade_to": "用户没有真实任务需求时：Agent 必须提示「先去找一个真实需求」，**禁止**用虚拟练习项目替代——这是本方法的核心机制，替代即失效"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}
