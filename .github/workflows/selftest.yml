@@ -23,15 +23,24 @@ jobs:
       - name: End-to-end selftest
         run: python runtime/lmp.py selftest
       # 确认无第三方依赖：运行在裸解释器上即为证明
+      # 注：sys.stdlib_module_names 是 3.10+ 特性，3.8 走 site-packages 路径判定
       - name: Confirm zero dependencies
         run: |
           python -c "
-          import sys, os, json, glob
-          std = set(sys.stdlib_module_names)
+          import sys, re
           src = open('runtime/lmp.py', encoding='utf-8').read()
-          import re
           mods = set(re.findall(r'^import (\w+)', src, re.M)) | set(re.findall(r'^from (\w+)', src, re.M))
-          ext = mods - std
+          if hasattr(sys, 'stdlib_module_names'):
+              std = set(sys.stdlib_module_names)
+              ext = mods - std
+          else:
+              # 3.8/3.9：无 stdlib_module_names，改用 importlib 逐个探测来源
+              import importlib.util as u
+              ext = set()
+              for m in mods:
+                  s = u.find_spec(m)
+                  if s and s.origin and 'site-packages' in s.origin or (s and s.origin and 'dist-packages' in s.origin):
+                      ext.add(m)
           assert not ext, '发现非标准库依赖: %s' % ext
           print('OK 零第三方依赖，导入模块:', sorted(mods))
           "
