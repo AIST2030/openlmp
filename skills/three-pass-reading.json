@@ -1,0 +1,96 @@
+{
+  "lmp": "0.1",
+  "id": "three-pass-reading",
+  "name": "三遍阅读法",
+  "name_en": "Three-Pass Reading",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "知识管理",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "同一份材料读三遍，每遍只干一件事：先摸骨架，再抠细节，最后挑刺。避免一遍就想全懂。",
+  "when_to_use": [
+    "啃长文或论文",
+    "教材新章节",
+    "读不懂的硬材料"
+  ],
+  "when_not_to_use": [
+    "消遣性阅读或已熟悉的材料"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "material"
+    ],
+    "properties": {
+      "material": {
+        "type": "string",
+        "description": "要精读的材料标题或路径"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "skeleton",
+      "name": "第一遍：只找骨架",
+      "duration_min": 8,
+      "instruction": "看标题、小标题、首尾段与图表，写出这份材料回答了哪几个问题。不读细节。",
+      "checkpoint": "写出的待答问题数 ≥ 2，且未涉及细节内容",
+      "output": "骨架问题清单"
+    },
+    {
+      "id": "detail",
+      "name": "第二遍：逐段填细节",
+      "instruction": "逐段精读，每段用一句自己的话概括，并记下看不懂的地方。不纠结、不回看。",
+      "duration_min": 25,
+      "checkpoint": "每段都配了一句概括；且所有读不懂处都被逐条记下",
+      "output": "段落概括与疑点清单"
+    },
+    {
+      "id": "critique",
+      "name": "第三遍：回头挑刺",
+      "instruction": "带着疑点回看，逐条尝试解答；仍不通的，明确写出「缺什么前提才能懂」。",
+      "duration_min": 15,
+      "checkpoint": "疑点清单每条都有处理结果（已解决 / 缺某前提），且未解决的列出了所缺前提",
+      "output": "疑点处理结果",
+      "fail_to": "detail"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是先建立结构再看细节，还是一头扎进字里？",
+      "看不懂的地方，我能不能说清具体缺什么？"
+    ],
+    "success_criteria": [
+      "能不看材料复述其骨架与关键细节",
+      "疑点大多被自己解决"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "material"
+    ],
+    "output": [
+      "骨架问题清单",
+      "段落概括",
+      "疑点处理结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头完成三遍阅读流程"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

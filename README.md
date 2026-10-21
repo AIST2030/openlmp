@@ -11,7 +11,7 @@
 ## 30 秒上手
 
 ```bash
-# 看有哪些方法（当前 10 个）
+# 看有哪些方法（当前 50 个）
 python runtime/lmp.py list
 
 # 遇到问题，本地检索推荐（零网络请求）
@@ -142,7 +142,7 @@ CODE_OF_CONDUCT.md               贡献者准则
 LICENSE                         CC0-1.0 官方全文
 schema/skill-0.1.json            Skill JSON Schema
 schema/learner-state-0.1.json    本地状态 Schema
-skills/*.json                    方法库（10 个 + 样板）
+skills/*.json                    方法库（50 个 + 样板）
 runtime/lmp.py                   参考执行器（零依赖）
 registry/registry.json           内容寻址清单（CID）
 docs/                            目标对齐、发布策略、路线图

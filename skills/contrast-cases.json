@@ -1,0 +1,126 @@
+{
+  "lmp": "0.1",
+  "id": "contrast-cases",
+  "name": "对比辨析",
+  "name_en": "Contrasting Cases",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "理解构建",
+  "evidence": "medium",
+  "evidence_refs": [
+    "Rittle-Johnson & Star 2007, Journal of Educational Psychology, 99(3) 561-574"
+  ],
+  "description": "把两个像但关键处不同的案例摆在一起逐项比，逼出你以为懂、实际模糊的那条边界。",
+  "when_to_use": [
+    "两个概念老是搞混",
+    "知道定义但分不清适用场合",
+    "学相似语法/API/术语"
+  ],
+  "when_not_to_use": [
+    "两个东西差异本来就一目了然"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "case_a",
+      "case_b"
+    ],
+    "properties": {
+      "case_a": {
+        "type": "string",
+        "description": "第一个案例或概念"
+      },
+      "case_b": {
+        "type": "string",
+        "description": "第二个案例或概念"
+      },
+      "dims": {
+        "type": "integer",
+        "default": 4,
+        "description": "对比维度数量"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "collect",
+      "name": "摆出两个案例",
+      "instruction": "把两个容易混淆的案例并排列出，各自写一句最简描述。",
+      "duration_min": 5,
+      "checkpoint": "两个案例都被列出，且各配了一句描述",
+      "output": "案例对照"
+    },
+    {
+      "id": "dimensions",
+      "name": "列出对比维度",
+      "instruction": "列出 4 个用来比较的维度（如：输入/输出/适用条件/失败后果），写成表头。",
+      "duration_min": 6,
+      "checkpoint": "维度数量 = 指定值，且每个维度都是可逐项填写的比较项",
+      "output": "维度表头"
+    },
+    {
+      "id": "fill",
+      "name": "逐格填入差异",
+      "instruction": "把两个案例在每个维度下的表现分别填进去，只写事实不写评价。",
+      "duration_min": 10,
+      "checkpoint": "表格每个单元格都已填写，且内容为可核对的事实描述",
+      "output": "对比表"
+    },
+    {
+      "id": "boundary",
+      "name": "写出判据句",
+      "instruction": "根据对比表，写一句可操作的判据：「出现 X 特征时用 A，出现 Y 特征时用 B」。",
+      "duration_min": 6,
+      "checkpoint": "产出了 1 句含两个明确特征与对应选择的判据句",
+      "output": "判据句"
+    },
+    {
+      "id": "stress",
+      "name": "造反例压测判据",
+      "instruction": "自己造 2 个边界情况，用判据句判断该选谁。判不出来就重写判据句。",
+      "duration_min": 8,
+      "checkpoint": "构造了 2 个边界案例；对判不出的情况给出了重写后的判据",
+      "output": "压测结果",
+      "fail_to": "boundary"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我填的是差异事实，还是在给两边贴好坏标签？",
+      "我的判据句在边界情况下还成立吗？"
+    ],
+    "success_criteria": [
+      "能独立写出区分两个案例的判据",
+      "边界案例判断正确"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "case_a",
+      "case_b",
+      "dims"
+    ],
+    "output": [
+      "案例对照",
+      "对比表",
+      "判据句"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：对话中口头对比并产出判据"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

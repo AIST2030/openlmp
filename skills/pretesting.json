@@ -1,0 +1,113 @@
+{
+  "lmp": "0.1",
+  "id": "pretesting",
+  "name": "预测试效应",
+  "name_en": "Pretesting Effect",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "元认知",
+  "evidence": "high",
+  "evidence_refs": [
+    "Pan 2015, Psychological Bulletin, 141(4) 785-806",
+    "Roediger & Karpicke 2006, Psychological Science, 17(3) 249-255"
+  ],
+  "description": "学之前先硬猜一遍，哪怕全错也行；猜错会让后面正式学时印象更深。",
+  "when_to_use": [
+    "开始学新章节前",
+    "发现学了记不住",
+    "想提高听课效率"
+  ],
+  "when_not_to_use": [
+    "需要精确记忆的少量事实（猜错可能形成干扰）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "即将学习的新主题"
+      },
+      "questions": {
+        "type": "integer",
+        "default": 6,
+        "description": "预测试题量"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "guess",
+      "name": "先猜，不看资料",
+      "instruction": "让 Agent 就这个主题提问，你直接猜答案。不会也必须猜一个。此时严禁查看任何资料。",
+      "duration_min": 10,
+      "checkpoint": "每道题都有猜测答案（含明确写「不会」的条目）；且猜题期间未查资料",
+      "output": "猜测记录"
+    },
+    {
+      "id": "study",
+      "name": "正式学习",
+      "instruction": "现在才打开材料学习，重点看与自己猜测不一致的地方。",
+      "duration_min": 25,
+      "checkpoint": "学习完成；且已标注出与猜测不一致的关键点",
+      "output": "学习记录与差异点"
+    },
+    {
+      "id": "retest",
+      "name": "重测对比",
+      "instruction": "重新回答预测试的问题，统计「猜错但这次答对」的比例——这部分就是预测试带来的增益。",
+      "duration_min": 10,
+      "checkpoint": "给出了「猜错→答对」的条目数与占比",
+      "output": "重测对比结果"
+    },
+    {
+      "id": "consolidate",
+      "name": "只巩固增益项",
+      "instruction": "把「猜错且这次仍错」的条目单独拉出来重点攻，其余快速过一遍。",
+      "duration_min": 10,
+      "checkpoint": "列出了「仍错」条目并给出针对动作；其余条目被快速回顾",
+      "output": "巩固结果",
+      "fail_to": "study"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我猜的时候是真动脑了吗，还是随便填的？",
+      "猜错的地方，这次真记住了吗？"
+    ],
+    "success_criteria": [
+      "「猜错→答对」占比 ≥ 50%",
+      "「仍错」条目逐轮减少"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic",
+      "questions"
+    ],
+    "output": [
+      "猜测记录",
+      "学习差异点",
+      "重测对比"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：对话式提问与猜测，不联网检索答案"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

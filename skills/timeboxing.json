@@ -1,0 +1,110 @@
+{
+  "lmp": "0.1",
+  "id": "timeboxing",
+  "name": "时间盒",
+  "name_en": "Timeboxing",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "给每件事预先定死一段时间，时间一到就停或换，用「时间边界」替代「做完为止」。",
+  "when_to_use": [
+    "一件事总拖着做不完",
+    "日程老被一件事挤爆",
+    "想给重要但不紧急的事留时间"
+  ],
+  "when_not_to_use": [
+    "需要连续心流的深度创作（频繁中断反而伤效率）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "tasks"
+    ],
+    "properties": {
+      "tasks": {
+        "type": "string",
+        "description": "今天要处理的事，用逗号或换行分隔"
+      },
+      "slot_min": {
+        "type": "integer",
+        "default": 45,
+        "description": "单个时间盒时长（分钟）"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "list",
+      "name": "列事并估时",
+      "instruction": "把今天要做的事逐条列出，为每条估计一个时间盒长度（不超过 slot_min 的 2 倍）。",
+      "duration_min": 6,
+      "checkpoint": "任务清单每条都配了时间盒长度；且单盒长度 ≤ slot_min×2",
+      "output": "任务与盒长表"
+    },
+    {
+      "id": "place",
+      "name": "排进时间轴",
+      "instruction": "把各时间盒按优先级排进当天时间表，盒与盒之间留 10 分钟缓冲。",
+      "duration_min": 6,
+      "checkpoint": "时间轴上各盒不重叠；且相邻盒之间均留 10 分钟缓冲",
+      "output": "当日时间表"
+    },
+    {
+      "id": "enforce",
+      "name": "到点就停",
+      "instruction": "每个盒结束时立刻停下当前动作，记录「完成了什么 / 卡在哪」。不延长盒子。",
+      "duration_min": 3,
+      "checkpoint": "每个盒结束时均有完成度与卡点记录；且未出现延长盒子的情况",
+      "output": "执行记录"
+    },
+    {
+      "id": "adjust",
+      "name": "按实绩调盒长",
+      "instruction": "对比估计与实际耗时，把偏差超过 50% 的盒长调整为实测值的 1.2 倍。",
+      "duration_min": 5,
+      "checkpoint": "列出了偏差 >50% 的条目；并给出按实测×1.2 调整后的新盒长",
+      "output": "盒长调整表",
+      "fail_to": "list"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我停下来了，还是「再五分钟就好」？",
+      "估时偏差集中在哪类事上？"
+    ],
+    "success_criteria": [
+      "当日时间表完成率 ≥ 70%",
+      "估时偏差逐日收窄"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "tasks",
+      "slot_min"
+    ],
+    "output": [
+      "任务与盒长表",
+      "当日时间表",
+      "执行记录"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头排程与提醒"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

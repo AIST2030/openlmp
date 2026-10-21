@@ -1,0 +1,110 @@
+{
+  "lmp": "0.1",
+  "id": "analogy-mapping",
+  "name": "类比映射",
+  "name_en": "Analogy Mapping",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "理解构建",
+  "evidence": "medium",
+  "evidence_refs": [
+    "Gick & Holyoak 1983, Cognitive Psychology, 15(1) 1-38"
+  ],
+  "description": "给陌生概念找一个结构相同的熟悉事物，逐项把对应关系摆出来，用已知推未知。",
+  "when_to_use": [
+    "新概念完全没直觉",
+    "抽象概念难建立画面",
+    "跨领域理解"
+  ],
+  "when_not_to_use": [
+    "只需要精确的技术细节（类比会引入误差）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "concept"
+    ],
+    "properties": {
+      "concept": {
+        "type": "string",
+        "description": "要弄懂的新概念"
+      },
+      "source": {
+        "type": "string",
+        "description": "拿来类比的熟悉事物，可留空让 Agent 提议"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "target",
+      "name": "写下新概念的关键结构",
+      "duration_min": 5,
+      "instruction": "把新概念拆成 3-5 个关键要素，并画出它们之间的关系（谁作用于谁、谁依赖谁）。",
+      "checkpoint": "要素数量在 3-5 之间，且要素间关系被显式写出",
+      "output": "目标结构图"
+    },
+    {
+      "id": "source",
+      "name": "找一个同结构的熟悉事物",
+      "instruction": "找一个你非常熟悉、且要素关系与目标相同的事物。若想不出，让 Agent 提供 2 个候选并说明各自的对应关系。",
+      "duration_min": 8,
+      "checkpoint": "确定了一个类比源；且源与目标的要素数量一致",
+      "output": "类比源"
+    },
+    {
+      "id": "map",
+      "name": "逐项对应",
+      "instruction": "把目标的每个要素与源的对应物一一配对，写成两列表。",
+      "duration_min": 7,
+      "checkpoint": "两列表行数 = 目标要素数，且无空行",
+      "output": "映射表"
+    },
+    {
+      "id": "limits",
+      "name": "标出类比失效处",
+      "instruction": "至少写出 2 处这个类比推不下去、会误导的地方。类比的边界比类比本身更重要。",
+      "duration_min": 6,
+      "checkpoint": "列出了 ≥2 条类比失效情形，且每条都说明为什么会误导",
+      "output": "失效清单"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我类比的是结构关系，还是只是表面像？",
+      "这个比喻在哪一步会把人带偏？"
+    ],
+    "success_criteria": [
+      "能用类比推出新场景下的结论",
+      "能说出类比什么时候不能用"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "concept",
+      "source"
+    ],
+    "output": [
+      "目标结构图",
+      "映射表",
+      "失效清单"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头给出类比与失效点"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

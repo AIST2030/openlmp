@@ -6,7 +6,8 @@ OpenLMP 参考执行器 v0.1
 
 设计原则（与 SPEC.md 一致）：
   1. Skill 是纯 JSON 声明，本文件只做「调度」，不做「内容生成」。
-  2. 所有状态写在用户本地的 learner-state.json，协议不定义任何上传路径。
+  2. 所有状态写在用户自己的本地目录（默认 ~/.local/share/openlmp/），
+     协议不定义任何上传路径，也不污染仓库工作区。
   3. 校验器严格执行纯度规则：Skill 里不得出现注册/登录/API Key/云端同步。
 
 命令：
@@ -15,23 +16,70 @@ OpenLMP 参考执行器 v0.1
   validate <path...>        按 schema + 纯度规则校验
   recommend "<描述>"        本地检索推荐方法（不联网）
   run <id> --topic X        打印该 Skill 的执行剧本（给人或给 Agent 照做）
-  review                    今日到期复习队列 + SM-2 重算
-  selftest                  端到端自检
+  review                    今日到期复习队列
+  grade <id> <q>            记录一次复习结果（自评 0-5）并按 SM-2 推进间隔
+  selftest                 端到端自检
+
+状态文件位置可用环境变量 OPENLMP_STATE 覆盖（自检时指向临时目录，避免污染）。
 """
 
 import json
 import os
 import sys
 import glob
+import shutil
+import tempfile
 import hashlib
 import re
 import datetime
 import argparse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SKILL_DIR = os.path.join(ROOT, "skills")
-SCHEMA_PATH = os.path.join(ROOT, "schema", "skill-0.1.json")
-STATE_PATH = os.path.join(ROOT, "learner-state.json")
+
+
+def _find_dir(base, *candidates):
+    """在候选路径里挑第一个真实存在的目录。
+
+    同一份执行器会跑在两种布局里：
+      - 仓库布局：   <repo>/runtime/lmp.py  → skills 在 <repo>/skills
+      - 发布包布局：<pkg>/assets/lmp.py    → skills 在 <pkg>/assets/skills
+    原写法把 ROOT 固定解析为上一层，发布包里就找不到自己的方法库了
+    （list 显示 0 个、selftest 直接 IndexError）。这里做自适应。
+    """
+    for rel in candidates:
+        p = os.path.join(base, *rel)
+        if os.path.isdir(p):
+            return p
+    return os.path.join(base, *candidates[0])
+
+
+def _find_file(base, *candidates):
+    """同 _find_dir，但找文件。"""
+    for rel in candidates:
+        p = os.path.join(base, *rel)
+        if os.path.isfile(p):
+            return p
+    return os.path.join(base, *candidates[0])
+
+
+SKILL_DIR = _find_dir(ROOT, ("skills",), ("assets", "skills"))
+SCHEMA_PATH = _find_file(
+    ROOT, ("schema", "skill-0.1.json"), ("assets", "schema", "skill-0.1.json"))
+
+
+def state_path():
+    """学习状态文件的位置。
+
+    协议承诺「数据不出本地」，但把状态文件写在仓库根目录仍然不妥——
+    一来污染仓库工作区，二来 clone 的人会把别人的记录一起拉下来。
+    所以默认落到用户自己的数据目录，并支持用 OPENLMP_STATE 覆盖（便于测试）。
+    """
+    env = os.environ.get("OPENLMP_STATE")
+    if env:
+        return env
+    base = os.environ.get("XDG_DATA_HOME") or os.path.join(
+        os.path.expanduser("~"), ".local", "share")
+    return os.path.join(base, "openlmp", "learner-state.json")
 
 # ---------------------------------------------------------------- 纯度规则
 # 这些不是建议，是协议级硬约束。违反者不收录。
@@ -87,8 +135,9 @@ def today_str():
 
 
 def load_state():
-    if os.path.exists(STATE_PATH):
-        with open(STATE_PATH, "r", encoding="utf-8") as f:
+    p = state_path()
+    if os.path.exists(p):
+        with open(p, "r", encoding="utf-8") as f:
             return json.load(f)
     return {
         "lmp": "0.1",
@@ -102,9 +151,13 @@ def load_state():
 
 
 def save_state(st):
-    with open(STATE_PATH, "w", encoding="utf-8") as f:
+    p = state_path()
+    d = os.path.dirname(p)
+    if d:
+        os.makedirs(d, exist_ok=True)      # 首次使用自动建目录
+    with open(p, "w", encoding="utf-8") as f:
         json.dump(st, f, ensure_ascii=False, indent=2)
-    print("[state] 已写入 %s" % STATE_PATH)
+    print("[state] 已写入 %s" % p)
 
 
 # ---------------------------------------------------------------- SM-2
@@ -399,6 +452,52 @@ def cmd_review(args):
     return 0
 
 
+def cmd_grade(args):
+    """记录一次复习结果，用 SM-2 推进间隔并写回本地状态。
+
+    这是「间隔重复可调度」的落点。review 只负责列出到期项，
+    真正让间隔往前走的是这一步 —— 缺了它，调度永远停在原地，
+    「可写入 learner-state.json 形成调度」就成了空头承诺。
+    """
+    sid = args.id
+    q = args.q
+    if not (0 <= q <= 5):
+        print("自评分 q 必须在 0-5 之间（见 `review` 里的评分规范）。")
+        return 1
+    skills = {x["id"]: x for x in load_skills()}
+    if sid not in skills:
+        print("方法库里没有 `%s`。可用：%s" % (sid, ", ".join(sorted(skills))))
+        return 1
+
+    st = load_state()
+    rec = st.setdefault("skills", {}).get(sid)
+    if rec is None:                       # 首次入库
+        rec = {"ease_factor": 2.5, "interval_days": 0.0,
+               "repetitions": 0, "next_due": today_str(), "history": []}
+
+    ease = float(rec.get("ease_factor", 2.5))
+    interval = float(rec.get("interval_days", 0.0))
+    reps = int(rec.get("repetitions", 0))
+    ease, interval, reps = sm2(reps, ease, interval, q)
+
+    rec["ease_factor"] = round(ease, 4)
+    rec["interval_days"] = round(interval, 2)
+    rec["repetitions"] = reps
+    rec["last_reviewed"] = today_str()
+    rec["next_due"] = (datetime.date.today()
+                       + datetime.timedelta(days=interval)).isoformat()
+    rec.setdefault("history", []).append({"date": today_str(), "q": q})
+
+    st["skills"][sid] = rec
+    save_state(st)                        # ← 真正的写回
+
+    print("  %-26s q=%d → ease=%.2f  间隔=%.1f天  下次复习 %s" % (
+        sid, q, ease, interval, rec["next_due"]))
+    if q < 3:
+        print("     ⚠ q<3：间隔已重置为 1 天，重复次数归零。")
+    return 0
+
+
 def cmd_selftest(args):
     print("OpenLMP v0.1 自检\n" + "=" * 60)
     ok = True
@@ -473,6 +572,50 @@ def cmd_selftest(args):
     print("   %s 同内容同 CID：%s" % ("✓" if c1 == c2 else "✗", c1))
     ok &= (c1 == c2)
 
+    # 后补项：save_state 曾定义了却从未被调用，导致「可调度」在 CLI 上无法闭环。
+    # 这里把「grade 能真正写回并推进间隔」钉成 CI 断言，防止再退化。
+    print("\n8. 复习闭环（grade → 写回本地状态）：")
+    probe = skills[0]["id"]
+    tmpdir = tempfile.mkdtemp(prefix="openlmp-selftest-")
+    saved_env = os.environ.get("OPENLMP_STATE")
+    try:
+        os.environ["OPENLMP_STATE"] = os.path.join(tmpdir, "learner-state.json")
+        st0 = load_state()
+        st0["skills"][probe] = {"ease_factor": 2.5, "interval_days": 0.0,
+                                "repetitions": 0, "next_due": today_str()}
+        save_state(st0)
+        wrote0 = os.path.exists(os.path.join(tmpdir, "learner-state.json"))
+        print("   %s save_state 产生状态文件" % ("✓" if wrote0 else "✗"))
+        ok &= wrote0
+
+        cmd_grade(argparse.Namespace(id=probe, q=5))
+        i1 = float(load_state()["skills"][probe]["interval_days"])
+        ok_a = abs(i1 - 1.0) < 1e-6
+        print("   %s 首次 q=5 → 间隔写回 %.1f 天（期望 1）"
+              % ("✓" if ok_a else "✗", i1))
+        ok &= ok_a
+
+        cmd_grade(argparse.Namespace(id=probe, q=5))
+        i2 = float(load_state()["skills"][probe]["interval_days"])
+        ok_b = abs(i2 - 6.0) < 1e-6
+        print("   %s 二次 q=5 → 间隔推进 %.1f 天（期望 6）"
+              % ("✓" if ok_b else "✗", i2))
+        ok &= ok_b
+
+        cmd_grade(argparse.Namespace(id=probe, q=1))
+        r3 = load_state()["skills"][probe]
+        i3, reps3 = float(r3["interval_days"]), int(r3["repetitions"])
+        ok_c = abs(i3 - 1.0) < 1e-6 and reps3 == 0
+        print("   %s 卡壳 q=1 → 间隔重置 %.1f 天、次数归零（期望 1 / 0）"
+              % ("✓" if ok_c else "✗", i3))
+        ok &= ok_c
+    finally:
+        if saved_env is None:
+            os.environ.pop("OPENLMP_STATE", None)
+        else:
+            os.environ["OPENLMP_STATE"] = saved_env
+        shutil.rmtree(tmpdir, ignore_errors=True)
+
     print("\n" + "=" * 60)
     print("结果：%s" % ("全部通过 ✅" if ok else "存在失败 ❌"))
     return 0 if ok else 1
@@ -495,6 +638,9 @@ def main():
     p_run.add_argument("id")
     p_run.add_argument("--topic", default="")
     sub.add_parser("review", help="今日到期复习队列")
+    p_grade = sub.add_parser("grade", help="记录一次复习结果并推进间隔")
+    p_grade.add_argument("id")
+    p_grade.add_argument("q", type=int, help="自评分 0-5；q<3 会重置间隔")
     sub.add_parser("selftest", help="端到端自检")
 
     args = ap.parse_args()
@@ -508,6 +654,7 @@ def main():
         "recommend": cmd_recommend,
         "run": cmd_run,
         "review": cmd_review,
+        "grade": cmd_grade,
         "selftest": cmd_selftest,
     }[args.cmd](args)
 

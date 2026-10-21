@@ -1,0 +1,109 @@
+{
+  "lmp": "0.1",
+  "id": "note-flow-code",
+  "name": "笔记流水线",
+  "name_en": "Capture-Organize-Distill-Express",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "知识管理",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把笔记拆成捕获、组织、提炼、表达四道固定工序，解决「记了一堆但从来不看」的问题。",
+  "when_to_use": [
+    "笔记越记越乱",
+    "收藏了很多但没消化",
+    "想让笔记产出作品"
+  ],
+  "when_not_to_use": [
+    "只需临时记录、用完即弃的信息"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "inbox"
+    ],
+    "properties": {
+      "inbox": {
+        "type": "string",
+        "description": "待处理的原始笔记或素材"
+      },
+      "output_form": {
+        "type": "string",
+        "default": "一段可直接发布的文字",
+        "description": "最终想产出的形式"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "capture",
+      "name": "无脑捕获",
+      "instruction": "把脑子里冒出来的、看到的都丢进收集箱，不做整理不判断价值。",
+      "duration_min": 8,
+      "checkpoint": "收集箱内条目 ≥ 5 条，且收集期间未做删改判断",
+      "output": "收集箱"
+    },
+    {
+      "id": "organize",
+      "name": "按用途分堆",
+      "instruction": "把收集箱内容按「要做的 / 要留的 / 要扔的」三堆分开。扔的那堆立刻删掉。",
+      "duration_min": 8,
+      "checkpoint": "每条都被分入三堆之一；且「要扔的」条目数已被记录并清除",
+      "output": "三堆分类"
+    },
+    {
+      "id": "distill",
+      "name": "提炼成要点",
+      "instruction": "对「要留的」逐条压缩成一句话要点，保留原始出处。",
+      "duration_min": 12,
+      "checkpoint": "每条「要留的」都产出了一句要点且附出处",
+      "output": "要点清单"
+    },
+    {
+      "id": "express",
+      "name": "输出成成品",
+      "instruction": "按 output_form 把要点组织成一段能直接交出去的成品，不堆砌要点。",
+      "duration_min": 15,
+      "checkpoint": "产出的成品符合 output_form，且为连贯文字而非要点罗列",
+      "output": "成品文本",
+      "fail_to": "distill"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我囤的东西有多少真的被提炼过？",
+      "这次的成品能不能直接发出去，还是还要再改？"
+    ],
+    "success_criteria": [
+      "收集箱能清空到 0 条",
+      "每次提炼都产出了一件成品"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "inbox",
+      "output_form"
+    ],
+    "output": [
+      "要点清单",
+      "成品文本"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：对话式完成四道工序"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

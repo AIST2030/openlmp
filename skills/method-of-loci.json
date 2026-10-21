@@ -1,0 +1,110 @@
+{
+  "lmp": "0.1",
+  "id": "method-of-loci",
+  "name": "记忆宫殿",
+  "name_en": "Method of Loci",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "记忆巩固",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "把要记的东西挂在你熟得闭眼都能走的空间路线上，用空间顺序当索引，回想时沿路走一遍。",
+  "when_to_use": [
+    "要背一长串有序内容",
+    "演讲提纲、清单、流程",
+    "视觉记忆好的人"
+  ],
+  "when_not_to_use": [
+    "内容之间有强逻辑关联（用概念图更好）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "items"
+    ],
+    "properties": {
+      "items": {
+        "type": "string",
+        "description": "要记的条目，用逗号或换行分隔"
+      },
+      "route": {
+        "type": "string",
+        "default": "自家从门口到卧室的路线",
+        "description": "用作索引的熟悉空间"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "route",
+      "name": "定路线和桩点",
+      "duration_min": 5,
+      "instruction": "选一条你极其熟悉的路线，按顺序数出与条目数相同的固定位置（如鞋柜→沙发→餐桌…）。把位置写成编号清单。",
+      "checkpoint": "桩点数量 ≥ 条目数量，且每个桩点都是可独立指认的固定位置",
+      "output": "桩点编号清单"
+    },
+    {
+      "id": "encode",
+      "name": "挂上夸张图像",
+      "instruction": "为每条内容造一个视觉夸张、动作荒诞的图像，放到对应桩点上。图像越离谱越好记。",
+      "duration_min": 15,
+      "checkpoint": "每个桩点都配了一个含动作的画面描述，且描述里含具体名词与动词",
+      "output": "图像-桩点对照表"
+    },
+    {
+      "id": "walk",
+      "name": "沿路走一遍回忆",
+      "instruction": "不看书，按桩点顺序逐个说出对应内容。卡住的桩点标红，不跳过去。",
+      "duration_min": 6,
+      "checkpoint": "覆盖全部桩点一次；卡壳桩点被显式标出且数量已统计",
+      "output": "回忆结果表"
+    },
+    {
+      "id": "strengthen",
+      "name": "只重做卡壳桩点",
+      "instruction": "把标红桩点的图像改得更夸张，重新走一遍。至少连续 2 次全对为止。",
+      "duration_min": 8,
+      "checkpoint": "连续 2 轮回忆中标红桩点数 = 0",
+      "output": "强化结果",
+      "fail_to": "encode"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的图像够不够具体，能不能「看见」它在动？",
+      "卡壳的位置是固定几个，还是每次都不一样？"
+    ],
+    "success_criteria": [
+      "按序回忆时能一次不卡走完全程",
+      "一周后仍能按序说出 ≥80% 的条目"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "items",
+      "route"
+    ],
+    "output": [
+      "桩点清单",
+      "图像对照表",
+      "回忆结果表"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纯文字描述桩点与图像，靠对话完成走桩"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

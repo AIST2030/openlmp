@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "elaborative-rehearsal",
+  "name": "精细复述",
+  "name_en": "Elaborative Rehearsal",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "记忆巩固",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "不满足于把信息念很多遍，而是给每条信息接上一个意思、一个例子、一个画面。",
+  "when_to_use": [
+    "反复念但记不住",
+    "背定义、背单词",
+    "信息孤立无关联"
+  ],
+  "when_not_to_use": [
+    "只需短期记住马上就能丢的内容"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "item"
+    ],
+    "properties": {
+      "item": {
+        "type": "string",
+        "description": "要记住的那一条信息"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "ask-why",
+      "name": "问它为什么成立",
+      "duration_min": 4,
+      "instruction": "针对这条信息，写出一个「因为……」的理由。写不出就明确记录「原因不明，待查」。",
+      "checkpoint": "产出了一个以「因为」开头的完整句子，或一条明确的待查记录",
+      "output": "理由句"
+    },
+    {
+      "id": "hook",
+      "name": "接一个已知事物",
+      "instruction": "找一个你已经熟悉的东西跟它做关联，写成一句「它就像……，只不过……」。",
+      "duration_min": 6,
+      "checkpoint": "产出了一句含「就像」和「只不过」的类比句",
+      "output": "类比句"
+    },
+    {
+      "id": "scene",
+      "name": "放一个具体场景",
+      "instruction": "想一个这条信息真正会被用到的具体场景，写出场景里发生了什么、谁在做、结果如何。",
+      "duration_min": 5,
+      "checkpoint": "场景描述里同时含有人物、动作与结果三个要素",
+      "output": "场景描述"
+    },
+    {
+      "id": "retrieve",
+      "name": "不看原文复述",
+      "instruction": "合上资料，把这三层（理由/类比/场景）各说一遍。说不全的部分标出来，回到对应步骤重做。",
+      "duration_min": 5,
+      "checkpoint": "三层内容都被复述且缺失项被标出；缺失项已指定回退到哪一步",
+      "output": "复述结果",
+      "fail_to": "ask-why"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是真的给它加了意思，还是只是多念了几遍？",
+      "这条信息现在挂在我的哪块已有知识上？"
+    ],
+    "success_criteria": [
+      "不看资料能说出理由、类比与场景三层",
+      "三天后仍能回忆出场景"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "item"
+    ],
+    "output": [
+      "理由句",
+      "类比句",
+      "场景描述"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头完成三层加工"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

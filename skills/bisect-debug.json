@@ -1,0 +1,109 @@
+{
+  "lmp": "0.1",
+  "id": "bisect-debug",
+  "name": "二分定位调试",
+  "name_en": "Bisect Debugging",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "技能习得",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "出错时别乱猜，用二分法把范围对半砍，几步就把问题锁到具体位置。",
+  "when_to_use": [
+    "报错但看不出原因",
+    "一堆改动后突然坏了",
+    "定位复杂问题"
+  ],
+  "when_not_to_use": [
+    "错误信息已直接指出位置（直接改即可）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "problem"
+    ],
+    "properties": {
+      "problem": {
+        "type": "string",
+        "description": "出问题的系统或流程描述"
+      },
+      "max_steps": {
+        "type": "integer",
+        "default": 5,
+        "description": "最多二分几轮"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "bound",
+      "name": "先定问题边界",
+      "instruction": "确认「哪里是好的、哪里是坏的」：找到一个正常工作的输入和一个失败的输入。",
+      "checkpoint": "存在一组可对比的正常案例与失败案例，且两者差异被写明",
+      "output": "边界案例对"
+    },
+    {
+      "id": "halve",
+      "name": "对半砍",
+      "instruction": "把从正常到失败之间的范围对半切，测中点属于正常还是失败，把范围缩小一半。重复直到范围只剩一处。",
+      "duration_min": 20,
+      "checkpoint": "每轮范围减半；且每轮都记录了中点的判定结果",
+      "output": "二分过程记录"
+    },
+    {
+      "id": "confirm",
+      "name": "单点验证",
+      "instruction": "对锁定位置单独改动一次，确认问题消失；再改回去确认问题复现。两次都成立才算定位成功。",
+      "duration_min": 10,
+      "checkpoint": "完成了「改掉→恢复」与「恢复→复现」两次验证；两者结论一致",
+      "output": "验证结论"
+    },
+    {
+      "id": "record",
+      "name": "记入错题本",
+      "instruction": "把「根因 → 判据 → 修法」三行写进错题本，并设定复习时间。",
+      "duration_min": 5,
+      "checkpoint": "记录含根因、判据、修法三项；且已设定复习时间",
+      "output": "错题记录",
+      "fail_to": "halve"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是在系统定位，还是在碰运气改？",
+      "改好之后我验证「改回去会再坏」了吗？"
+    ],
+    "success_criteria": [
+      "定位过程 ≤ max_steps 轮",
+      "同类问题下次能直接认出"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "problem",
+      "max_steps"
+    ],
+    "output": [
+      "边界案例",
+      "二分记录",
+      "验证结论"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头引导二分定位，靠提问收窄范围"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

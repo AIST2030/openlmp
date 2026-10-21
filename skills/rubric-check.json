@@ -1,0 +1,102 @@
+{
+  "lmp": "0.1",
+  "id": "rubric-check",
+  "name": "量规自检",
+  "name_en": "Rubric Self-Assessment",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "评测验证",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "先定好「做到什么样算合格」的评分表，再照表逐项给自己打分，把主观感觉换成可核对的清单。",
+  "when_to_use": [
+    "做完作品不知道够不够好",
+    "提交前最后检查",
+    "写作/设计/代码评审"
+  ],
+  "when_not_to_use": [
+    "探索阶段的草稿（过早打分会限制思路）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "work"
+    ],
+    "properties": {
+      "work": {
+        "type": "string",
+        "description": "待评估的作品或成果"
+      },
+      "dims": {
+        "type": "integer",
+        "default": 5,
+        "description": "评分维度数量"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "define",
+      "name": "先写评分表",
+      "instruction": "列出 5 个评价维度，每个维度写清「做到什么算合格」。先定表再看作品。",
+      "duration_min": 10,
+      "checkpoint": "维度数 = 指定值；每维都有一条可核对的合格标准",
+      "output": "评分量规"
+    },
+    {
+      "id": "score",
+      "name": "逐项打分并举证",
+      "instruction": "对每个维度打 0-2 分（0=没做到，2=达标），并附上作品里的具体位置作为证据。",
+      "duration_min": 12,
+      "checkpoint": "每维都有分数与证据引用；分数为 0 或 1 的都给出了证据",
+      "output": "评分与证据表"
+    },
+    {
+      "id": "fix",
+      "name": "只改 0 分项",
+      "instruction": "把所有 0 分项列成待办，逐条改完再重评一次。1 分项本次不动。",
+      "duration_min": 15,
+      "checkpoint": "生成了 0 分项待办清单；且改完后重评，0 分项数量归零或已记录剩余项",
+      "output": "修复结果",
+      "fail_to": "score"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的评分表是动手前定的，还是看到作品后补的？",
+      "每个低分我都能指出具体位置吗？"
+    ],
+    "success_criteria": [
+      "重评后 0 分项数量下降",
+      "评分有证据支撑而非印象"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "work",
+      "dims"
+    ],
+    "output": [
+      "评分量规",
+      "评分与证据表",
+      "修复结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头完成量规与打分"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "lmp": "0.1",
+  "id": "metacognitive-monitor",
+  "name": "学习判断监控",
+  "name_en": "Judgment of Learning",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "元认知",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "学完每一小段就问自己「我等下能想起来吗」，并当场打分，用即时判断替代事后错觉。",
+  "when_to_use": [
+    "读完感觉都懂",
+    "复习时不知从哪下手",
+    "分配有限的学习时间"
+  ],
+  "when_not_to_use": [
+    "材料本身极短或极简单"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "material"
+    ],
+    "properties": {
+      "material": {
+        "type": "string",
+        "description": "要分段判断的材料"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "split",
+      "name": "切成小段",
+      "instruction": "把材料切成 5-8 个小段，每段一个完整意思。",
+      "duration_min": 5,
+      "checkpoint": "段数在 5-8 之间，且每段表达一个完整意思",
+      "output": "分段清单"
+    },
+    {
+      "id": "judge",
+      "name": "逐段打回忆把握分",
+      "instruction": "学完每段立刻打 0-100 的「等下能想起来的把握」分。不回看、不修改。",
+      "duration_min": 12,
+      "checkpoint": "每段都有 0-100 的把握分；且打分在学完该段后立即完成",
+      "output": "把握分清单"
+    },
+    {
+      "id": "test",
+      "name": "实际回忆检验",
+      "instruction": "全部学完后，不看书逐段回忆，记录能想起的段落。",
+      "duration_min": 12,
+      "checkpoint": "逐段记录了能/不能想起；且回忆过程未查阅原文",
+      "output": "回忆结果"
+    },
+    {
+      "id": "contrast",
+      "name": "对比把握与实绩",
+      "instruction": "逐段对比把握分与实际结果，标出「高把握但没想起」的段落——这些是优先复习对象。",
+      "duration_min": 6,
+      "checkpoint": "列出了「高把握但没想起」的段落；且这些段落被标为优先复习",
+      "output": "优先复习清单",
+      "fail_to": "judge"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的把握分是学完立刻打的，还是回忆之后补的？",
+      "哪些段落我自信但没想起来？"
+    ],
+    "success_criteria": [
+      "高把握段落的实绩回忆率 ≥ 80%",
+      "优先清单逐轮缩短"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "material"
+    ],
+    "output": [
+      "分段清单",
+      "把握分清单",
+      "回忆结果",
+      "优先清单"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头打分与回忆检验"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}
