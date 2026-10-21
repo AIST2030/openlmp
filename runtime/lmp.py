@@ -616,6 +616,79 @@ def cmd_selftest(args):
             os.environ["OPENLMP_STATE"] = saved_env
         shutil.rmtree(tmpdir, ignore_errors=True)
 
+    # ---------- 9. 元数据完整性 ----------
+    # validate 只管「合不合规」，这里管「齐不齐」——
+    # 缺 name_en / 适用场景 / 参数说明 的 skill 能过门禁但不好用。
+    print("\n9. 元数据完整性：")
+    meta_bad = []
+    for s in skills:
+        sid = s.get("id", "?")
+        if not (s.get("name_en") or "").strip():
+            meta_bad.append((sid, "name_en 为空"))
+        if not s.get("authors"):
+            meta_bad.append((sid, "authors 为空"))
+        if not (s.get("when_to_use") or []):
+            meta_bad.append((sid, "when_to_use 为空"))
+        if not (s.get("when_not_to_use") or []):
+            meta_bad.append((sid, "when_not_to_use 为空"))
+        for k, v in ((s.get("params") or {}).get("properties") or {}).items():
+            if not (v.get("description") or "").strip():
+                meta_bad.append((sid, "参数 `%s` 缺 description" % k))
+    if meta_bad:
+        for sid, why in meta_bad:
+            print("   ERROR  %s：%s" % (sid, why))
+    else:
+        print("   ✓ %d 个方法的 name_en / authors / 适用场景 / 参数说明均齐全"
+              % len(skills))
+    ok &= (not meta_bad)
+
+    # ---------- 10. 步骤质量 ----------
+    print("\n10. 步骤质量：")
+    step_bad = []
+    total_steps = 0
+    for s in skills:
+        sid = s.get("id", "?")
+        for i, st in enumerate(s.get("steps") or []):
+            total_steps += 1
+            tag = "steps[%d]" % i
+            if st.get("duration_min") is None:
+                step_bad.append((sid, "%s 缺 duration_min" % tag))
+            if not (st.get("output") or "").strip():
+                step_bad.append((sid, "%s 缺 output" % tag))
+    if step_bad:
+        for sid, why in step_bad:
+            print("   ERROR  %s：%s" % (sid, why))
+    else:
+        print("   ✓ %d 个步骤均含预计时长与产出说明" % total_steps)
+    ok &= (not step_bad)
+
+    # ---------- 11. 文件名与 id 一致 ----------
+    print("\n11. 文件名与 id 一致性：")
+    name_bad = []
+    for s in skills:
+        sid = s.get("id")
+        base = os.path.basename(s.get("__path", ""))
+        if base and base != sid + ".json":
+            name_bad.append((sid, base))
+    if name_bad:
+        for sid, base in name_bad:
+            print("   ERROR  id=%s 但文件名是 %s" % (sid, base))
+    else:
+        print("   ✓ 全部 %d 个文件名与 id 一致" % len(skills))
+    ok &= (not name_bad)
+
+    # ---------- 统计摘要 ----------
+    cats, evs = {}, {}
+    for s in skills:
+        cats[s.get("category", "?")] = cats.get(s.get("category", "?"), 0) + 1
+        evs[s.get("evidence", "?")] = evs.get(s.get("evidence", "?"), 0) + 1
+    print("\n统计摘要：")
+    print("   方法 %d 个 / 步骤 %d 步" % (len(skills), total_steps))
+    print("   分类：" + "、".join(
+        "%s %d" % (k, v) for k, v in sorted(cats.items(), key=lambda x: -x[1])))
+    print("   循证：" + "、".join(
+        "%s %d" % (k, v) for k, v in sorted(evs.items(), key=lambda x: -x[1])))
+
     print("\n" + "=" * 60)
     print("结果：%s" % ("全部通过 ✅" if ok else "存在失败 ❌"))
     return 0 if ok else 1
