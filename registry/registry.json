@@ -1,9 +1,9 @@
 {
   "registry": "openlmp-skill-index",
   "lmp": "0.1",
-  "generated_at": "2026-10-21",
+  "generated_at": "2026-10-22",
   "note": "本清单不是唯一真理。任何人都可本地维护并提供 diff；我们不设唯一官方 registry。",
-  "count": 22,
+  "count": 50,
   "skills": [
     {
       "id": "active-recall",
@@ -20,6 +20,62 @@
       "file": "skills/active-recall.json"
     },
     {
+      "id": "analogy-mapping",
+      "name": "类比映射",
+      "name_en": "Analogy Mapping",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "理解构建",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:tt0pvqnt059rvkervthi2taum3nviot5",
+      "file": "skills/analogy-mapping.json"
+    },
+    {
+      "id": "bisect-debug",
+      "name": "二分定位调试",
+      "name_en": "Bisect Debugging",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "技能习得",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:olo88fpj2u7qm3s627l7tn8skg54shqv",
+      "file": "skills/bisect-debug.json"
+    },
+    {
+      "id": "calibration-training",
+      "name": "校准训练",
+      "name_en": "Calibration Training",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "元认知",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:dgdh6h6acpdir0tov26e762q6u50rjdj",
+      "file": "skills/calibration-training.json"
+    },
+    {
+      "id": "chunking",
+      "name": "组块化",
+      "name_en": "Chunking",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "记忆巩固",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:no0i8837ck98s0o20olrff89cvp9et8h",
+      "file": "skills/chunking.json"
+    },
+    {
       "id": "closed-book-writing",
       "name": "合书写作",
       "name_en": "Closed-Book Writing",
@@ -30,8 +86,22 @@
       "authors": [
         "OpenLMP 公共领域贡献"
       ],
-      "cid": "lmp:ea2dqj9a3n0dbbupj76j91ogbte6cq8c",
+      "cid": "lmp:beu9ut8crg4pl0ig0nrf125mgu7oq8m1",
       "file": "skills/closed-book-writing.json"
+    },
+    {
+      "id": "cognitive-apprenticeship",
+      "name": "认知学徒",
+      "name_en": "Cognitive Apprenticeship",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "技能习得",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:0onqrv08mvb8413unc8v66nprpul6g5c",
+      "file": "skills/cognitive-apprenticeship.json"
     },
     {
       "id": "concept-map",
@@ -44,8 +114,36 @@
       "authors": [
         "OpenLMP 公共领域贡献"
       ],
-      "cid": "lmp:4l09f97rtcgnijvi6moho2plof76kvg3",
+      "cid": "lmp:njkad2ka5q2a8qg1q1mfk1h1ohcjshpv",
       "file": "skills/concept-map.json"
+    },
+    {
+      "id": "contrast-cases",
+      "name": "对比辨析",
+      "name_en": "Contrasting Cases",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "理解构建",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:lfu95t4dlokcpcoeohtgc2pume4jfco8",
+      "file": "skills/contrast-cases.json"
+    },
+    {
+      "id": "cornell-notes",
+      "name": "康奈尔笔记",
+      "name_en": "Cornell Notes",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "知识管理",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:folfpn7a2ngdqc4slcsth9648u8nab4f",
+      "file": "skills/cornell-notes.json"
     },
     {
       "id": "critical-thinking",
@@ -72,8 +170,22 @@
       "authors": [
         "OpenLMP 公共领域贡献"
       ],
-      "cid": "lmp:dtiqtjn202aksicquv620ea1epda6ilk",
+      "cid": "lmp:jpgi6nddojl4ltpoif1llci35g68oi44",
       "file": "skills/deliberate-practice.json"
+    },
+    {
+      "id": "desirable-difficulty",
+      "name": "必要难度",
+      "name_en": "Desirable Difficulty",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "记忆巩固",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:der4c83ldb61idimn7c8ptif4ppp3r9g",
+      "file": "skills/desirable-difficulty.json"
     },
     {
       "id": "diary-question",
@@ -90,6 +202,20 @@
       "file": "skills/diary-question.json"
     },
     {
+      "id": "distributed-practice",
+      "name": "分散练习",
+      "name_en": "Distributed Practice",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "计划执行",
+      "evidence": "high",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:88j094vu2baebpjoivb84bmm6rhmvgut",
+      "file": "skills/distributed-practice.json"
+    },
+    {
       "id": "dual-coding",
       "name": "双重编码",
       "name_en": "Dual Coding",
@@ -100,7 +226,7 @@
       "authors": [
         "OpenLMP 公共领域贡献"
       ],
-      "cid": "lmp:nltaq6v7ujas078325eepdmodqangkma",
+      "cid": "lmp:lescqubcrflt5hdtli7lrvhp7b46i36t",
       "file": "skills/dual-coding.json"
     },
     {
@@ -114,8 +240,22 @@
       "authors": [
         "OpenLMP 公共领域贡献"
       ],
-      "cid": "lmp:e4osmvefha6r96leg9umm21o41bg0tjr",
+      "cid": "lmp:1ibf5v4vmqdo2prp1iv2ng4vu6gasgh0",
       "file": "skills/elaborative-interrogation.json"
+    },
+    {
+      "id": "elaborative-rehearsal",
+      "name": "精细复述",
+      "name_en": "Elaborative Rehearsal",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "记忆巩固",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:68gcicb5eg9jst3ilevlk6q57fat6559",
+      "file": "skills/elaborative-rehearsal.json"
     },
     {
       "id": "error-notebook",
@@ -128,7 +268,7 @@
       "authors": [
         "OpenLMP 公共领域贡献"
       ],
-      "cid": "lmp:i0molv6amg2g224c23ll7l8cm0iu8ntj",
+      "cid": "lmp:8n14ivg71a5em1b1elam3b368e2sn7ga",
       "file": "skills/error-notebook.json"
     },
     {
@@ -160,6 +300,34 @@
       "file": "skills/goal-decomposition.json"
     },
     {
+      "id": "if-then-planning",
+      "name": "执行意图",
+      "name_en": "Implementation Intentions",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "计划执行",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:5lpdvodjjove3j6l9bjbltlqc8joqb4q",
+      "file": "skills/if-then-planning.json"
+    },
+    {
+      "id": "interleaving",
+      "name": "交错练习",
+      "name_en": "Interleaving",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "记忆巩固",
+      "evidence": "high",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:pk449gt52tt7akmt7h4rh3o88qqcn3av",
+      "file": "skills/interleaving.json"
+    },
+    {
       "id": "learning-journal",
       "name": "学习日志与错因归因",
       "name_en": "Learning Journal",
@@ -174,6 +342,62 @@
       "file": "skills/learning-journal.json"
     },
     {
+      "id": "mental-rehearsal",
+      "name": "心理演练",
+      "name_en": "Mental Rehearsal",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "技能习得",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:kecus458ilpf59hj89s311nsi4m5goqa",
+      "file": "skills/mental-rehearsal.json"
+    },
+    {
+      "id": "metacognitive-monitor",
+      "name": "学习判断监控",
+      "name_en": "Judgment of Learning",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "元认知",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:nfhgfjva2j04pq7qkk76soadlkonuked",
+      "file": "skills/metacognitive-monitor.json"
+    },
+    {
+      "id": "method-of-loci",
+      "name": "记忆宫殿",
+      "name_en": "Method of Loci",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "记忆巩固",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:h7s4mn7as52ma7lqbe7bihra5g9trae8",
+      "file": "skills/method-of-loci.json"
+    },
+    {
+      "id": "note-flow-code",
+      "name": "笔记流水线",
+      "name_en": "Capture-Organize-Distill-Express",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "知识管理",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:t0u8sod0kgih3786klk5raj9sfodph0r",
+      "file": "skills/note-flow-code.json"
+    },
+    {
       "id": "pair-learning",
       "name": "结对学习",
       "name_en": "Pair Learning",
@@ -184,8 +408,22 @@
       "authors": [
         "OpenLMP 公共领域贡献"
       ],
-      "cid": "lmp:5sogcr50kmi6qithh587q8gkaaeod761",
+      "cid": "lmp:epuj6mv1br0iq1g5gve2i7g2cvl4dk5b",
       "file": "skills/pair-learning.json"
+    },
+    {
+      "id": "peer-review-loop",
+      "name": "同伴互评",
+      "name_en": "Peer Review Loop",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "协作学习",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:718crlajk0fpnhcd0n9cb79mdb5vvtup",
+      "file": "skills/peer-review-loop.json"
     },
     {
       "id": "pomodoro-diagnose",
@@ -198,8 +436,36 @@
       "authors": [
         "OpenLMP 公共领域贡献"
       ],
-      "cid": "lmp:fu1s222gi66t0naqca1rtblo0kgj7pt7",
+      "cid": "lmp:nm471ce8mv0kogpfotdfgv7puatlnkck",
       "file": "skills/pomodoro-diagnose.json"
+    },
+    {
+      "id": "practice-testing",
+      "name": "练习测验",
+      "name_en": "Practice Testing",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "评测验证",
+      "evidence": "high",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:ah4q02subq63gj5v0bt0r1916mnfn1o3",
+      "file": "skills/practice-testing.json"
+    },
+    {
+      "id": "pretesting",
+      "name": "预测试效应",
+      "name_en": "Pretesting Effect",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "元认知",
+      "evidence": "high",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:ordpcapuiitv897gsp29m9158enp5eml",
+      "file": "skills/pretesting.json"
     },
     {
       "id": "progressive-summarization",
@@ -226,7 +492,7 @@
       "authors": [
         "OpenLMP 公共领域贡献"
       ],
-      "cid": "lmp:0t1q9fgtlfqa2ubrbeq5qkafn8o543c4",
+      "cid": "lmp:uafa4iepn0tdgq13ki132r78jruj1cgn",
       "file": "skills/project-based-learning.json"
     },
     {
@@ -242,6 +508,62 @@
       ],
       "cid": "lmp:rr1mjmm2qoqs2bddt8lfpf7fjr6qobue",
       "file": "skills/retrieval-spread.json"
+    },
+    {
+      "id": "rubric-check",
+      "name": "量规自检",
+      "name_en": "Rubric Self-Assessment",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "评测验证",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:7ju2fc2qvlm7j1jgqjrcr8c69ukuu3hf",
+      "file": "skills/rubric-check.json"
+    },
+    {
+      "id": "scaffold-fading",
+      "name": "脚手架渐隐",
+      "name_en": "Scaffold Fading",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "技能习得",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:tfaa15mrtau7dcnecpoisc42ver0h7ah",
+      "file": "skills/scaffold-fading.json"
+    },
+    {
+      "id": "self-explanation",
+      "name": "自我解释",
+      "name_en": "Self-Explanation",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "理解构建",
+      "evidence": "high",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:85legfk3i9ehvjvddkknkiqcj80gmrhh",
+      "file": "skills/self-explanation.json"
+    },
+    {
+      "id": "sleep-consolidation",
+      "name": "睡眠巩固",
+      "name_en": "Sleep Consolidation",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "记忆巩固",
+      "evidence": "high",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:rjoj6g7i9q9ar4ihetq62tpciu0mo3o2",
+      "file": "skills/sleep-consolidation.json"
     },
     {
       "id": "socratic",
@@ -268,7 +590,7 @@
       "authors": [
         "OpenLMP 公共领域贡献"
       ],
-      "cid": "lmp:16enniqmjv6008e5rkdspokn8voto199",
+      "cid": "lmp:6hhrkah02pf1alm7e5aeh9a3rb0jebtr",
       "file": "skills/spaced-repetition.json"
     },
     {
@@ -286,6 +608,62 @@
       "file": "skills/sq3r.json"
     },
     {
+      "id": "teach-back-circle",
+      "name": "互讲圈",
+      "name_en": "Teach-Back Circle",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "协作学习",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:3ko6m5vilifmmbmp56f5n5fuguacfhmo",
+      "file": "skills/teach-back-circle.json"
+    },
+    {
+      "id": "think-aloud",
+      "name": "出声思维",
+      "name_en": "Think-Aloud Protocol",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "评测验证",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:kln5lvh4mlv229nspb629633f8jiufaf",
+      "file": "skills/think-aloud.json"
+    },
+    {
+      "id": "three-pass-reading",
+      "name": "三遍阅读法",
+      "name_en": "Three-Pass Reading",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "知识管理",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:03v9fvg2obu9jqqd5dei3lbqt4629sau",
+      "file": "skills/three-pass-reading.json"
+    },
+    {
+      "id": "timeboxing",
+      "name": "时间盒",
+      "name_en": "Timeboxing",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "计划执行",
+      "evidence": "anecdotal",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:jiomdm61fklip0s09nlkd5eqddm2ddlu",
+      "file": "skills/timeboxing.json"
+    },
+    {
       "id": "transfer-question",
       "name": "迁移提问训练",
       "name_en": "Transfer of Training",
@@ -296,8 +674,22 @@
       "authors": [
         "OpenLMP 公共领域贡献"
       ],
-      "cid": "lmp:6qbfjeaqa5i1c1g9r9s3j1q8hkq1bbh7",
+      "cid": "lmp:a766951g7kagfhk39gg15ali74q1ifr8",
       "file": "skills/transfer-question.json"
+    },
+    {
+      "id": "worked-examples",
+      "name": "例题研习",
+      "name_en": "Worked Examples",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "理解构建",
+      "evidence": "high",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:71bgqp1ne1i49p135gcfl7tnfrnrdr87",
+      "file": "skills/worked-examples.json"
     },
     {
       "id": "zettelkasten",

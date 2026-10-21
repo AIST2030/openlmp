@@ -41,7 +41,7 @@ python runtime/lmp.py selftest
 
 ---
 
-## 已收录的 22 个方法
+## 已收录的 50 个方法
 
 **记忆巩固** · `active-recall` 主动回忆练习（强） · `spaced-repetition` 间隔重复调度（强） · `retrieval-spread` 高频短时提取（中） · `dual-coding` 双重编码（中）
 
@@ -158,4 +158,4 @@ docs/                            目标对齐、发布策略、路线图
 
 ---
 
-**下一步不是加功能，是加第 11 个好方法。**
+**下一步不是加功能，是继续加好方法——每一条都要过验收线。**
