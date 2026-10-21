@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openlmp.org/schema/learner-state-0.1.json",
+  "title": "OpenLMP Learner State (LRS)",
+  "description": "学习者本地状态文件。OpenLMP 的核心承诺：这份文件永远只在用户自己的设备上，协议不定义任何上传路径。",
+  "type": "object",
+  "required": ["lmp", "learner_id", "skills"],
+  "properties": {
+    "lmp": { "const": "0.1" },
+    "learner_id": {
+      "type": "string",
+      "description": "本地生成的随机 ID，**不是**账号，不跨设备同步"
+    },
+    "created_at": { "type": "string" },
+    "skills": {
+      "type": "object",
+      "description": "key = skill id",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "sessions": { "type": "integer", "minimum": 0 },
+          "last_done": { "type": "string" },
+          "next_due": { "type": "string", "description": "SM-2 调度算出的下次复习时间" },
+          "ease_factor": { "type": "number" },
+          "interval_days": { "type": "number" },
+          "repetitions": { "type": "integer" },
+          "self_score": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5,
+            "description": "0=完全忘记 5=毫不费力"
+          },
+          "notes": { "type": "string" },
+          "artifacts": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "本地产出的知识沉淀路径（相对 learner 目录）"
+          }
+        }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "default": { "telemetry": "off", "sync": "none" },
+      "properties": {
+        "telemetry": { "type": "string", "enum": ["off"] },
+        "sync": { "type": "string", "enum": ["none"] }
+      }
+    }
+  }
+}

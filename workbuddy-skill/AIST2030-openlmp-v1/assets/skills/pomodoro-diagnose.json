@@ -1,0 +1,124 @@
+{
+  "lmp": "0.1",
+  "id": "pomodoro-diagnose",
+  "name": "专注节奏诊断",
+  "name_en": "Pomodoro with Diagnosis",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "番茄钟不是教条。先用3 天测出自己的真实专注时长和走神规律，再定周期。抗拖延靠拆小，不靠计时器。",
+  "when_to_use": [
+    "看书看着看着就走神",
+    "任务太大不知从哪下手",
+    "备考需要稳定输出"
+  ],
+  "when_not_to_use": [
+    "需要连续长时深度创作（如写论文正文、改代码核心逻辑）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "task"
+    ],
+    "properties": {
+      "task": {
+        "type": "string",
+        "description": "本次专注时段要推进的具体任务，须可验收，不能是「学习一下」"
+      },
+      "probe_days": {
+        "type": "integer",
+        "default": 3,
+        "description": "探测真实专注时长的天数"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "split",
+      "name": "把任务拆到能一口气做完",
+      "instruction": "把当前任务拆成能在 **15 分钟内做完**的小块，块与块之间能独立完成。写出来，一块一行。",
+      "duration_min": 8,
+      "checkpoint": "每一块都标注了预计分钟数且都 ≤15；块数 ≥5",
+      "output": "task chunks"
+    },
+    {
+      "id": "probe",
+      "name": "探测真实专注时长",
+      "instruction": "连续 probe_days 天，记录每次实际能专注多久（不是计时器设多久，是真的不走神多久）以及走神时刻在做什么（刷手机/发呆/查资料/被噪音打断）。",
+      "duration_min": 15,
+      "checkpoint": "有 ≥6 个有效数据点；且能看出走神的主要触发类型",
+      "output": "focus log"
+    },
+    {
+      "id": "set-cycle",
+      "name": "按数据定周期",
+      "instruction": "把专注时长设为探测到的**实际中位数**（不是平均值，会被少数长时段拉高），休息 = 专注时长 × 1/5，下限 5 分钟。",
+      "duration_min": 3,
+      "checkpoint": "周期设置依据是实测中位数，且休息 ≥5 分钟",
+      "output": "cycle config"
+    },
+    {
+      "id": "block-triggers",
+      "name": "针对走神触发器做预案",
+      "instruction": "按步骤 2 找出的主要触发类型，提前准备对策：手机 → 物理隔离到另一个房间；查资料 → 允许但记下「要查」，放到休息时统一查；发呆 → 在桌上放一张纸专门写杂念。",
+      "duration_min": 8,
+      "checkpoint": "为主要触发类型各准备了一条具体预案，且预案是可执行动作不是决心",
+      "output": "trigger plan"
+    },
+    {
+      "id": "run",
+      "name": "执行并记录",
+      "instruction": "按设定周期执行。每轮结束记录：完成了几块、实际专注多久、有没有走神、走神原因。",
+      "duration_min": 15,
+      "checkpoint": "完成 ≥4 轮且每轮都有四项记录",
+      "output": "session log"
+    },
+    {
+      "id": "adjust",
+      "name": "每周调一次周期",
+      "instruction": "对比本周与上周的实测中位数。差值 >20% 则调整周期；差值 <10% 则不动（**不要天天调，过度优化会变成拖延的借口**）。",
+      "duration_min": 5,
+      "checkpoint": "产出了新周期值或「维持不变」的决定，且写了依据",
+      "output": "adjusted cycle"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是不是把任务拆得足够小，小到不需要下决心就能开始？",
+      "走神的时候我在做什么？和上周比变了吗？"
+    ],
+    "success_criteria": [
+      "日均有效专注时长上升",
+      "走神次数下降或触发器类型减少"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "task",
+      "probe_days"
+    ],
+    "output": [
+      "task chunks",
+      "cycle config"
+    ],
+    "side_effects": [
+      "写本地文件"
+    ],
+    "degrade_to": "无计时工具时：用 Agent 记录开始/结束时间戳代替计时器，不使用任何在线番茄钟服务"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

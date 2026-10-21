@@ -1,0 +1,118 @@
+{
+  "lmp": "0.1",
+  "id": "deliberate-practice",
+  "name": "刻意练习",
+  "name_en": "Deliberate Practice",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "技能习得",
+  "evidence": "high",
+  "evidence_refs": [
+    "Ericsson et al. 1993, Psychological Review 100(3) 363-406"
+  ],
+  "description": "把大技能拆成刚好超出当前能力一点点的小任务，重复、即时反馈、逐次纠错。",
+  "when_to_use": [
+    "练技能（乐器/编程/运动/写作/演讲）",
+    "已经重复很多次但没进步"
+  ],
+  "when_not_to_use": [
+    "只是要记住知识（用 active-recall）",
+    "刚开始学，还没有基本动作"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "skill",
+      "current_level"
+    ],
+    "properties": {
+      "skill": {
+        "type": "string",
+        "description": "要刻意练习的具体子技能，如「写 SQL 的 JOIN」「冷启动开场白」"
+      },
+      "current_level": {
+        "type": "string",
+        "description": "当前水平描述"
+      },
+      "session_min": {
+        "type": "integer",
+        "default": 45,
+        "description": "单次练习时长，超时即停（刻意练习要求全程专注不疲劳）"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "diagnose",
+      "name": "找准当前瓶颈",
+      "instruction": "让用户做一次目标技能的完整尝试，Agent 记录：哪一环出错最多。只挑出错最多的那一环，不列清单。",
+      "duration_min": 10,
+      "checkpoint": "产出一个明确的最弱环节描述，不是「整体都不行」",
+      "output": "bottleneck"
+    },
+    {
+      "id": "design-drill",
+      "name": "设计针对性小练习",
+      "instruction": "针对该瓶颈设计 3–5 个难度递增的小练习，每个练习 2–5 分钟。难度上限：比当前水平难一档。",
+      "duration_min": 5,
+      "checkpoint": "练习数 ≥3，且每个都有明确的一句话通过标准",
+      "output": "drill list"
+    },
+    {
+      "id": "loop",
+      "name": "重复—反馈—归因循环",
+      "instruction": "每做一个练习：立即给具体反馈（哪里好、哪个动作错了）→ 让用户重做一次 → 记录归因（是知识不足/动作不熟/注意力散）。同一练习最多重做 3 次，超过则说明难度设计有问题，必须降档。",
+      "duration_min": 25,
+      "checkpoint": "每个练习至少完成 2 次重做，且 3 次未过的一定被记录为「难度过高」",
+      "output": "loop log"
+    },
+    {
+      "id": "consolidate",
+      "name": "提炼可复用规则",
+      "instruction": "把本轮归因中反复出现的那一条，写成一句下次直接可执行的规则（如「换手时先稳肩再转腕」）。",
+      "duration_min": 5,
+      "checkpoint": "产出一条动词开头的具体规则，且能对照本次录像验证",
+      "output": "one rule"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "这一小时里，我是在重复已经会的东西，还是在攻最不会的那一点？",
+      "我拿到的反馈是「再练练」这种废话吗？"
+    ],
+    "success_criteria": [
+      "同一练习的成功率逐次上升",
+      "能说出一条以前不知道的规则"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "skill",
+      "current_level",
+      "session_min"
+    ],
+    "output": [
+      "bottleneck",
+      "drill list",
+      "loop log",
+      "one rule"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无法获取真实操作反馈时（无视频/无传感数据）：明确告知用户「缺反馈源」，改为纯自评 + 录像复盘，不假装给了客观反馈"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

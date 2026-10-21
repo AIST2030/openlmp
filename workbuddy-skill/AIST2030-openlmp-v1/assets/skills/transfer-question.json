@@ -1,0 +1,117 @@
+{
+  "lmp": "0.1",
+  "id": "transfer-question",
+  "name": "迁移提问训练",
+  "name_en": "Transfer of Training",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "元认知",
+  "evidence": "high",
+  "evidence_refs": [
+    "Bromley 1990, Educational Researcher 19(4) 102-111"
+  ],
+  "description": "每学一个概念，立刻问「这在什么别的场景能用」，把知识从课堂搬到真实问题。",
+  "when_to_use": [
+    "考试能做但实际不会用",
+    "学了理论不会落地",
+    "准备面试/实操"
+  ],
+  "when_not_to_use": [
+    "纯事实记忆阶段（还没到迁移环节）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "concept"
+    ],
+    "properties": {
+      "concept": {
+        "type": "string",
+        "description": "要检验迁移能力的目标概念"
+      },
+      "domains": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "工作",
+          "生活",
+          "另一个学科"
+        ],
+        "description": "要迁移到哪些不同的应用领域（至少 2 个，跨领域才叫迁移）"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "real-case",
+      "name": "找一个真实场景",
+      "instruction": "为该概念指出一个你生活/工作中真实存在的具体场景，必须是你遇到过或能核实的，禁止编造。",
+      "duration_min": 4,
+      "checkpoint": "场景描述具体到可判断真假（含人物、时间、约束）",
+      "output": "scenario"
+    },
+    {
+      "id": "map",
+      "name": "画出对应关系",
+      "instruction": "逐一对应：真实场景中的哪个要素 ↔ 理论中的哪个概念。对不上的部分明确写「理论在这里不适用」。",
+      "duration_min": 6,
+      "checkpoint": "至少指出一个「理论不适用」或「需要修正」的边界",
+      "output": "mapping"
+    },
+    {
+      "id": "cross-domain",
+      "name": "跨领域移植",
+      "instruction": "把这个概念强行用到 domains 中的另一个领域，写出一个具体的类比推理链，并指出类比在哪里会失效。",
+      "duration_min": 6,
+      "checkpoint": "类比链 ≥3 步，且明确标出失效边界",
+      "output": "analogy"
+    },
+    {
+      "id": "action",
+      "name": "落到一个待解决的真问题上",
+      "instruction": "找一个你当前真实存在的待解决问题，用这个概念重新分析一遍，给出可执行的改变。",
+      "duration_min": 8,
+      "checkpoint": "产出了一条明天就能做的具体动作，不是「要多练习」这类空话",
+      "output": "action"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我举的场景是真的发生过，还是我编的？",
+      "我说的迁移是换个说法，还是真的能解决不同的问题？"
+    ],
+    "success_criteria": [
+      "能主动举出至少一个教科书没写的应用",
+      "真问题上有可观测的改变"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "concept",
+      "domains"
+    ],
+    "output": [
+      "scenario",
+      "mapping",
+      "analogy",
+      "action"
+    ],
+    "side_effects": [],
+    "degrade_to": "Agent 不得虚构用户经历：若用户说不出真实场景，必须引导提问而非代为编造"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

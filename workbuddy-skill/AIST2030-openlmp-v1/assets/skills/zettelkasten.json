@@ -1,0 +1,78 @@
+{
+  "lmp": "0.1",
+  "id": "zettelkasten",
+  "name": "卡片盒笔记",
+  "name_en": "Zettelkasten",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "知识管理",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把每条想法写成一张独立卡片，并用「用自己的话写」的链接互相连接，让知识长成网而不是堆积成墙。",
+  "when_to_use": ["读了很多书但无法复用", "研究性学习、写论文/公众号", "知识量已到无法线性存储"],
+  "when_not_to_use": ["刚开始记笔记（先学会记，别先学结构）", "只是临时记一件事（用备忘录）"],
+  "params": {
+    "type": "object",
+    "required": ["source"],
+    "properties": { "source": { "type": "string", "description": "正在读/听的材料" } }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "atomic",
+      "name": "一卡一事",
+      "instruction": "每张卡只写一个完整想法（一个论点/一个机制/一个疑问），卡片之间能独立成立。把长段落拆开。",
+      "duration_min": 10,
+      "checkpoint": "每张卡都能被单独拿出来读懂，不依赖上下文中未写出的前提",
+      "output": "atomic cards"
+    },
+    {
+      "id": "own-words",
+      "name": "用自己的话重写",
+      "instruction": "卡片正文必须是你自己的语言。**直接抄原文的卡片等于没写。** 如果发现自己和原文用词高度重合，重写。",
+      "duration_min": 8,
+      "checkpoint": "抽查任意 3 张卡，与原文表述重合度明显低于原文自身的重合度",
+      "output": "paraphrased cards"
+    },
+    {
+      "id": "link",
+      "name": "强制建立链接",
+      "instruction": "每张新卡至少连 2 个已有卡，链接必须写一句话说明关系（「支持」「反驳」「举例」「同一前提」「冲突」）。连不上 2 个说明这张卡可能不值得留。",
+      "duration_min": 12,
+      "checkpoint": "每张新卡的连接数 ≥2，且每个连接都有一句话关系说明",
+      "output": "linked"
+    },
+    {
+      "id": "index",
+      "name": "建索引入口",
+      "instruction": "为每个主题建一条「索引卡」，列出该主题下的所有卡。索引卡本身也是卡，可以被链接。",
+      "duration_min": 6,
+      "checkpoint": "每个活跃主题至少有一条索引卡，且索引卡里的链接可逐层展开",
+      "output": "index cards"
+    },
+    {
+      "id": "harvest",
+      "name": "收获输出",
+      "instruction": "当卡片数超过某个阈值（自定，比如 50 张），只从卡片出发写一篇东西：文章/方案/讲解。**不许回头翻原始资料**——翻了就破坏了这个方法的机制。",
+      "duration_min": 30,
+      "checkpoint": "产出物中每个论点都能追到具体卡片 ID",
+      "output": "harvested output",
+      "fail_to": "link"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的卡片里有多少是原封不动抄来的？",
+      "如果我今天要把这段时间学的东西写成一篇文章，翻卡片够不够？"
+    ],
+    "success_criteria": ["能仅凭卡片写出成篇内容", "卡片间的链接能发现新角度"]
+  },
+  "agent_contract": {
+    "input": ["source"], "output": ["atomic cards", "index cards"],
+    "side_effects": ["写本地文件"],
+    "degrade_to": "无文件系统时：以对话形式维护编号卡片清单，Agent 负责检查链接数与重写质量"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}

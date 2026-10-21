@@ -1,0 +1,56 @@
+{
+  "lmp": "0.1",
+  "id": "retrieval-spread",
+  "name": "高频短时提取",
+  "name_en": "High-Frequency Short Retrieval",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "记忆巩固",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "每次学完立刻闭卷提取 3 分钟，比之后花一小时复习更有效。",
+  "when_to_use": ["刚学完一段内容", "容易「学了等于没学」"],
+  "when_not_to_use": ["需要深度理解时（先用 elaborative-interrogation）"],
+  "params": {
+    "type": "object",
+    "required": ["session"],
+    "properties": { "session": { "type": "string", "description": "刚学完的内容范围" } }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "immediate",
+      "name": "学完立刻合上资料",
+      "instruction": "在接触资料后不超过 3 分钟内，切断资料，进行第一次提取。不要「先整理完笔记再提取」。",
+      "duration_min": 1,
+      "checkpoint": "距离最后一次阅读材料 ≤ 3 分钟",
+      "output": "timestamp"
+    },
+    {
+      "id": "extract",
+      "name": "写出一页纸",
+      "instruction": "不看任何资料，写下你能想起的关于本次内容的一切：概念、逻辑、疑问、例子。",
+      "duration_min": 3,
+      "checkpoint": "产出 ≥150 字的无参考资料回忆稿",
+      "output": "one-pager"
+    },
+    {
+      "id": "mark-gap",
+      "name": "标出想不起的",
+      "instruction": "对照资料，只用红笔在回忆稿上标出漏掉的部分，不改写内容。",
+      "duration_min": 2,
+      "checkpoint": "回忆稿上有明确红色标注，且标注处都有「我以为我会但不会」的自评",
+      "output": "annotated p"
+    }
+  ],
+  "evaluate": {
+    "self_check": ["这次提取是 3 分钟内做的吗？", "标红的地方是不是下次真的考？"],
+    "success_criteria": ["一周后提取内容命中率 > 70%"]
+  },
+  "agent_contract": {
+    "input": ["session"], "output": ["one-pager"], "side_effects": [], "degrade_to": "无需降级，纯文本可执行"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}

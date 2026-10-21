@@ -1,0 +1,88 @@
+{
+  "lmp": "0.1",
+  "id": "critical-thinking",
+  "name": "批判性思维核查",
+  "name_en": "Critical Thinking Check",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "评测验证",
+  "evidence": "high",
+  "evidence_refs": [
+    "Murphy et al. 2009, Journal of Educational Psychology 101(3) 740-764（批判性思维讨论的元分析，效应量 g=0.55）",
+    "Paul & Elder 2007, Critical Thinking: The Art of Socratic Questioning（论证要素识别）"
+  ],
+  "description": "读任何声称「有效/最好/第一」的内容前，先用六问拆穿它：是相关吗？证据是什么？反例呢？出处在哪？谁受益？换你来讲会怎样？",
+  "when_to_use": ["看到结论先想点收藏", "被说服了但心里没底", "写文章/报告需要防错"],
+  "when_not_to_use": ["只是查一个客观事实（如时间、定义）", "紧急情境下需要立刻行动"],
+  "params": {
+    "type": "object",
+    "required": ["claim"],
+    "properties": { "claim": { "type": "string", "description": "要核查的具体主张，一句话" } }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "locate",
+      "name": "把主张写成可判定的句子",
+      "instruction": "把模糊的标题改成一句能判断真假的陈述。例如「AI 会取代程序员」→「未来 5 年内 AI 将取代 50% 以上的工作岗位」。",
+      "duration_min": 3,
+      "checkpoint": "主张是一个可以被证明或证伪的句子，含具体范围或数字",
+      "output": "claim"
+    },
+    {
+      "id": "evidence",
+      "name": "追问证据类型",
+      "instruction": "问：支撑这个主张的是什么？标记类型——个人经验 / 相关性数据 / 对照实验 / 随机实验 / 纯案例 / 权威转述。**相关性不是因果，案例不是规律。**",
+      "duration_min": 8,
+      "checkpoint": "明确写出了证据类型，并标注它能支撑到什么程度（不能支撑的也写出来）",
+      "output": "evidence tier"
+    },
+    {
+      "id": "counter",
+      "name": "找一个反例",
+      "instruction": "刻意去找一个「按这个说法应该发生但没发生」或「反着做却成功了」的案例。找不到也要明确写「找不到反例」，并说明搜过哪些范围。",
+      "duration_min": 10,
+      "checkpoint": "产出 ≥1 个反例，或显式声明「未找到，已检索范围：XXX」",
+      "output": "counterexample"
+    },
+    {
+      "id": "source",
+      "name": "追溯出处与利益",
+      "instruction": "这个说法最早谁说的？中间被谁转述过几次？每次转述有没有增加夸张？**关键问题：谁因为它成立而获益？**",
+      "duration_min": 8,
+      "checkpoint": "画出了「原始出处 → 中间转述次数」链条，并指出利益相关方",
+      "output": "provenance chain"
+    },
+    {
+      "id": "restate",
+      "name": "反向复述",
+      "instruction": "用对立立场尝试为这个主张辩护。**如果对面能说得比你强，说明你对它的理解还不够；或者它本身就有问题。** 两种结论都要接受。",
+      "duration_min": 8,
+      "checkpoint": "产出了 ≥120 字的反方论证，且明确判定「我方胜/反方胜/双方都不成立」",
+      "output": "steelman"
+    },
+    {
+      "id": "verdict",
+      "name": "给出置信度",
+      "instruction": "只输出三档之一：可信 / 存疑 / 不可信，并写明**要证实它，需要看到什么证据**。",
+      "duration_min": 3,
+      "checkpoint": "给出了明确档位 + 一个具体的待验证证据项",
+      "output": "verdict"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "这个主张是不是我自己加上去的，原文其实没这么说？",
+      "如果我利益相关，我还会这么判断吗？"
+    ],
+    "success_criteria": ["六问中至少两问改变了初始判断", "能说出「要验证它需要什么」"]
+  },
+  "agent_contract": {
+    "input": ["claim"], "output": ["verdict", "provenance chain"],
+    "side_effects": [],
+    "degrade_to": "无联网能力时：只做证据类型与反例分析，**必须显式标注「无法核实出处」**，禁止编造引用"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}

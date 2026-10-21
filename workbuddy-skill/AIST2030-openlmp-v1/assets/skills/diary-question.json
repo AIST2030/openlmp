@@ -1,0 +1,77 @@
+{
+  "lmp": "0.1",
+  "id": "diary-question",
+  "name": "今天学到了什么",
+  "name_en": "Daily Learning Questions",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "元认知",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "每天只回答三个问题：我今天真的多会了什么？我怎么知道自己真的会了？明天第一件事做什么？三行，不许写长篇。",
+  "when_to_use": ["每天学完但说不清收获", "备考长跑", "想提升元认知能力"],
+  "when_not_to_use": ["当天没学任何东西的日子（直接写「今天没学」，这本身也是答案）"],
+  "params": {
+    "type": "object",
+    "required": [],
+    "properties": { "streak": { "type": "integer", "default": 21, "description": "目标连续天数" } }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "three-lines",
+      "name": "三行作答",
+      "instruction": "每天结束时回答且只回答三个问题，每问一行，每行 ≤50字：① 今天我真的多会了什么（不是「看了什么」）② 我怎么验证我真会了③ 明天第一件事做什么。",
+      "duration_min": 5,
+      "checkpoint": "三行都写了，且第一行不是「看了 X 课/读了 X 页」这种过程描述",
+      "output": "三行日志"
+    },
+    {
+      "id": "evidence-line",
+      "name": "给「会了」配证据",
+      "instruction": "第二行必须是可验证的：能默写出X / 能讲清 Y 的因果 / 做出 Z / 或明确写「其实还没验证」。**禁止只写「感觉懂了」。**",
+      "duration_min": 3,
+      "checkpoint": "第二行含一个客观验证动作，或明确承认「未验证」",
+      "output": "verification evidence"
+    },
+    {
+      "id": "honest-gap",
+      "name": "允许写「没有」",
+      "instruction": "如果今天确实没学、或学了但什么都没留下，**照实写**。不要为了不断更而编。连续记录的价值来自诚实。",
+      "duration_min": 2,
+      "checkpoint": "当日状态与实际一致；未出现「为不断更而编造收获」",
+      "output": "当日记录"
+    },
+    {
+      "id": "tomorrow-link",
+      "name": "把明天第一件事挂到未完成项",
+      "instruction": "第三行的「明天第一件事」必须来自：昨天的未完成 / 昨天验证失败的 / 新发现的缺口。禁止填「继续学习 X」这种无指向的话。",
+      "duration_min": 3,
+      "checkpoint": "第三行指向一个具体的、有名字的任务",
+      "output": "tomorrow anchor"
+    },
+    {
+      "id": "weekly-scan",
+      "name": "每周扫一遍趋势",
+      "instruction": "每周看一次这streak 天的记录，统计：哪一天写的是真收获（第二行有证据）？哪天在空转？**空转的日子有什么共同特征？**",
+      "duration_min": 15,
+      "checkpoint": "指出了 ≥2 个空转日的共同特征",
+      "output": "weekly pattern"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我这周写的「会了」，有几条是真验证过的？",
+      "明天第一件事，我是不是已经知道要做什么？"
+    ],
+    "success_criteria": ["第二行含验证动作的比例 >80%", "连续天数逐周上升"]
+  },
+  "agent_contract": {
+    "input": ["streak"], "output": ["三行日志"],
+    "side_effects": ["写本地文件"],
+    "degrade_to": "Agent 每天主动追问且**只追问这三问**，不展开其他话题；用户答不出第二行时必须追问「怎么验证」"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}

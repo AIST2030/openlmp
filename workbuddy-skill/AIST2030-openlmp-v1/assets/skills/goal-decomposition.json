@@ -1,0 +1,88 @@
+{
+  "lmp": "0.1",
+  "id": "goal-decomposition",
+  "name": "目标四级拆解",
+  "name_en": "Goal Decomposition L1-L4",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "计划执行",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "把任意宏大目标拆成「年—月—周—今天」四级，每级都必须有可验收的产出物，最后一级必须是「今天能做完」的事。",
+  "when_to_use": ["定了一个模糊的大目标", "总说要开始但不知道今天干什么", "计划总是做一半就废"],
+  "when_not_to_use": ["目标本身还没想清楚（先明确目标）", "突发事件（直接应对）"],
+  "params": {
+    "type": "object",
+    "required": ["goal"],
+    "properties": {
+      "goal": { "type": "string", "description": "你想达成的状态，不是动作" },
+      "deadline": { "type": "string", "description": "期望达成时间" }
+    }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "state-goal",
+      "name": "把目标写成状态句",
+      "instruction": "改写成「到X 时刻，我处于 Y 状态，并能展示 Z」。禁止出现「学习/提升/掌握」这类动词，必须是能看见的东西。",
+      "duration_min": 8,
+      "checkpoint": "目标句含一个可展示的产物（Z）且能回答「怎么算做到了」",
+      "output": "goal statement"
+    },
+    {
+      "id": "reverse-from-end",
+      "name": "从终点倒推",
+      "instruction": "假设今天已经成功了，回溯到今天必须完成什么。这个月必须完成什么才能保证那天成功。**只倒推，不正推。**",
+      "duration_min": 12,
+      "checkpoint": "倒推出的每月里程碑 ≥3 个，且都能回答「这个月做完它，我离目标更近吗」",
+      "output": "monthly milestones"
+    },
+    {
+      "id": "this-week",
+      "name": "本周三件事",
+      "instruction": "从本月里程碑倒推出本周的**三件事**（不是五件，不是十件）。三件是刻意限制——超过三件必然做不完。",
+      "duration_min": 8,
+      "checkpoint": "恰好 3 件；每件都能在一周内产出可见成果",
+      "output": "weekly three"
+    },
+    {
+      "id": "today-first",
+      "name": "今天的第一件事",
+      "instruction": "从本周三件里挑一件，拆到今天能做完的最小动作。**动作必须小到不需要下决心**（如「打开文档写下三段标题」而不是「写方案」）。",
+      "duration_min": 5,
+      "checkpoint": "产出 1 个 15–30 分钟内可完成的最小动作，且起点明确到「打开什么文件」",
+      "output": "today first action"
+    },
+    {
+      "id": "why-test",
+      "name": "对抗「务实式拖延」",
+      "instruction": "问：如果这件事永远做不完，我会不会因此更好？不会→为什么还要做？会→那为什么还没做？问完直接做那件最小动作。",
+      "duration_min": 4,
+      "checkpoint": "产出了对「为什么还没做」的具体回答；且已实际开始最小动作",
+      "output": "答案 + 已开始的动作"
+    },
+    {
+      "id": "weekly-review",
+      "name": "每周重算",
+      "instruction": "每周固定时间回看：本周三件完成几件？没完成的挪到下周还是砍掉？**连续两周完成率 <50% 时，必须砍目标而不是怪自己拖延。**",
+      "duration_min": 15,
+      "checkpoint": "有明确的「挪/砍」决定；完成率低于 50% 时至少砍掉一项",
+      "output": "weekly review"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "今天的最小动作我是不是已经开始做了？",
+      "这个月的里程碑我能不能一句话说清它做完意味着什么？"
+    ],
+    "success_criteria": ["每周三件事完成率 ≥70%", "从没出现「计划做一半就废」"]
+  },
+  "agent_contract": {
+    "input": ["goal", "deadline"], "output": ["weekly three", "today first action"],
+    "side_effects": ["写本地文件"],
+    "degrade_to": "Agent 生成后必须问：「今天这一件，你现在能做多久？」——得到回答后**当场把最小动作再拆细一级**"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}

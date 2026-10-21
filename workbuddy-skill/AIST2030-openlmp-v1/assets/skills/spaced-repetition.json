@@ -1,0 +1,73 @@
+{
+  "lmp": "0.1",
+  "id": "spaced-repetition",
+  "name": "间隔重复调度",
+  "name_en": "Spaced Repetition (SM-2)",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "记忆巩固",
+  "evidence": "high",
+  "evidence_refs": ["Roediger & Karpicke 2006, Psychological Science 17(3) 249-255"],
+  "description": "在「快要忘记」的那一刻复习，用最少的总时长换最长的记忆保持。",
+  "when_to_use": ["需要长期记住大量事实/术语", "需要记住代码 API、命令、外语单词等离散项"],
+  "when_not_to_use": ["只考一次的短期突击（用 active-recall 集中刷）", "要学会一项技能而非记住一批事实（用 deliberate-practice 或 project-based-learning）"],
+  "params": {
+    "type": "object",
+    "required": ["items"],
+    "properties": {
+      "items": { "type": "array", "items": { "type": "object" }, "description": "已有 SRS 条目或待入库材料" },
+      "today": { "type": "string", "description": "基准日期，默认今天" }
+    }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "due-query",
+      "name": "取出今日到期队列",
+      "instruction": "扫描本地 learner-state，列出 next_due ≤ today 的条目，按 due 时间正序排列。若为空，进入步骤 5。",
+      "duration_min": 1,
+      "checkpoint": "产出了一份有序队列，或显式声明队列为空",
+      "output": "due queue"
+    },
+    {
+      "id": "review",
+      "name": "逐条提取",
+      "instruction": "对每条先做主动回忆（不显示答案），然后才核对。禁止直接给答案。",
+      "duration_min": 15,
+      "checkpoint": "每条都产生了先回忆后核对的顺序记录",
+      "output": "review log"
+    },
+    {
+      "id": "reschedule",
+      "name": "SM-2 重算间隔",
+      "instruction": "按规范 §5 公式更新 ease_factor / interval_days / repetitions / next_due。q<3 时 interval 重置为 1。",
+      "duration_min": 2,
+      "checkpoint": "每条的 next_due > today，且 ease_factor ∈ [1.3, 3.0]",
+      "output": "updated state"
+    },
+    {
+      "id": "budget",
+      "name": "控制单日时长",
+      "instruction": "统计今日复习总耗时。若超过 20 分钟，把剩余条目的 next_due 顺延一天，不丢条目。",
+      "duration_min": 1,
+      "checkpoint": "单日总时长 ≤ 20 分钟，且条目无丢失（顺延数 = 未复习数）",
+      "output": "daily summary"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "今天复习的条目里，有多少是我在 1 秒内就答出来的（这些可以降频）？",
+      "有没有条目连续多天 < 3 分（说明当初就不该入库）？"
+    ],
+    "success_criteria": ["复习队列长度稳定而非无限增长", "相同总时长下保持率优于集中复习"]
+  },
+  "agent_contract": {
+    "input": ["items", "today"],
+    "output": ["review log", "updated learner-state.json"],
+    "side_effects": ["写本地 learner-state.json"],
+    "degrade_to": "无计算工具时：Agent 直接按规范公式手算，并展示中间值供核对"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}

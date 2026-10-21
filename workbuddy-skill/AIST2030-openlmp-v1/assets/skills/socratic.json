@@ -1,0 +1,80 @@
+{
+  "lmp": "0.1",
+  "id": "socratic",
+  "name": "苏格拉底式追问",
+  "name_en": "Socratic Questioning",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "理解构建",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "不直接给答案，用一连串问题逼你自己走到结论。适合对方已有判断、需要他自己想通，而不是被告知。",
+  "when_to_use": ["对方反复问同一个问题但没真懂", "想让别人自己想明白（教学/带团队）", "自己卡在某个假设上"],
+  "when_not_to_use": ["紧急情况需要立刻答案", "对方明确表示只想要结论（尊重选择）"],
+  "params": {
+    "type": "object",
+    "required": ["question_topic"],
+    "properties": {
+      "question_topic": { "type": "string", "description": "想通过追问弄清的议题" },
+      "max_rounds": { "type": "integer", "default": 6, "description": "最多追问几轮，避免死循环" }
+    }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "clarify",
+      "name": "让对方复述",
+      "instruction": "请对方用自己的话说明他现在到底卡在哪。不要纠正，不要补充。听完只回一句「我明白了，你的问题是……」，请对方确认。",
+      "duration_min": 5,
+      "checkpoint": "对方确认了问题陈述；且你复述的版本和对方的原意一致",
+      "output": "问题陈述"
+    },
+    {
+      "id": "assumption",
+      "name": "找出隐含假设",
+      "instruction": "问：「你这个判断是基于什么假设成立的？」持续追问，直到说出一个**可以被验证或证伪**的句子。",
+      "duration_min": 10,
+      "checkpoint": "至少说出 1 条显式假设，且该假设可判定真假",
+      "output": "assumption list"
+    },
+    {
+      "id": "counter-test",
+      "name": "假设检验",
+      "instruction": "问：「如果这个假设不成立，你的结论会怎样？」再问：「有没有一种情况，假设成立但结论是错的？」",
+      "duration_min": 10,
+      "checkpoint": "对方自己发现了至少 1 个反例或边界情况",
+      "output": "边界条件"
+    },
+    {
+      "id": "consequence",
+      "name": "推到底",
+      "instruction": "问：「那么如果这条假设不成立，你会怎么做？」引导对方自己得出修正后的结论。**这步你一个字都不要替他总结。**",
+      "duration_min": 8,
+      "checkpoint": "对方**自己**说出修正结论；你只负责点头或提问",
+      "output": "对方结论"
+    },
+    {
+      "id": "verify",
+      "name": "复述验证",
+      "instruction": "请对方再复述一次修正后的结论。检查是否真的变了，还是只是换了个说法。",
+      "duration_min": 5,
+      "checkpoint": "复述内容与修正结论一致，且措辞与初始版本有实质差异",
+      "output": "验证"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我有没有在过程中忍不住直接把答案说了？",
+      "最后那个结论是他自己说的，还是我说的？"
+    ],
+    "success_criteria": ["对方能独立复述修正后的结论", "同类问题下次对方自己会问"]
+  },
+  "agent_contract": {
+    "input": ["question_topic", "max_rounds"], "output": ["assumption list"],
+    "side_effects": [],
+    "degrade_to": "Agent 执行此Skill 时必须**严格遵守：每轮最多一个问题，不得连发多个问题；不得直接给出结论**。若对方要求直接答案，必须先问「你确定要答案还是想自己搞懂？」"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}

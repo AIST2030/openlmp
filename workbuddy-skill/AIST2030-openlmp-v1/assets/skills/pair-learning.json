@@ -1,0 +1,122 @@
+{
+  "lmp": "0.1",
+  "id": "pair-learning",
+  "name": "结对学习",
+  "name_en": "Pair Learning",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "协作学习",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "两个人学同一件事，每周交换一次「出题人」和「答题人」角色。强迫你换视角——讲解别人的卡点，比自己学更快暴露盲区。",
+  "when_to_use": [
+    "自学容易走偏没人纠",
+    "想快速上手新技能",
+    "备考互相出题"
+  ],
+  "when_not_to_use": [
+    "找不到合适的人",
+    "内容涉及必须独立完成的能力（如写作风格）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "partner",
+      "topic"
+    ],
+    "properties": {
+      "partner": {
+        "type": "string",
+        "description": "搭档，需大致同水平"
+      },
+      "topic": {
+        "type": "string",
+        "description": "结对共同攻克的主题，需双方都具备基础才能讨论"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "role-rotate",
+      "name": "定好角色轮换",
+      "instruction": "约定每周轮换：A 讲解 B 提问，B 提问 A 讲解。**必须轮换**——单方面讲解的人成长最慢，因为他没被问到盲区。",
+      "duration_min": 5,
+      "checkpoint": "产出轮换表，且本次谁讲解谁提问已明确",
+      "output": "rotation"
+    },
+    {
+      "id": "teach-back",
+      "name": "讲解人的 5 分钟",
+      "instruction": "讲解人用5 分钟讲清本周学的核心，**不许念稿子**，不许看笔记。",
+      "duration_min": 6,
+      "checkpoint": "讲解全程不看材料；且包含至少一个具体例子",
+      "output": "teach-back"
+    },
+    {
+      "id": "questioner",
+      "name": "提问人只问「为什么」",
+      "instruction": "提问人**不许问「是什么」**（那是复述），只许问「为什么」「如果 X 变了会怎样」「你说的这个和 Y 矛盾吗」。每问一个就判断：答案里有没有逻辑跳跃？",
+      "duration_min": 6,
+      "checkpoint": "提问 ≥3 个且全部是「为什么/如果」类；至少找出 1 处逻辑跳跃或含糊处",
+      "output": "questions + gaps"
+    },
+    {
+      "id": "explain-gap",
+      "name": "讲解人当场补漏",
+      "instruction": "被问住的地方，当场去查，或明确说「这个我不知道，记下来」。**不许糊过去。**",
+      "duration_min": 8,
+      "checkpoint": "所有被问住的地方都有结论（查到或明确未知）；无糊弄",
+      "output": "gap closure"
+    },
+    {
+      "id": "swap-question",
+      "name": "反向出题",
+      "instruction": "由提问人出 3 道题给讲解人做。**做不出来正是本环节的目的**——不是测验，是找盲区。",
+      "duration_min": 12,
+      "checkpoint": "出题 3 道且难度对等；做错/做不出处已记录进错题本",
+      "output": "test"
+    },
+    {
+      "id": "symmetry-check",
+      "name": "记录不对称",
+      "instruction": "记录：谁被问住得更少？连续两周都是同一个人，说明另一个人提问不够狠，需要换策略（改成互相出题）。",
+      "duration_min": 5,
+      "checkpoint": "给出了「谁被问住更多」的事实判断，并据此决定是否调整方式",
+      "output": "symmetry note"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "这周我是讲解多还是提问多？我是不是一直只做擅长的那个？",
+      "搭档指出的问题，是我没意识到的还是不想承认的？"
+    ],
+    "success_criteria": [
+      "双方被问住的次数差距 <2倍",
+      "每次都能说出至少 1 个自己没意识到的盲区"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "partner",
+      "topic"
+    ],
+    "output": [
+      "questions + gaps"
+    ],
+    "side_effects": [],
+    "degrade_to": "无搭档时：Agent 扮演提问人，且**必须真的问出尖锐问题**，不许敷衍地说「很好，继续」。扮演讲解人时 Agent **不得**代替用户作答"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "lmp": "0.1",
+  "id": "concept-map",
+  "name": "概念图构建",
+  "name_en": "Concept Mapping",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "知识管理",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "把概念间的有向关系画成图，用「连接词」迫使自己说清关系类型，而不是只堆名词。",
+  "when_to_use": [
+    "一章/一门课学完要收口",
+    "跨章节串主线",
+    "写作前梳理结构"
+  ],
+  "when_not_to_use": [
+    "只学一两个孤立知识点（用不上图）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "要画概念图的主题，先用一个具体问题或概念界定边界"
+      },
+      "max_nodes": {
+        "type": "integer",
+        "default": 20,
+        "description": "概念节点上限，防止无限画下去导致只画不学"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "list",
+      "name": "裸列核心概念",
+      "instruction": "不看资料，只凭记忆列出该主题的核心概念，最多 max_nodes 个。禁止边看资料边列。",
+      "duration_min": 5,
+      "checkpoint": "产出 8–20 个概念词，且明确标注「哪些我其实不确定」",
+      "output": "concept list"
+    },
+    {
+      "id": "link",
+      "name": "两两建立有向连接",
+      "instruction": "挑任意两个概念，写一条「A 因为/导致/属于/对比 B」的有向边。每条边必须带连接词，禁止只画无字连线。",
+      "duration_min": 8,
+      "checkpoint": "边数 ≥ 概念数；每条边都有一个明确的连接词",
+      "output": "edge list"
+    },
+    {
+      "id": "hierarchy",
+      "name": "分层归类",
+      "instruction": "把概念分成 3–5 个大类，把每个概念放进唯一一个大类。放不进任何类的概念单独列出（通常是理解缺口）。",
+      "duration_min": 6,
+      "checkpoint": "存在 3–5 个分类，且孤立概念清单非空时必须显式说明原因",
+      "output": "hierarchy"
+    },
+    {
+      "id": "verify",
+      "name": "逐边抽查",
+      "instruction": "随机抽 5 条边，只看边的两端和连接词，判断能否复原完整意思。复原失败的要重写。",
+      "duration_min": 4,
+      "checkpoint": "5 条边中可独立复原含义的 ≥4 条",
+      "output": "verified map"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "这张图能不能在不复看笔记的情况下讲给别人听？",
+      "放不进任何分类的概念，说明我缺的是什么知识？"
+    ],
+    "success_criteria": [
+      "图的层级能独立复述",
+      "孤立概念清单逐次变短"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic",
+      "max_nodes"
+    ],
+    "output": [
+      "concept map"
+    ],
+    "side_effects": [],
+    "degrade_to": "无法绘图时：输出 mermaid 文本或缩进列表表达同一张图"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

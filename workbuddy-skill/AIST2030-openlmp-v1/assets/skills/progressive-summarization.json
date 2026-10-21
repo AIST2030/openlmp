@@ -1,0 +1,85 @@
+{
+  "lmp": "0.1",
+  "id": "progressive-summarization",
+  "name": "渐进式总结",
+  "name_en": "Progressive Summarization",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "知识管理",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "同一份材料压缩四遍：全原文→粗高亮→细高亮→自己的话。每次压缩都需要真的动笔，不许直接跳到最后一步。",
+  "when_to_use": ["收藏夹里全是没读完的", "收藏了等于学过了", "整理读书笔记"],
+  "when_not_to_use": ["材料本身价值低（直接丢弃）", "需要逐字引用原文（总结会破坏引用）"],
+  "params": {
+    "type": "object",
+    "required": ["source"],
+    "properties": { "source": { "type": "string", "description": "原始材料" } }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "layer0",
+      "name": "第一层：全量保存",
+      "instruction": "把材料完整存下来（标注来源和日期）。不做任何处理。",
+      "duration_min": 5,
+      "checkpoint": "原始材料已保存且标注了来源；能随时回溯",
+      "output": "layer 0"
+    },
+    {
+      "id": "layer1",
+      "name": "第二层：粗筛",
+      "instruction": "读一遍，只高亮**让我停下来的段落**（不是我觉得重要的，是我态度有反应的）。高亮占比应 ≤10%。",
+      "duration_min": 10,
+      "checkpoint": "高亮段落 ≤ 全文字数 10%，且每条高亮都写了一句「为什么停下来」",
+      "output": "layer 1"
+    },
+    {
+      "id": "layer2",
+      "name": "第三层：细筛",
+      "instruction": "只处理第一层的高亮部分，在其中再高亮真正核心的。第二层高亮 ≤第一层的 30%。",
+      "duration_min": 10,
+      "checkpoint": "第二层高亮 ≤ 第一层的 30%",
+      "output": "layer 2"
+    },
+    {
+      "id": "layer3",
+      "name": "第四层：自己的话",
+      "instruction": "把第二层的内容**逐条用你自己的话重写一遍**，每条不超过 50 字。写不出来的直接删掉。",
+      "duration_min": 15,
+      "checkpoint": "产出 ≤10 条重写要点；每条都能被独立读懂",
+      "output": "layer 3"
+    },
+    {
+      "id": "link-out",
+      "name": "接到已有知识上",
+      "instruction": "给每条要点写一句「这跟我已知的什么有关 / 反驳了什么」。**接不上的要点多半是信息而非知识，可以降级或删掉。**",
+      "duration_min": 10,
+      "checkpoint": "每条要点都有一条关联说明；接不上的已明确处理",
+      "output": "linked summary"
+    },
+    {
+      "id": "express",
+      "name": "表达测试",
+      "instruction": "只看最终要点列表，向别人复述一遍。复述不出来的条目，说明它没真正进脑子，回到第四层。",
+      "duration_min": 8,
+      "checkpoint": "复述覆盖率 ≥80%；未覆盖的条目已标出",
+      "output": "expression test"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是真的逐层压缩了，还是直接跳到最后一步？",
+      "这堆要点里，有几条是真接上了我已有的知识？"
+    ],
+    "success_criteria": ["要点数 ≤10 条且每条可复述", "接不上的要点比例逐次下降"]
+  },
+  "agent_contract": {
+    "input": ["source"], "output": ["layer 3", "linked summary"],
+    "side_effects": ["写本地文件"],
+    "degrade_to": "Agent 必须**强制按顺序**执行，禁止在 layer0 后直接给 layer3；每层未完成时拒绝进入下一层"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}
