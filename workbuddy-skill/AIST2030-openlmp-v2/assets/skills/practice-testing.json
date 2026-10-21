@@ -1,0 +1,113 @@
+{
+  "lmp": "0.1",
+  "id": "practice-testing",
+  "name": "练习测验",
+  "name_en": "Practice Testing",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "评测验证",
+  "evidence": "high",
+  "evidence_refs": [
+    "Roediger & Karpicke 2006, Psychological Science, 17(3) 249-255",
+    "Dunlosky et al. 2013, Psychological Science in the Public Interest, 14(1) 4-58"
+  ],
+  "description": "不等考试，自己先做一遍低风险的测验，把「以为会」和「真的会」分开。",
+  "when_to_use": [
+    "复习完想验证效果",
+    "考前自查",
+    "学完一章"
+  ],
+  "when_not_to_use": [
+    "第一次接触材料（还没内容可测）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "scope"
+    ],
+    "properties": {
+      "scope": {
+        "type": "string",
+        "description": "本次测验覆盖的范围"
+      },
+      "count": {
+        "type": "integer",
+        "default": 8,
+        "description": "题目数量"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "blueprint",
+      "name": "先定考什么",
+      "duration_min": 5,
+      "instruction": "列出这次要测的知识点清单及其权重，按权重分配题量。",
+      "checkpoint": "知识点清单含权重；各知识点分配题量之和 = 总题数",
+      "output": "命题蓝图"
+    },
+    {
+      "id": "generate",
+      "name": "出题（先不给答案）",
+      "instruction": "让 Agent 按蓝图出题，一次一题，答案在全部答完前不展示。",
+      "duration_min": 20,
+      "checkpoint": "题数 = 指定值；且作答过程中未展示任何答案",
+      "output": "题目序列与作答记录"
+    },
+    {
+      "id": "grade",
+      "name": "对答案并统计",
+      "instruction": "逐题核对，按知识点统计正确率，找出正确率最低的 2 个知识点。",
+      "duration_min": 8,
+      "checkpoint": "每个知识点都算出了正确率；正确率最低的 2 个被点名",
+      "output": "知识点正确率表"
+    },
+    {
+      "id": "remediate",
+      "name": "只补最弱的两个",
+      "instruction": "针对最弱的 2 个知识点重学并重测，其余不动。重测后更新正确率。",
+      "duration_min": 15,
+      "checkpoint": "重测覆盖了那 2 个知识点；且记录了重测后的正确率",
+      "output": "补救结果",
+      "fail_to": "remediate"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我测的是「记没记住」，还是「认不认得」？",
+      "正确率最低的点，我是真补上了还是只是又看了一遍？"
+    ],
+    "success_criteria": [
+      "最弱知识点的重测正确率 ≥ 80%",
+      "总体正确率逐轮上升"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "scope",
+      "count"
+    ],
+    "output": [
+      "命题蓝图",
+      "作答记录",
+      "知识点正确率表"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头出题与核对"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

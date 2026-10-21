@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "constructivist-learning",
+  "name": "建构主义学习",
+  "name_en": "Constructivist Learning",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "理解构建",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "学新知识前先激活旧知识，把新内容挂到已有体系上，主动填补挂不上的缺口，而不是把新知识当孤立信息接收。",
+  "when_to_use": [
+    "学新知总觉得隔着一层",
+    "知识点记住了但连不起来",
+    "跨领域迁移"
+  ],
+  "when_not_to_use": [
+    "全新领域毫无基础时（先建立最小骨架）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "要学习的新主题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "activate",
+      "name": "先倒出已知",
+      "duration_min": 8,
+      "instruction": "在接触新材料前，先把关于这个主题你已经知道的东西全部写出，包括不确定的。",
+      "checkpoint": "写出了至少 5 条已有认知；且含至少 1 条标注为不确定的条目",
+      "output": "先备知识清单"
+    },
+    {
+      "id": "read",
+      "name": "带着清单读新材料",
+      "duration_min": 20,
+      "instruction": "读新材料时，每遇到一点就判断它证实了哪条、推翻了哪条、还是全新的一条，分别标注。",
+      "checkpoint": "新材料要点被分为证实、推翻、全新三类；且每类都有具体条目",
+      "output": "三色标注"
+    },
+    {
+      "id": "graft",
+      "name": "把新点挂到旧体系",
+      "duration_min": 12,
+      "instruction": "为每个「全新」点找到它在先备知识里的挂靠位置，写一句它和哪条旧知有什么关系。",
+      "checkpoint": "每个全新点都写出了一条与旧知的关联；挂不上的被单独标为缺口",
+      "output": "挂靠关系表"
+    },
+    {
+      "id": "patch",
+      "name": "补缺口并重画体系",
+      "duration_min": 15,
+      "instruction": "针对缺口补最小必要知识，再画一张更新后的知识关系图，标出本次新增与修改的节点。",
+      "checkpoint": "缺口被逐条补齐或标注所缺前提；且产出了标注新增与修改节点的关系图",
+      "output": "更新后的知识图",
+      "fail_to": "activate"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是在把新知接旧知，还是在背一份新名单？",
+      "挂不上的地方，我说得清缺什么吗？"
+    ],
+    "success_criteria": [
+      "每个新点都能说出一条与旧知的关联",
+      "关系图可据以复述整个主题"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic"
+    ],
+    "output": [
+      "先备知识",
+      "三色标注",
+      "知识图"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸上完成先备、标注、挂靠三步"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

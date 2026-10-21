@@ -1,0 +1,120 @@
+{
+  "lmp": "0.1",
+  "id": "sq4r",
+  "name": "SQ4R 阅读法",
+  "name_en": "SQ4R Reading",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "知识管理",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "在 SQ3R 五步之外，插入一步反思：把新内容和已知或其它学科显式关联，让阅读从接收变成织网。",
+  "when_to_use": [
+    "精读教材想比 SQ3R 更进一步",
+    "知识碎片化连不起来",
+    "跨学科阅读"
+  ],
+  "when_not_to_use": [
+    "只需检索信息的泛读（六步太重）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "material"
+    ],
+    "properties": {
+      "material": {
+        "type": "string",
+        "description": "要精读的一章或一节材料"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "survey",
+      "name": "浏览搭骨架",
+      "duration_min": 5,
+      "instruction": "读标题、小结、图表，用一句话写出本节要解决的核心问题。",
+      "checkpoint": "写下了一句核心问题；且列出了本节的主要小标题",
+      "output": "骨架与核心问题"
+    },
+    {
+      "id": "question",
+      "name": "把标题变问题",
+      "duration_min": 5,
+      "instruction": "把每个小标题改写成一个是非问句，作为阅读时要回答的问题。",
+      "checkpoint": "每个小标题都被改写为一个问句",
+      "output": "问题清单"
+    },
+    {
+      "id": "read",
+      "name": "带着问题读",
+      "duration_min": 20,
+      "instruction": "逐段读，边读边在问题旁记下答案要点，读不懂的段落标记待回看。",
+      "checkpoint": "每个问题都有对应答案要点；且读不懂处被标记",
+      "output": "带答案的问题清单"
+    },
+    {
+      "id": "recite",
+      "name": "合书复述",
+      "duration_min": 8,
+      "instruction": "合上材料，凭记忆口述每问的答案，卡住的标记后重点回看。",
+      "checkpoint": "每问都完成了一次合书复述；卡住处被标记",
+      "output": "复述记录"
+    },
+    {
+      "id": "reflect",
+      "name": "反思关联（第四 R）",
+      "duration_min": 8,
+      "instruction": "为每个要点写一条它和已知知识或其它学科的联系；写不出联系的标注为孤立点。",
+      "checkpoint": "每个要点都有至少一条关联；孤立点被单独标出",
+      "output": "关联表与孤立点清单"
+    },
+    {
+      "id": "review",
+      "name": "隔期复习",
+      "duration_min": 6,
+      "instruction": "隔一天只看问题清单重答，重点补上一轮标记的卡壳与孤立点。",
+      "checkpoint": "问题清单被重新作答；卡壳与孤立点被优先处理",
+      "output": "复习结果",
+      "fail_to": "recite"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我比 SQ3R 多做的反思，是真关联还是硬凑？",
+      "孤立点我打算怎么补？"
+    ],
+    "success_criteria": [
+      "多数要点能说出一条关联",
+      "隔期重答卡壳减少"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "material"
+    ],
+    "output": [
+      "问题清单",
+      "关联表",
+      "复习结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面完成六步"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

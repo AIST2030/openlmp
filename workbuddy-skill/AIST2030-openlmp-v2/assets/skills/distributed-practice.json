@@ -1,0 +1,119 @@
+{
+  "lmp": "0.1",
+  "id": "distributed-practice",
+  "name": "分散练习",
+  "name_en": "Distributed Practice",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "high",
+  "evidence_refs": [
+    "Cepeda et al. 2006, Psychological Bulletin, 132(3) 354-380",
+    "Dunlosky et al. 2013, Psychological Science in the Public Interest, 14(1) 4-58"
+  ],
+  "description": "把同样长的学习时间拆成多次，中间隔开；总量不变，但长期保持率明显更高。",
+  "when_to_use": [
+    "计划复习节奏",
+    "准备长期考试",
+    "想减少临时抱佛脚"
+  ],
+  "when_not_to_use": [
+    "明天就考（此时集中练习的即时效果更高）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "material"
+    ],
+    "properties": {
+      "material": {
+        "type": "string",
+        "description": "要安排练习的材料"
+      },
+      "total_min": {
+        "type": "integer",
+        "default": 120,
+        "description": "计划投入的总分钟数"
+      },
+      "sessions": {
+        "type": "integer",
+        "default": 4,
+        "description": "拆成几次"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "budget",
+      "name": "定总时长与次数",
+      "instruction": "把总时长 120 分钟拆成 4 次，算出每次时长。单次不低于 15 分钟。",
+      "duration_min": 4,
+      "checkpoint": "给出了每次时长；且单次时长 ≥ 15 分钟，次数×单次 = 总时长",
+      "output": "练习预算表"
+    },
+    {
+      "id": "schedule",
+      "name": "排到日历上",
+      "instruction": "把每次练习排到具体日期与时段，相邻两次至少隔 1 天。",
+      "duration_min": 5,
+      "checkpoint": "每次练习都有日期与时段；且相邻两次间隔 ≥ 1 天",
+      "output": "练习日程"
+    },
+    {
+      "id": "log",
+      "name": "每次记录正确率",
+      "instruction": "每次练习结束记录正确率与耗时，追加到练习日志。",
+      "duration_min": 3,
+      "checkpoint": "每次练习都有一行含正确率与耗时的日志",
+      "output": "练习日志"
+    },
+    {
+      "id": "tune",
+      "name": "按曲线调间隔",
+      "instruction": "看正确率走势：连续两次 ≥85% 就把间隔拉长 1.5 倍；出现 <60% 就缩短一半。",
+      "duration_min": 5,
+      "checkpoint": "给出了基于最近正确率的间隔调整结论；且调整方向符合规则",
+      "output": "间隔调整方案",
+      "fail_to": "schedule"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是真的分次练了，还是攒到最后一次？",
+      "间隔是根据我的正确率调的还是拍脑袋定的？"
+    ],
+    "success_criteria": [
+      "练习次数达到计划值",
+      "末次正确率高于首次"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "material",
+      "total_min",
+      "sessions"
+    ],
+    "output": [
+      "练习预算表",
+      "练习日程",
+      "练习日志"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头排程与记录"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

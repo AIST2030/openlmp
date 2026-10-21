@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "morning-evening-review",
+  "name": "晨间晚间复盘",
+  "name_en": "Morning-Evening Review",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "元认知",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "早晨用三个问题定调一天，晚上用复盘收束一天，两头各几分钟，让行动对齐意图、经验被沉淀。",
+  "when_to_use": [
+    "一天过完不知道干了什么",
+    "想建立每日反思闭环",
+    "意图和行动总脱节"
+  ],
+  "when_not_to_use": [
+    "当天极度特殊，如重病或紧急事件，可跳过不自责"
+  ],
+  "params": {
+    "type": "object",
+    "required": [],
+    "properties": {
+      "day": {
+        "type": "string",
+        "default": "",
+        "description": "可选：指定复盘日期，默认今天"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "morning",
+      "name": "晨间三问",
+      "duration_min": 5,
+      "instruction": "起床后回答三个问题并写下：今天想要什么心态、要好好对待谁、要推进哪一件要事。",
+      "checkpoint": "三个问题各有一条书面回答；且其中要事唯一明确",
+      "output": "晨间意图"
+    },
+    {
+      "id": "carry",
+      "name": "把要事排进日程",
+      "duration_min": 3,
+      "instruction": "把晨间定的那件要事排进当天时间表的一个具体时段。",
+      "checkpoint": "要事被排到当天某一具体时段",
+      "output": "当日要事位"
+    },
+    {
+      "id": "evening",
+      "name": "晚间复盘",
+      "duration_min": 8,
+      "instruction": "睡前对照晨间意图复盘心态、待人、要事各做到几分，写一条今天学到的和一个明天的改进。",
+      "checkpoint": "三项各有自评；且产出了一条今日所得与一条明日改进",
+      "output": "晚间复盘"
+    },
+    {
+      "id": "loop",
+      "name": "汇总成周视图",
+      "duration_min": 10,
+      "instruction": "把每天复盘汇总成周视图，找出反复出现的同一个问题，定为下周唯一改进点。",
+      "checkpoint": "周视图已汇总；且高频问题被定为下周唯一改进点",
+      "output": "周复盘与改进点",
+      "fail_to": "morning"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "晨间三问我是认真想的，还是走形式？",
+      "反复出现的那个问题，我看见了吗？"
+    ],
+    "success_criteria": [
+      "要事完成率逐周上升",
+      "每周都产出一个明确改进点"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "day"
+    ],
+    "output": [
+      "晨间意图",
+      "晚间复盘",
+      "周改进点"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：固定本子早晚各写一段"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

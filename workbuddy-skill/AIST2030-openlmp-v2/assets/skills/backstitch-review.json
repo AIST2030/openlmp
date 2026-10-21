@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "backstitch-review",
+  "name": "回针缝复习",
+  "name_en": "Backstitch Review",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "记忆巩固",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "像回针缝一样，每学新的一段就回头缝一针复习前面，边前进边回缝，让旧内容不脱线。",
+  "when_to_use": [
+    "连续学多章，前面开始忘",
+    "长课程或长文阅读",
+    "想边学边保温"
+  ],
+  "when_not_to_use": [
+    "章节相互独立、无需前后关联时（单独安排复习更省）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "scope"
+    ],
+    "properties": {
+      "scope": {
+        "type": "string",
+        "description": "要连续推进的学习范围"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "segment",
+      "name": "切成针脚段",
+      "duration_min": 4,
+      "instruction": "把范围切成若干小段，每段是一个针脚；定下每学完一段就回缝前几段的规则。",
+      "checkpoint": "范围被切成至少 5 段；且写明了回缝规则",
+      "output": "分段与回缝规则"
+    },
+    {
+      "id": "advance",
+      "name": "学新段",
+      "duration_min": 20,
+      "instruction": "按顺序学当前这一段，学完在本段末尾写下三句话要点。",
+      "checkpoint": "当前段已学完；且写下了三句话要点",
+      "output": "本段要点"
+    },
+    {
+      "id": "backstitch",
+      "name": "回缝前几段",
+      "duration_min": 8,
+      "instruction": "不看书，只凭记忆复述前两段的要点，卡住的标注；然后才继续下一段。",
+      "checkpoint": "前两段要点被复述；且卡住处被标注",
+      "output": "回缝记录"
+    },
+    {
+      "id": "tighten",
+      "name": "锁紧断线段",
+      "duration_min": 6,
+      "instruction": "每完成 5 段，把所有标注过的断线段集中重缝一遍，再继续前进。",
+      "checkpoint": "每 5 段后集中重缝一次；且重缝覆盖了全部标注段",
+      "output": "重缝结果",
+      "fail_to": "backstitch"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是真在回缝，还是只顾往前赶？",
+      "回缝时卡住的，是当时没懂还是真忘了？"
+    ],
+    "success_criteria": [
+      "回缝复述成功率随针脚保持稳定",
+      "断线段经重缝后减少"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "scope"
+    ],
+    "output": [
+      "本段要点",
+      "回缝记录"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：每段末尾默述前两段要点"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

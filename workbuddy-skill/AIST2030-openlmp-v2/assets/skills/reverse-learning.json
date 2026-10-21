@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "reverse-learning",
+  "name": "逆向学习法",
+  "name_en": "Reverse Learning",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "先看目标长什么样，再倒推最短学习路径，只为要用到的学，跳过暂时用不上的。",
+  "when_to_use": [
+    "有明确考核或交付目标",
+    "时间紧要直奔结果",
+    "自学容易迷失在细节里"
+  ],
+  "when_not_to_use": [
+    "想系统打基础、无近期目标时（正向系统学更稳）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "goal"
+    ],
+    "properties": {
+      "goal": {
+        "type": "string",
+        "description": "要直达的目标或考核"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "inspect",
+      "name": "先研究目标形态",
+      "duration_min": 20,
+      "instruction": "找到目标的真实样子：几套真题、一个成品样例或一份验收标准，逐条研究它长什么样。",
+      "checkpoint": "获得了至少 2 个目标实例或 1 份验收标准；且已逐条研究",
+      "output": "目标样本分析"
+    },
+    {
+      "id": "decompose",
+      "name": "倒推必需知识点",
+      "duration_min": 15,
+      "instruction": "对照样本，倒推出要做出它必须会哪些点，列成必需清单；用不到的先不学。",
+      "checkpoint": "必需清单已列出；且每条标注了对应样本中的哪个要求",
+      "output": "必需知识点清单"
+    },
+    {
+      "id": "shortcut",
+      "name": "排最短路径",
+      "duration_min": 10,
+      "instruction": "把必需点按依赖关系排成最短学习顺序，能合并的合并，标出可跳过的非必需内容。",
+      "checkpoint": "给出了学习顺序；且标出了被跳过的非必需内容及其理由",
+      "output": "最短路径"
+    },
+    {
+      "id": "mock",
+      "name": "用样本自测",
+      "duration_min": 25,
+      "instruction": "学完后用一套没用过的样本做模拟，对照验收标准自评，未达标处回到对应知识点补。",
+      "checkpoint": "完成了 1 次模拟自测；且未达标处被定位到具体知识点",
+      "output": "模拟自测结果",
+      "fail_to": "decompose"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是在为通过或交付学，还是又漫游进了细节？",
+      "跳过的非必需内容，真的不影响达标吗？"
+    ],
+    "success_criteria": [
+      "能用未见过样本通过验收",
+      "学习时长集中在必需清单内"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "goal"
+    ],
+    "output": [
+      "必需清单",
+      "最短路径",
+      "模拟结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无样本时：让 Agent 按目标形态生成模拟验收题"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "mental-rehearsal",
+  "name": "心理演练",
+  "name_en": "Mental Rehearsal",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "技能习得",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "不动手，只在脑中把整个操作流程完整过一遍，包括每个分支和出错时的应对。",
+  "when_to_use": [
+    "动手机会少或成本高",
+    "上台/比赛/演示前",
+    "巩固已学流程"
+  ],
+  "when_not_to_use": [
+    "从没实际做过的全新流程（脑中演练会建立错误模式）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "procedure"
+    ],
+    "properties": {
+      "procedure": {
+        "type": "string",
+        "description": "要在脑中演练的具体流程"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "script",
+      "name": "写出完整流程",
+      "instruction": "把流程按顺序写成步骤，含判断分支（如果出现 X 就走 Y）。",
+      "duration_min": 10,
+      "checkpoint": "步骤数 ≥ 4，且至少含 1 个判断分支",
+      "output": "流程脚本"
+    },
+    {
+      "id": "visualize",
+      "name": "闭眼过一遍",
+      "instruction": "闭眼按脚本在脑中走完全程，想象每个动作和反馈。卡住就记下卡在哪一步。",
+      "duration_min": 12,
+      "checkpoint": "完成了一次全程演练；卡壳步骤被记录",
+      "output": "演练记录"
+    },
+    {
+      "id": "branch",
+      "name": "演练出错分支",
+      "instruction": "针对每个判断分支，在脑中走一遍「出错时怎么办」的路径。",
+      "duration_min": 10,
+      "checkpoint": "每个分支的异常处理路径都被演练过；分支数与演练记录条数一致",
+      "output": "分支演练记录"
+    },
+    {
+      "id": "compare",
+      "name": "实操对照",
+      "instruction": "找机会真正做一次，记录与演练不一致的地方，回头修订流程脚本。",
+      "duration_min": 15,
+      "checkpoint": "完成了一次实操；且列出了与演练不一致之处并给出修订",
+      "output": "对照结果与修订",
+      "fail_to": "script"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我演练的是完整流程，还是只演了顺利的那条路？",
+      "真正做的时候，哪里跟我脑中不一样？"
+    ],
+    "success_criteria": [
+      "实操时无计划外中断",
+      "流程脚本经实操修订后无遗漏分支"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "procedure"
+    ],
+    "output": [
+      "流程脚本",
+      "演练记录",
+      "对照结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：文字化演练，靠自述记录卡点"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

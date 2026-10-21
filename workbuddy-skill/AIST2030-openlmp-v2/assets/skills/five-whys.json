@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "five-whys",
+  "name": "5Why 追因法",
+  "name_en": "Five Whys",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "思维方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "对一个问题连续追问为什么，每层答案作为下一层的问题，直到触及可干预的根本原因。",
+  "when_to_use": [
+    "问题反复出现想除根",
+    "只知症状不知病因",
+    "复盘找根因"
+  ],
+  "when_not_to_use": [
+    "问题本身是多因并发（改用鱼骨图）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "problem"
+    ],
+    "properties": {
+      "problem": {
+        "type": "string",
+        "description": "要追根因的问题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "state",
+      "name": "写清问题",
+      "duration_min": 4,
+      "instruction": "用一句话写下要解决的具体问题，避免笼统描述。",
+      "checkpoint": "问题被写成一句具体陈述；且不含多个问题混堆",
+      "output": "问题陈述"
+    },
+    {
+      "id": "chain",
+      "name": "连续追问为什么",
+      "duration_min": 12,
+      "instruction": "从问题出发追问为什么得到答案一，再就答案一问为什么得答案二，至少追五层，每层附依据。",
+      "checkpoint": "追问链至少 5 层；且每层答案附了一条依据",
+      "output": "为什么链条"
+    },
+    {
+      "id": "root",
+      "name": "锁定根因",
+      "duration_min": 6,
+      "instruction": "在链条末端标出根本原因，并确认它是可干预的；若不可干预则回上一层。",
+      "checkpoint": "标出了根本原因；且确认其可被干预",
+      "output": "根因结论"
+    },
+    {
+      "id": "counter",
+      "name": "对根因定对策",
+      "duration_min": 8,
+      "instruction": "针对根因写一条可执行的防止再发对策，并说明它切断了链条哪一环。",
+      "checkpoint": "对策被写明且可执行；且指明了切断的环节",
+      "output": "对策",
+      "fail_to": "chain"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是一直在往下追，还是在同层打转？",
+      "找到的根因我真能干预吗？"
+    ],
+    "success_criteria": [
+      "得到可干预的根因",
+      "对策实施后问题复发减少"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "problem"
+    ],
+    "output": [
+      "为什么链条",
+      "根因结论",
+      "对策"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头连续追问并记录"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

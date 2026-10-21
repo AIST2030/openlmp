@@ -1,0 +1,111 @@
+{
+  "lmp": "0.1",
+  "id": "calibration-training",
+  "name": "校准训练",
+  "name_en": "Calibration Training",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "元认知",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "每次做题前先预测「我能对几成」，做完再对账，把「自我感觉」校准到接近真实水平。",
+  "when_to_use": [
+    "常觉得会了但考砸",
+    "估不准自己的水平",
+    "备考自我诊断"
+  ],
+  "when_not_to_use": [
+    "完全陌生的领域（没有可参照的判断基准）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "task"
+    ],
+    "properties": {
+      "task": {
+        "type": "string",
+        "description": "要做的一组题目或任务"
+      },
+      "count": {
+        "type": "integer",
+        "default": 10,
+        "description": "题目或任务数量"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "predict",
+      "name": "做之前先预测",
+      "instruction": "在开始前写下预测正确率（百分比）与预计耗时。必须先于作答完成。",
+      "duration_min": 3,
+      "checkpoint": "存在作答前记录的预测正确率与预计耗时两个数值",
+      "output": "预测记录"
+    },
+    {
+      "id": "perform",
+      "name": "正常完成",
+      "instruction": "按常规完成全部题目，记录实际正确率与实际耗时。",
+      "duration_min": 25,
+      "checkpoint": "存在实际正确率与实际耗时两个数值",
+      "output": "实际记录"
+    },
+    {
+      "id": "compare",
+      "name": "算偏差",
+      "instruction": "计算预测与实际正确率的差值、预计与实际耗时的差值。逐题标注哪些是「以为会其实错」。",
+      "duration_min": 6,
+      "checkpoint": "给出了两类差值；且列出了「以为会其实错」的条目",
+      "output": "偏差报告"
+    },
+    {
+      "id": "recalibrate",
+      "name": "修正下一次预测",
+      "instruction": "根据偏差方向，写明下次预测要上调还是下调及幅度，作为下一轮的预测基准。",
+      "duration_min": 4,
+      "checkpoint": "给出了下轮预测的方向与幅度；且幅度与本次偏差同量级",
+      "output": "校准策略",
+      "fail_to": "predict"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我预测时是凭感觉还是有依据？",
+      "偏差是系统性偏高还是忽高忽低？"
+    ],
+    "success_criteria": [
+      "预测与实际正确率差值 ≤ 15 个百分点",
+      "漏判的「以为会」条目减少"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "task",
+      "count"
+    ],
+    "output": [
+      "预测记录",
+      "实际记录",
+      "偏差报告",
+      "校准策略"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头预测与对账"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

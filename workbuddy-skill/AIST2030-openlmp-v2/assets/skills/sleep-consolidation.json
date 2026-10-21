@@ -1,0 +1,113 @@
+{
+  "lmp": "0.1",
+  "id": "sleep-consolidation",
+  "name": "睡眠巩固",
+  "name_en": "Sleep Consolidation",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "记忆巩固",
+  "evidence": "high",
+  "evidence_refs": [
+    "Walker & Stickgold 2004, Neuron, 44(1) 121-133",
+    "McClelland et al. 1995, Psychological Review, 102(3) 419-457"
+  ],
+  "description": "把难啃的内容安排在睡前学、睡够再复盘，让睡眠帮你把当天的记忆固化下来。",
+  "when_to_use": [
+    "需要长期记住的硬内容",
+    "考前复习安排",
+    "背大量材料"
+  ],
+  "when_not_to_use": [
+    "需要当堂立刻输出的即时任务"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "material"
+    ],
+    "properties": {
+      "material": {
+        "type": "string",
+        "description": "计划睡前学习的材料"
+      },
+      "hours": {
+        "type": "number",
+        "default": 7.5,
+        "description": "当晚计划睡眠时长（小时）"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "pick",
+      "name": "挑出最该巩固的部分",
+      "duration_min": 4,
+      "instruction": "从当天学的内容里挑出 3 条最难、最需要长期记住的。不要超过 3 条。",
+      "checkpoint": "选定条目数 = 3，且每条都注明了为什么难",
+      "output": "重点条目"
+    },
+    {
+      "id": "evening",
+      "name": "睡前过一遍",
+      "instruction": "在入睡前 1 小时内，把这 3 条快速过一遍（朗读或默写均可），不做新内容。",
+      "duration_min": 10,
+      "checkpoint": "学习发生在入睡 1 小时内，且未引入新材料",
+      "output": "睡前复习记录"
+    },
+    {
+      "id": "protect",
+      "name": "保住睡眠时长",
+      "instruction": "确保当晚睡眠不少于 7.5 小时的计划值。记录实际睡眠时长。",
+      "duration_min": 2,
+      "checkpoint": "记录了计划睡眠时长与实际睡眠时长两个数值",
+      "output": "睡眠时长记录"
+    },
+    {
+      "id": "morning",
+      "name": "醒后立刻检验",
+      "instruction": "起床后不看书，先写出昨晚那 3 条。统计写出了几条，与睡前正确率对比。",
+      "duration_min": 5,
+      "checkpoint": "记录了醒后正确条目数与睡前正确条目数，并给出两者差值",
+      "output": "保持率对比",
+      "fail_to": "evening"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我昨晚睡够了吗，还是熬了夜？",
+      "醒后想起来的，是不是睡前最难的那几条？"
+    ],
+    "success_criteria": [
+      "醒后回忆正确条目数不低于睡前",
+      "连续 3 天保持率不下降"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "material",
+      "hours"
+    ],
+    "output": [
+      "重点条目",
+      "睡眠时长记录",
+      "保持率对比"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：靠自述睡眠时长与晨间默写完成"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "lmp": "0.1",
+  "id": "chunking",
+  "name": "组块化",
+  "name_en": "Chunking",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "记忆巩固",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "把零散信息按意义打包成少数几个块，绕开短时记忆的容量上限。",
+  "when_to_use": [
+    "记号码/清单/长串步骤",
+    "信息碎且多",
+    "背单词或术语表"
+  ],
+  "when_not_to_use": [
+    "材料本身已成体系（直接建结构更快）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "material"
+    ],
+    "properties": {
+      "material": {
+        "type": "string",
+        "description": "需要压缩记忆的零散材料"
+      },
+      "chunk_size": {
+        "type": "integer",
+        "default": 4,
+        "description": "每个块内的条目上限"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "group",
+      "name": "按意义分组",
+      "instruction": "把材料按语义/用途/时间分成若干组，每组不超过 chunk_size 条。给每组起一个短标题。",
+      "duration_min": 8,
+      "checkpoint": "所有条目都归入了某一组，且每组都有标题、条数 ≤ chunk_size",
+      "output": "分组表"
+    },
+    {
+      "id": "label",
+      "name": "提炼组标签",
+      "instruction": "为每组造一个能提示全部内容的短标签（≤6 字），越有画面感越好。",
+      "duration_min": 5,
+      "checkpoint": "每组都有标签，且标签长度 ≤6 字",
+      "output": "标签清单"
+    },
+    {
+      "id": "recall",
+      "name": "只凭标签还原",
+      "instruction": "只看标签清单，逐组写出全部原始条目。写不出就留空，不要翻原文。",
+      "duration_min": 8,
+      "checkpoint": "产出了一份按标签组织的还原稿，且空项被显式保留",
+      "output": "还原稿"
+    },
+    {
+      "id": "diff",
+      "name": "核对并压缩",
+      "instruction": "对照原文统计每组漏了几条。把漏得多的组再拆小，直到每组还原都能全对。",
+      "duration_min": 7,
+      "checkpoint": "记录了每组漏条数；对漏条数 >0 的组给出了新的拆分方案",
+      "output": "压缩方案与漏条统计",
+      "fail_to": "group"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的分组依据是意义，还是仅仅因为凑在一起？",
+      "标签能不能真的提示出全部内容？"
+    ],
+    "success_criteria": [
+      "凭标签还原的完整率逐轮上升",
+      "所需组数稳定不再增加"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "material",
+      "chunk_size"
+    ],
+    "output": [
+      "分组表",
+      "标签清单",
+      "还原结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：对话中完成分组、贴标签与还原核对"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

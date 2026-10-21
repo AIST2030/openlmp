@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "think-aloud",
+  "name": "出声思维",
+  "name_en": "Think-Aloud Protocol",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "评测验证",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "做题或解决问题时把脑子里的每一步说出来（或写出来），让隐性思路变成可检查的对象。",
+  "when_to_use": [
+    "总是犯莫名其妙的错误",
+    "想找出思路断在哪",
+    "调试或解题过程复盘"
+  ],
+  "when_not_to_use": [
+    "熟练到已自动化的操作（说出来反而拖慢）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "task"
+    ],
+    "properties": {
+      "task": {
+        "type": "string",
+        "description": "要边做边说的具体任务"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "setup",
+      "name": "定任务并约定规则",
+      "instruction": "选定一个具体任务。规则：全程出声，不说「我在想」，只说想的内容；卡住也要说卡在哪。",
+      "duration_min": 3,
+      "checkpoint": "任务已写明；规则被完整转述一遍",
+      "output": "任务与规则"
+    },
+    {
+      "id": "perform",
+      "name": "边做边说",
+      "instruction": "开始执行任务，把每一步的想法说出来。让 Agent 同步记录，不打断不提示。",
+      "duration_min": 15,
+      "checkpoint": "产出了连续的思路记录；且记录期间无外部提示介入",
+      "output": "出声记录"
+    },
+    {
+      "id": "audit",
+      "name": "回看找断点",
+      "instruction": "对照记录，标出三类位置：跳步（省略了推理）、误判（基于错误前提）、回头（反复改主意）。",
+      "duration_min": 10,
+      "checkpoint": "三类位置各被标出至少 1 处；若某类没有则显式写「无」",
+      "output": "断点标注"
+    },
+    {
+      "id": "patch",
+      "name": "给断点加动作",
+      "instruction": "为每个断点写一条具体动作来补（如「跳步处必须写下中间结论」），下次执行时照做。",
+      "duration_min": 8,
+      "checkpoint": "每个断点都配了一条可执行动作；动作描述含具体行为",
+      "output": "动作清单",
+      "fail_to": "perform"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我说的是真实想法，还是事后编的理由？",
+      "断点是不是集中在同一类地方？"
+    ],
+    "success_criteria": [
+      "下一轮执行时断点数量下降",
+      "同类错误不再重复出现"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "task"
+    ],
+    "output": [
+      "出声记录",
+      "断点标注",
+      "动作清单"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：以文字逐条写出当时的想法"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

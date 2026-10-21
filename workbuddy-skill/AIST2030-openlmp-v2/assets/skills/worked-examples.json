@@ -1,0 +1,105 @@
+{
+  "lmp": "0.1",
+  "id": "worked-examples",
+  "name": "例题研习",
+  "name_en": "Worked Examples",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "理解构建",
+  "evidence": "high",
+  "evidence_refs": [
+    "Atkinson et al. 2000, Journal of Educational Psychology, 92(1) 43-53",
+    "Sweller 1988, Cognitive Science, 12(2) 257-285"
+  ],
+  "description": "先用完整解答的例题把思路看透，再自己做，避免新手在还没建立模式时就硬做题卡死。",
+  "when_to_use": [
+    "刚入门某个新题型",
+    "做题总是卡在第一步",
+    "自学新技能"
+  ],
+  "when_not_to_use": [
+    "已经会做但想提速（此时该直接练）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "要研习的题型"
+      },
+      "examples": {
+        "type": "integer",
+        "default": 3,
+        "description": "要看的例题道数"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "study",
+      "name": "逐行研读完整解答",
+      "instruction": "让 Agent 提供带完整步骤与理由的解答。读的时候每一步都暂停，先自问「它为什么这么做」再看答案。",
+      "duration_min": 15,
+      "checkpoint": "每道例题都被逐步读过；且每步都先自问再对照",
+      "output": "例题研读记录"
+    },
+    {
+      "id": "faded",
+      "name": "抽掉一步自己补",
+      "instruction": "重新看同一道例题，但让 Agent 隐去中间某一步，自己补上。补对了再隐去下一步。",
+      "duration_min": 12,
+      "checkpoint": "每道例题至少被隐去并成功补全 1 步；卡住的步骤已被记下",
+      "output": "补步结果"
+    },
+    {
+      "id": "solo",
+      "name": "不看解答独立做",
+      "instruction": "找一道同类型新题，不看任何解答独立完成，只在最后对答案。",
+      "duration_min": 12,
+      "checkpoint": "新题独立作答完成；且作答期间未查阅解答",
+      "output": "独立作答结果",
+      "fail_to": "study"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是看懂了思路，还是只是记住了这道题的答案？",
+      "从研读到独立做，中间缺的是哪一步？"
+    ],
+    "success_criteria": [
+      "同类型新题能独立做对",
+      "需要的提示次数逐题减少"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic",
+      "examples"
+    ],
+    "output": [
+      "研读记录",
+      "补步结果",
+      "独立作答结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：以对话形式逐步讲解与补步"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

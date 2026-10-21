@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "micro-habits",
+  "name": "微习惯",
+  "name_en": "Micro-Habits",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把目标缩到小得不可能失败，靠持续不断积累势能，先解决启动难的问题。",
+  "when_to_use": [
+    "总是无法开始",
+    "大目标让人望而却步",
+    "想先建立稳定出现频率"
+  ],
+  "when_not_to_use": [
+    "目标需要一次性高强度完成（微习惯只解决启动）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "habit"
+    ],
+    "properties": {
+      "habit": {
+        "type": "string",
+        "description": "想养成的习惯"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "shrink",
+      "name": "缩到不可能失败",
+      "duration_min": 4,
+      "instruction": "把想养成的习惯缩到一个极小、当天任何状态都能完成的量，如 1 分钟、1 页、1 个。",
+      "checkpoint": "习惯被改写为可在 1 分钟内完成的量；且该量在任何状态下可完成",
+      "output": "微习惯定义"
+    },
+    {
+      "id": "anchor",
+      "name": "挂到既有日程",
+      "duration_min": 4,
+      "instruction": "把这个微习惯挂到一个每天必然发生的事之后，如刷牙后，写成做了某件事就做微习惯。",
+      "checkpoint": "微习惯被挂到一个每日必发事件后；且写出了触发句式",
+      "output": "锚点"
+    },
+    {
+      "id": "streak",
+      "name": "记录连续天数",
+      "duration_min": 2,
+      "instruction": "每天完成后在日历记一格，重点是连续不中断，哪怕只做了最小量。",
+      "checkpoint": "每天完成均有记录；且记录以连续天数为目标",
+      "output": "连续记录"
+    },
+    {
+      "id": "scale",
+      "name": "稳定后再放大",
+      "duration_min": 3,
+      "instruction": "连续两周稳定后才把量上调一档；一旦中断连续记录，就退回上一档而不是放弃。",
+      "checkpoint": "上调发生在连续两周稳定后；且中断时退回上一档而非中止",
+      "output": "放量记录",
+      "fail_to": "anchor"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我把量缩到真的不会失败了吗，还是仍偏大？",
+      "中断时我是退档了，还是直接放弃了？"
+    ],
+    "success_criteria": [
+      "连续出现天数达到目标",
+      "放量后仍能维持不断档"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "habit"
+    ],
+    "output": [
+      "微习惯定义",
+      "连续记录"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸上画连续格记录"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

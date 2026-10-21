@@ -1,0 +1,95 @@
+{
+  "lmp": "0.1",
+  "id": "desirable-difficulty",
+  "name": "必要难度",
+  "name_en": "Desirable Difficulty",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "记忆巩固",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "刻意把学习搞得「稍微费劲一点」——慢一点、隔久一点、换个形式，当下更累但记得更牢。",
+  "when_to_use": [
+    "学得太顺反而记不住",
+    "一遍遍看觉得都会",
+    "想提升长期保持率"
+  ],
+  "when_not_to_use": [
+    "时间极紧的临时突击（此时需要的是效率不是保持率）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "material"
+    ],
+    "properties": {
+      "material": {
+        "type": "string",
+        "description": "当前觉得「已经会了」的材料"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "measure",
+      "name": "确认是真会还是看着眼熟",
+      "duration_min": 5,
+      "instruction": "不参考资料，把材料要点写出来，再逐条对照。把「以为会其实不会」的条目标出来。",
+      "checkpoint": "产出了一份在核对前完成的默写稿，且标出了不相符的条目",
+      "output": "对照差异表"
+    },
+    {
+      "id": "raise",
+      "name": "加一层难度",
+      "instruction": "从以下选一项施加：① 延迟 1 天再复习 ② 换成另一种题型表述 ③ 打乱顺序。每次只加一项。",
+      "duration_min": 8,
+      "checkpoint": "明确写明了施加的是①②③中的哪一项，且只施加了一项",
+      "output": "难度施加记录"
+    },
+    {
+      "id": "retest",
+      "name": "隔天复测",
+      "instruction": "至少间隔 24 小时后，不看资料重做一遍上次标出的条目，记录正确率。",
+      "duration_min": 8,
+      "checkpoint": "复测与首次默写间隔 ≥ 24 小时，且记录了正确条目数与总条目数",
+      "output": "复测正确率",
+      "fail_to": "raise"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我选的「更费劲」是真的费劲，还是只是更花时间？",
+      "隔天复测的正确率比之前高了吗？"
+    ],
+    "success_criteria": [
+      "隔天复测正确率高于当天即时复测",
+      "所需提示次数减少"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "material"
+    ],
+    "output": [
+      "对照差异表",
+      "复测正确率"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头默写与核对，不需要外部资料"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

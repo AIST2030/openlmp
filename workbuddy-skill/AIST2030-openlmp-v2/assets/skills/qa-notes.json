@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "qa-notes",
+  "name": "一问一答笔记",
+  "name_en": "Q&A Notes",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "知识管理",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把所有笔记一律记成问答对：左写问题、右写答案，让笔记天然可自测，复习时盖住答案即可检索练习。",
+  "when_to_use": [
+    "笔记是陈述句堆叠、没法自测",
+    "想把复习直接变成主动回忆",
+    "备考整理"
+  ],
+  "when_not_to_use": [
+    "记录操作流程或清单（用条目式更清晰）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "要整理成问答的主题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "extract",
+      "name": "抽取知识点",
+      "duration_min": 8,
+      "instruction": "把原始材料里的知识点逐条抽出来，每条应是可独立提问的一个点。",
+      "checkpoint": "抽出的知识点至少 8 条；且每条可独立成问",
+      "output": "知识点清单"
+    },
+    {
+      "id": "author",
+      "name": "改写成问答对",
+      "duration_min": 12,
+      "instruction": "把每个知识点改写成一个问题加一个答案，答案要完整到能单独看懂，问题要能考住自己。",
+      "checkpoint": "每条知识点都有配对的问与答；且问题具备可考性",
+      "output": "问答对笔记"
+    },
+    {
+      "id": "quiz",
+      "name": "盖答案自测",
+      "duration_min": 10,
+      "instruction": "盖住答案列，只看问题逐条作答，再对照答案标注对错。",
+      "checkpoint": "每条问题都被作答并对照；且对错被标注",
+      "output": "自测记录"
+    },
+    {
+      "id": "fix",
+      "name": "只补错题",
+      "duration_min": 8,
+      "instruction": "把答错的问答对改写得更易记或拆成更小的问题，答对的本轮不再占用时间。",
+      "checkpoint": "答错问答对已被改写或拆分；答对项本轮未重复占用时间",
+      "output": "修订后的问答对",
+      "fail_to": "quiz"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的问题是真能考住人，还是答案的复述？",
+      "盖答案时我是真在想，还是在默背答案句？"
+    ],
+    "success_criteria": [
+      "盖答案自测正确率逐步上升",
+      "问答对可脱离原材料独立使用"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic"
+    ],
+    "output": [
+      "问答对笔记",
+      "自测记录"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸上左问右答并盖答案自测"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

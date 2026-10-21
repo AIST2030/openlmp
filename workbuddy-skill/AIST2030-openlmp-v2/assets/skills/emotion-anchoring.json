@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "emotion-anchoring",
+  "name": "情绪联动记忆",
+  "name_en": "Emotion Anchoring",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "记忆巩固",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把要记的内容主动绑到一个带情绪的个人场景上，用情绪强度给记忆加挂钉，事后靠场景回捞内容。",
+  "when_to_use": [
+    "记枯燥的清单或术语",
+    "需要长期记住的少量关键信息",
+    "常规方法记不牢时"
+  ],
+  "when_not_to_use": [
+    "需精确复述的法律条文或数据（情绪联想易引入偏差）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "items"
+    ],
+    "properties": {
+      "items": {
+        "type": "string",
+        "description": "要记的内容清单"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "pick",
+      "name": "选锚点场景",
+      "duration_min": 5,
+      "instruction": "回忆几个自己情绪强烈的真实场景，如某次惊喜、尴尬、紧张，各起一个名字备用。",
+      "checkpoint": "列出了至少 3 个带情绪的锚点场景；且每个有名字",
+      "output": "锚点场景库"
+    },
+    {
+      "id": "bind",
+      "name": "逐条绑定",
+      "duration_min": 12,
+      "instruction": "把每条内容塞进一个锚点场景，写成一句这个场景里发生了什么、如何体现该内容。",
+      "checkpoint": "每条内容都绑定到一个场景；且写出了场景与内容的关联句",
+      "output": "绑定清单"
+    },
+    {
+      "id": "recall",
+      "name": "靠场景回捞",
+      "duration_min": 8,
+      "instruction": "只看锚点场景名，回捞对应内容；回捞不出的条目重绑到更强的场景。",
+      "checkpoint": "每个场景都完成了一次回捞；回捞失败项被重绑",
+      "output": "回捞记录"
+    },
+    {
+      "id": "decay",
+      "name": "隔时重测",
+      "duration_min": 6,
+      "instruction": "隔一两天重测，统计仍靠场景才想起的条目，逐步练习脱离场景直接回忆。",
+      "checkpoint": "完成了隔时重测；且记录了脱离场景可直接回忆的比例",
+      "output": "重测结果",
+      "fail_to": "bind"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我绑的场景是真有情绪，还是硬编的？",
+      "我是在靠场景回捞，还是直接记住了内容？"
+    ],
+    "success_criteria": [
+      "初期靠场景回捞成功率高于无锚点时",
+      "逐步提高脱离场景直接回忆的比例"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "items"
+    ],
+    "output": [
+      "绑定清单",
+      "回捞记录"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头编场景并复述"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

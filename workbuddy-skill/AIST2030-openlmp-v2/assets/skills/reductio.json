@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "reductio",
+  "name": "反证法",
+  "name_en": "Proof by Contradiction",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "分析方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "想证明一个命题，先假设它不成立并推出矛盾，从而反证原命题成立，用矛盾钉死结论。",
+  "when_to_use": [
+    "直接证明困难",
+    "想严格确立一个命题",
+    "数学或逻辑推理"
+  ],
+  "when_not_to_use": [
+    "命题可用例子直接证实时（不必绕道）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "proposition"
+    ],
+    "properties": {
+      "proposition": {
+        "type": "string",
+        "description": "要证明的命题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "negate",
+      "name": "写出反面假设",
+      "duration_min": 5,
+      "instruction": "把原命题改写为它的否定，作为待推出矛盾的假设。",
+      "checkpoint": "写出了原命题的明确否定",
+      "output": "反面假设"
+    },
+    {
+      "id": "derive",
+      "name": "从反面推导",
+      "duration_min": 15,
+      "instruction": "仅从反面假设和已知前提一步步推导，记录每一步的依据。",
+      "checkpoint": "推导每一步都有前提依据；且未使用原命题本身",
+      "output": "推导链"
+    },
+    {
+      "id": "contradict",
+      "name": "找出矛盾",
+      "duration_min": 6,
+      "instruction": "在推导中找出与已知事实或前提相冲突的一步，即为矛盾点。",
+      "checkpoint": "标出了矛盾点；且矛盾指向已知前提或事实",
+      "output": "矛盾点"
+    },
+    {
+      "id": "conclude",
+      "name": "反证结论",
+      "duration_min": 4,
+      "instruction": "因反面假设导致矛盾，故反面不成立、原命题得证，写下结论并说明矛盾所在。",
+      "checkpoint": "得出原命题成立的结论；且说明了矛盾所在",
+      "output": "反证结论",
+      "fail_to": "derive"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我推出的是真矛盾，还是只是不方便？",
+      "推导有没有偷偷用了原命题？"
+    ],
+    "success_criteria": [
+      "矛盾指向确定的前提或事实",
+      "结论仅由反证得出"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "proposition"
+    ],
+    "output": [
+      "推导链",
+      "反证结论"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面写出反面并逐步推导"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

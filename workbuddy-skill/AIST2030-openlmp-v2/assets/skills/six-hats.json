@@ -1,0 +1,113 @@
+{
+  "lmp": "0.1",
+  "id": "six-hats",
+  "name": "六顶思考帽",
+  "name_en": "Six Thinking Hats",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "思维方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把思考分成白、红、黑、黄、绿、蓝六种模式，每次只戴一顶帽、只做那一类思考，避免混乱对抗。",
+  "when_to_use": [
+    "讨论变成情绪和逻辑混战",
+    "想系统审视一个方案",
+    "团队/个人全面评估"
+  ],
+  "when_not_to_use": [
+    "只需快速表态的简单决定"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "要用六顶帽审视的议题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "white",
+      "name": "白帽列事实",
+      "duration_min": 6,
+      "instruction": "只列已知事实和数据，不加解释和判断；缺数据的标为待补。",
+      "checkpoint": "列出了事实清单；且每条为事实而非判断；缺数据处被标注",
+      "output": "事实清单"
+    },
+    {
+      "id": "red",
+      "name": "红帽说直觉",
+      "duration_min": 4,
+      "instruction": "只说出当下的直觉、喜好和顾虑，不必论证。",
+      "checkpoint": "记录了直觉与顾虑；且无需论证",
+      "output": "直觉记录"
+    },
+    {
+      "id": "black-yellow",
+      "name": "黑帽黄帽找利弊",
+      "duration_min": 10,
+      "instruction": "先戴黑帽只列风险与不足，再戴黄帽只列收益与亮点，两类分开不混。",
+      "checkpoint": "风险与收益被分成两列；且两类未混填",
+      "output": "利弊清单"
+    },
+    {
+      "id": "green",
+      "name": "绿帽出替代",
+      "duration_min": 8,
+      "instruction": "只提新想法、替代方案和变通，暂不评判可行性。",
+      "checkpoint": "提出了至少 3 个替代想法；且提出阶段未评判",
+      "output": "替代方案"
+    },
+    {
+      "id": "blue",
+      "name": "蓝帽做总结",
+      "duration_min": 6,
+      "instruction": "回顾各帽产出，给出结论、下一步和还需补哪些数据。",
+      "checkpoint": "产出结论与下一步；且列出待补数据",
+      "output": "总结与行动",
+      "fail_to": "white"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我戴黑帽时是不是又掺进了乐观？",
+      "六顶帽我都戴了，还是跳过了一顶？"
+    ],
+    "success_criteria": [
+      "各帽产出分开不混",
+      "结论覆盖利弊与替代"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic"
+    ],
+    "output": [
+      "事实清单",
+      "利弊清单",
+      "替代方案",
+      "总结"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：按六顶帽顺序口头过一遍并记录"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

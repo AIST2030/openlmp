@@ -1,0 +1,115 @@
+{
+  "lmp": "0.1",
+  "id": "pomodoro",
+  "name": "番茄工作法",
+  "name_en": "Pomodoro Technique",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "25 分钟全情投入一件事，铃响休息 5 分钟，四个番茄后长休息，用固定节律对抗拖延和分心。",
+  "when_to_use": [
+    "迟迟无法开始",
+    "任务庞大想不动",
+    "容易分心需要外力节律"
+  ],
+  "when_not_to_use": [
+    "需要长时间连续心流的深度创作（可拉长单钟）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "task"
+    ],
+    "properties": {
+      "task": {
+        "type": "string",
+        "description": "这一个番茄要做的唯一任务"
+      },
+      "work_min": {
+        "type": "integer",
+        "default": 25,
+        "description": "单钟工作分钟"
+      },
+      "short_break": {
+        "type": "integer",
+        "default": 5,
+        "description": "短休息分钟"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "commit",
+      "name": "选定单个任务",
+      "duration_min": 3,
+      "instruction": "开始前只选定这一个任务并写下来；期间冒出的其他事记到旁路清单，不当场切换。",
+      "checkpoint": "写下 1 个任务；且设立了旁路清单用于暂存临时念头",
+      "output": "任务与旁路清单"
+    },
+    {
+      "id": "work",
+      "name": "一个番茄只做它",
+      "duration_min": 25,
+      "instruction": "设定 work_min 倒计时，期间只做该任务；被打断就重开这一个番茄，不续命。",
+      "checkpoint": "完成了计划数量的番茄；且每个番茄内未切换任务，中断则重开",
+      "output": "番茄执行记录"
+    },
+    {
+      "id": "break",
+      "name": "到点强制休息",
+      "duration_min": 5,
+      "instruction": "每个番茄结束立刻停，休息 short_break 分钟，起身或远眺，不刷信息流。",
+      "checkpoint": "每个番茄后都有一次 short_break 时长的休息；且休息期间未刷信息流",
+      "output": "休息记录"
+    },
+    {
+      "id": "longbreak",
+      "name": "四钟长休并复盘",
+      "duration_min": 20,
+      "instruction": "每完成 4 个番茄进行一次 15-30 分钟长休息，并回顾这几个番茄的完成度与分心次数。",
+      "checkpoint": "每 4 个番茄后有 1 次 15-30 分钟长休；且记录了完成度与分心次数",
+      "output": "阶段复盘",
+      "fail_to": "work"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "铃响我是真停了，还是再看一分钟？",
+      "分心都发生在第几分钟，有没有规律？"
+    ],
+    "success_criteria": [
+      "按计划完成番茄数且中断多选择重开",
+      "分心次数逐轮下降"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "task",
+      "work_min",
+      "short_break"
+    ],
+    "output": [
+      "番茄执行记录",
+      "阶段复盘"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无计时器时：用手机秒表或 Agent 报时"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "scamper",
+  "name": "SCAMPER 创意法",
+  "name_en": "SCAMPER",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "思维方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "用替代、合并、调整、修改、他用、消除、重排七个提问 systematically 改造一个对象，逼出非常规方案。",
+  "when_to_use": [
+    "想改进一个产品或流程",
+    "创意枯竭",
+    "需要一批备选方案"
+  ],
+  "when_not_to_use": [
+    "对象已最优、只需执行时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "target"
+    ],
+    "properties": {
+      "target": {
+        "type": "string",
+        "description": "要改造的对象或方案"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "setup",
+      "name": "写下七问",
+      "duration_min": 5,
+      "instruction": "把七个提问各写成一句针对本对象的问题：能替代什么、能和谁合并、能如何调整等。",
+      "checkpoint": "七个维度各有一句针对本对象的问题",
+      "output": "七问清单"
+    },
+    {
+      "id": "generate",
+      "name": "逐问产方案",
+      "duration_min": 18,
+      "instruction": "逐问强制作答，每问至少产出一个改造想法，先不评判好坏。",
+      "checkpoint": "每问至少一个想法；且产生阶段未评判",
+      "output": "想法池"
+    },
+    {
+      "id": "screen",
+      "name": "筛选可行项",
+      "duration_min": 8,
+      "instruction": "给每个想法按可行性和潜在价值各打高低分，选出高分项。",
+      "checkpoint": "每个想法都有可行性与价值评分；且高分项被选出",
+      "output": "筛选结果"
+    },
+    {
+      "id": "prototype",
+      "name": "落地一个",
+      "duration_min": 10,
+      "instruction": "把最高分想法写成可执行的最小改造步骤，先做这一步。",
+      "checkpoint": "最高分想法被拆成最小改造步骤",
+      "output": "改造方案",
+      "fail_to": "generate"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是七问都认真过了，还是挑顺手的做？",
+      "筛选是凭标准还是凭喜好？"
+    ],
+    "success_criteria": [
+      "七问均有产出",
+      "至少一个改造方案被落地"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "target"
+    ],
+    "output": [
+      "想法池",
+      "改造方案"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：按七问口头产想法并记录"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

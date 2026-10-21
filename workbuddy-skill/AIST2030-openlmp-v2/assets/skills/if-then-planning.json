@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "if-then-planning",
+  "name": "执行意图",
+  "name_en": "Implementation Intentions",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "不说「我要多练」，而说「如果到了 X 时地，我就做 Y」，把决心绑到具体触发条件上。",
+  "when_to_use": [
+    "总说要做但总没做",
+    "计划写得好却执行不了",
+    "想养成固定习惯"
+  ],
+  "when_not_to_use": [
+    "需要临场判断的复杂任务（绑定过死会僵化）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "goal"
+    ],
+    "properties": {
+      "goal": {
+        "type": "string",
+        "description": "想实现的具体行为，如「每天复习 20 分钟」"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "specify",
+      "name": "把愿望写成动作",
+      "instruction": "把目标改成一个可观察的具体动作，含频率与时长。禁止出现「多」「尽量」这类词。",
+      "duration_min": 5,
+      "checkpoint": "目标被改写为含频率与时长的动作；且不含「多」「尽量」等模糊量词",
+      "output": "行为定义"
+    },
+    {
+      "id": "trigger",
+      "name": "绑一个触发条件",
+      "instruction": "指定一个一定会发生的时地作为触发器，写成「如果[时地]，我就[动作]」。",
+      "duration_min": 6,
+      "checkpoint": "存在一条「如果…我就…」句式；且触发条件为每日必然出现的时地",
+      "output": "执行意图句"
+    },
+    {
+      "id": "obstacle",
+      "name": "预设障碍与对策",
+      "instruction": "列出 3 个最可能让你不做的障碍，各写一条「如果出现 X，我就改用 Y」。",
+      "duration_min": 8,
+      "checkpoint": "列出 3 条障碍及对应对策；每条均为「如果出现…我就…」句式",
+      "output": "障碍对策表"
+    },
+    {
+      "id": "review",
+      "name": "一周后回顾触发率",
+      "instruction": "统计这一周触发器出现次数与实际执行次数，算出执行率。低于 60% 就换触发条件。",
+      "duration_min": 6,
+      "checkpoint": "记录了触发次数、执行次数与执行率；且给出是否更换触发条件的判定",
+      "output": "执行率报告",
+      "fail_to": "trigger"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的触发条件是「一定会发生」的吗？",
+      "没做到的时候，是忘了还是刻意回避？"
+    ],
+    "success_criteria": [
+      "周执行率 ≥ 60%",
+      "障碍对策至少用上一次"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "goal"
+    ],
+    "output": [
+      "行为定义",
+      "执行意图句",
+      "障碍对策表"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：对话引导写出 if-then 并口头复盘"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

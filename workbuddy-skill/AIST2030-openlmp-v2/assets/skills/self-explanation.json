@@ -1,0 +1,113 @@
+{
+  "lmp": "0.1",
+  "id": "self-explanation",
+  "name": "自我解释",
+  "name_en": "Self-Explanation",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "理解构建",
+  "evidence": "high",
+  "evidence_refs": [
+    "Chi et al. 1994, Cognitive Science, 18(3) 439-477",
+    "Atkinson et al. 2000, Journal of Educational Psychology, 92(1) 43-53"
+  ],
+  "description": "边看例题边对自己讲「这一步为什么这么做」，把每一步跟背后的原理对上号，而不是只记操作步骤。",
+  "when_to_use": [
+    "看例题看得懂、自己做就不会",
+    "想搞清步骤背后的道理",
+    "学数理和编程"
+  ],
+  "when_not_to_use": [
+    "纯流程性的操作步骤（照做即可，无需解释）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "example"
+    ],
+    "properties": {
+      "example": {
+        "type": "string",
+        "description": "要拆解的例题或材料"
+      },
+      "depth": {
+        "type": "integer",
+        "default": 3,
+        "description": "对每步追问的层数"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "segment",
+      "name": "切成步骤",
+      "duration_min": 5,
+      "instruction": "把例题按动作切成一个个步骤，逐步编号。每步只含一个动作。",
+      "checkpoint": "步骤数 ≥ 3，且每步只描述了一个动作",
+      "output": "步骤编号表"
+    },
+    {
+      "id": "explain",
+      "name": "给每步找理由",
+      "instruction": "对每个步骤，写出它依据的是哪条规则、为什么在这里用。写不出就标「待补」。",
+      "duration_min": 12,
+      "checkpoint": "每步都配了一句依据说明，或一条「待补」标记；待补项已列出",
+      "output": "逐步依据表"
+    },
+    {
+      "id": "generalize",
+      "name": "抽成通用句式",
+      "instruction": "把依据抽成一句可复用的条件句：「当……时，就……」。至少写出 2 句。",
+      "duration_min": 8,
+      "checkpoint": "产出了 ≥2 条含「当……时，就……」结构的条件句",
+      "output": "条件句清单"
+    },
+    {
+      "id": "verify",
+      "name": "换题验证",
+      "instruction": "做一道没见过的新题，全程只用上面的条件句判断。做错就回到「给每步找理由」补缺口。",
+      "duration_min": 12,
+      "checkpoint": "新题作答完成；若出错，明确指出了缺口对应哪一步",
+      "output": "验证结果",
+      "fail_to": "explain"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我讲的是「为什么这么做」，还是在复述「做了什么」？",
+      "换一道新题我还能说出依据吗？"
+    ],
+    "success_criteria": [
+      "新题能独立做对并说出每步依据",
+      "条件句在新场景仍适用"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "example",
+      "depth"
+    ],
+    "output": [
+      "步骤表",
+      "依据表",
+      "条件句清单"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：对话式逐步口述解释"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

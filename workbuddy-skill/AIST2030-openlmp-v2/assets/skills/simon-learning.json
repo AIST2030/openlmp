@@ -1,0 +1,118 @@
+{
+  "lmp": "0.1",
+  "id": "simon-learning",
+  "name": "西蒙学习法",
+  "name_en": "Simon Learning Method",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "技能习得",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "一次只锁定一个目标，连续数月每天投入整块时间深耕，用单点饱和攻击代替四处浅尝。",
+  "when_to_use": [
+    "想在一个领域达到可用水平",
+    "总是同时开好几个坑都半途而废",
+    "有整块时间能长期投入"
+  ],
+  "when_not_to_use": [
+    "只有几天零碎时间",
+    "目标本身还没选对"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "goal"
+    ],
+    "properties": {
+      "goal": {
+        "type": "string",
+        "description": "唯一要攻下的目标，写成「能做到X」"
+      },
+      "daily_min": {
+        "type": "integer",
+        "default": 240,
+        "description": "每天深耕的分钟数"
+      },
+      "months": {
+        "type": "integer",
+        "default": 6,
+        "description": "持续月数"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "pick",
+      "name": "锁定唯一目标",
+      "duration_min": 6,
+      "instruction": "写下这一个要攻下的目标，写成「能做到X」而非「学完X」，并把同期其他学习计划显式列出后删除，只保留这一个。",
+      "checkpoint": "写下 1 个以「能做到X」表述的目标；且同期其他学习计划被列出并删除",
+      "output": "唯一目标陈述"
+    },
+    {
+      "id": "slice",
+      "name": "切成可验收的子能力",
+      "duration_min": 10,
+      "instruction": "把目标拆成 4-6 项按顺序习得的子能力，每项写一条「做到什么算会」的可核对描述。",
+      "checkpoint": "子能力 4-6 项；且每项都有一条可核对的达标描述",
+      "output": "子能力清单"
+    },
+    {
+      "id": "daily",
+      "name": "每天整块投入",
+      "duration_min": 240,
+      "instruction": "每天在固定时段投入 daily_min 分钟，只练当前子能力；做完在日志记一行日期、内容、卡点。",
+      "checkpoint": "连续记录天数 = 计划天数；且每天日志含日期、内容、卡点三要素",
+      "output": "每日深耕日志"
+    },
+    {
+      "id": "gate",
+      "name": "逐项过关",
+      "duration_min": 20,
+      "instruction": "每项子能力用一条实作或真题验收，达标才进下一项；未达标就地重练，不跳过。",
+      "checkpoint": "每项子能力都有一次验收结果记录；未达标项被重练而非跳过",
+      "output": "过关记录",
+      "fail_to": "daily"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "这一小时我真的只砸在这一个目标上吗？",
+      "过关是凭感觉，还是凭那条可核对的达标描述？"
+    ],
+    "success_criteria": [
+      "按计划天数完成深耕，无连续 2 天中断",
+      "全部子能力通过验收"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "goal",
+      "daily_min",
+      "months"
+    ],
+    "output": [
+      "唯一目标",
+      "子能力清单",
+      "深耕日志",
+      "过关记录"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：用纸质日志记录每日投入与验收"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

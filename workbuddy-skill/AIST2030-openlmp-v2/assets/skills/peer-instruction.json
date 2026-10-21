@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "peer-instruction",
+  "name": "同伴教学法",
+  "name_en": "Peer Instruction",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "协作学习",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "先抛一个概念题让大家各自投票，再与同伴讨论理由后二次投票，用观点碰撞把误解暴露并修正。",
+  "when_to_use": [
+    "小组课的难点概念",
+    "自己拿不准的理解",
+    "想借他人视角发现盲区"
+  ],
+  "when_not_to_use": [
+    "无同伴可讨论时（可用 Agent 模拟反方）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "concept"
+    ],
+    "properties": {
+      "concept": {
+        "type": "string",
+        "description": "要通过同伴教学攻克的概念"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "pose",
+      "name": "出一道概念题",
+      "duration_min": 8,
+      "instruction": "针对该概念出一道有迷惑选项的概念题，选项覆盖常见误解，先不给答案。",
+      "checkpoint": "题目已出且含迷惑选项；且覆盖至少 1 个常见误解",
+      "output": "概念题"
+    },
+    {
+      "id": "vote1",
+      "name": "各自独立投票",
+      "duration_min": 4,
+      "instruction": "每人先独立作答并记下所选与一句理由，此时不得讨论。",
+      "checkpoint": "每人都有独立投票记录及理由；且投票期间无讨论",
+      "output": "首轮投票"
+    },
+    {
+      "id": "discuss",
+      "name": "结对说服",
+      "duration_min": 10,
+      "instruction": "与同伴就不同选择讨论，各自陈述理由说服对方，记录被说服或坚持的原因。",
+      "checkpoint": "每人记录了讨论后是否改变选择及原因",
+      "output": "讨论记录"
+    },
+    {
+      "id": "vote2",
+      "name": "二次投票并揭晓",
+      "duration_min": 8,
+      "instruction": "再次独立投票，然后公布答案与解析，重点讲正确项为何对、错误项错在哪。",
+      "checkpoint": "完成二轮投票；且解析覆盖正确项与各错误项的错因",
+      "output": "二轮投票与解析",
+      "fail_to": "pose"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "首轮我是不是凭感觉选的？",
+      "被说服是因为想清楚了，还是碍于情面？"
+    ],
+    "success_criteria": [
+      "二轮正确率高于首轮",
+      "能说出每个错误选项错在哪"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "concept"
+    ],
+    "output": [
+      "概念题",
+      "两轮投票",
+      "解析"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "单人时：让 Agent 扮演持不同观点的同学进行辩论"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

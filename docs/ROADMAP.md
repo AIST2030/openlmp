@@ -32,7 +32,7 @@ OpenLMP/
 ├── schema/
 │   ├── skill-0.1.json            Skill JSON Schema
 │   └── learner-state-0.1.json    本地状态 Schema
-├── skills/                       10 个核心方法（全部 CC0）
+├── skills/                       107 个学习方法（全部 CC0，另含 _template 贡献者样板）
 │   ├── _template.json            贡献者样板
 │   ├── feynman.json              费曼学习法
 │   ├── active-recall.json        主动回忆练习
@@ -44,6 +44,7 @@ OpenLMP/
 │   ├── concept-map.json          概念图构建
 │   ├── learning-journal.json     学习日志与错因归因
 │   └── transfer-question.json    迁移提问训练
+├── business/                     商业子库（15 个商业框架，独立注册表）
 ├── runtime/lmp.py                参考执行器（零依赖，~600 行）
 └── registry/registry.json        内容寻址清单（CID）
 ```
@@ -54,7 +55,7 @@ OpenLMP/
 python runtime/lmp.py selftest
 ```
 
-包含 7 类测试，其中 3 类是**反向测试**（故意注入违规，必须被拒绝）：
+包含 11 项自检，其中 3 项是**反向测试**（故意注入违规，必须被拒绝）：
 
 | 测试 | 注入的违规 | 期望结果 |
 |---|---|---|
@@ -87,13 +88,13 @@ python runtime/lmp.py run feynman --topic "间隔重复"     # 打印执行剧�
 
 | 项 | 内容 |
 |---|---|
-| 交付 | 40 个 Skill；路由规则格式（`knowledge-route-0.1.json`）；终端/桌面 SRS UI |
+| 交付 | 107 个 Skill（已达成，超出原定 40 的目标）；路由规则格式（`knowledge-route-0.1.json`）；终端/桌面 SRS UI |
 | **成功标准** | **有 10 个陌生人在没有任何指导的情况下，用它学完了一门课** |
 | 失败信号 | 只有我们自己和身边人在用 |
 
 具体动作：
-1. 补 30 个方法（拆解/批判性阅读/SQ4R/番茄/错题本/主题精读/卡片盒笔记/费曼+间隔组合…）
-2. 把 OpenLMP 打包成 WorkBuddy skill（现有 40+ skill 体系已有分发能力，直接复用）
+1. 已补方法至 107 个（含 SQ4R / 番茄 / 错题本 / 主题精读 / 卡片盒笔记 / 思维方法 7 个 / 分析方法 9 个；商业 15 个框架独立成子库）
+2. 已打包成 WorkBuddy skill（`workbuddy-skill/AIST2030-openlmp-v2`，107 方法/445 步）
 3. 在官网 AI 导航页加一个入口（已有 GEO 策略，新内容天然吃收录）
 4. 找 10 个真实学习者做 7 天陪跑，逐条记录他们卡在哪
 
@@ -124,7 +125,7 @@ python runtime/lmp.py run feynman --topic "间隔重复"     # 打印执行剧�
 |---|---|---|
 | **现有 skill 生态** | 打包成 WorkBuddy skill，我们已有 40+ skill 的分发通道 | 分发成本≈0 |
 | **高校教育技术老师** | 直接邮件邀请，附「一条命令可跑」的 demo | 老师最缺「不用折腾就能用」的东西 |
-| **考研/考公社群** | 发布「用这 10 个方法复习」的免费工具 | 有即时个人收益才会用 |
+| **考研/考公社群** | 发布「用这 10 个方法复习」的开源工具 | 有即时个人收益才会用 |
 | **GEO 内容** | 把每个 Skill 写成独立可索引网页 | AI 引擎会替我们带流量 |
 | **不靠谱的路径** | 空投 uAgents / 链上激励 / 基金会招募 | 劝退 99% 的人 |
 
@@ -154,8 +155,8 @@ python runtime/lmp.py run feynman --topic "间隔重复"     # 打印执行剧�
 
 ```
 □ 1. 找 3 个真实学习者，各自跑通一条 run 命令，记录他们的问题
-□ 2. 补 5 个 Skill（SQ4R / 批判性思维 / 卡片盒 / 错题本 / 间隔+费曼组合）
-□ 3. 打包成 WorkBuddy skill，接入现有分发
+□ 2.（已完成）核心方法已补至 107 个：SQ4R / 批判性思维 / 卡片盒 / 错题本 / 思维与分析方法
+□ 3. 已打包成 WorkBuddy skill（workbuddy-skill/AIST2030-openlmp-v2），接入现有分发
 □ 4. 在官网 AI 导航页挂入口（SEO/GEO 双收益）
 □ 5. 写一篇「为什么我砍掉了链上治理」的公开说明 —— 立场比技术更难被抄
 ```

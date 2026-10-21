@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "pareto",
+  "name": "帕累托分析",
+  "name_en": "Pareto Analysis",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "分析方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "找出贡献约 80% 结果的那 20% 关键因素，把精力压到关键少数上。",
+  "when_to_use": [
+    "资源有限想抓重点",
+    "一堆事项分不清主次",
+    "想提升投入产出比"
+  ],
+  "when_not_to_use": [
+    "各项都薄弱、无明显关键项时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "items"
+    ],
+    "properties": {
+      "items": {
+        "type": "string",
+        "description": "要分析的因素及其贡献数据"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "tally",
+      "name": "统计各因素贡献",
+      "duration_min": 10,
+      "instruction": "列出相关因素，给每个因素一个可衡量的贡献值，如次数、金额、时长，并排出序。",
+      "checkpoint": "每个因素都有贡献值；且已按贡献从高到低排序",
+      "output": "贡献排序表"
+    },
+    {
+      "id": "cumulative",
+      "name": "算累计占比",
+      "duration_min": 8,
+      "instruction": "从高到低累加各因素贡献，算出累计占总量的比例，标出累计到约 80% 的切点。",
+      "checkpoint": "给出了累计占比；且标出了累计约 80% 的切点",
+      "output": "累计占比"
+    },
+    {
+      "id": "identify",
+      "name": "锁定关键少数",
+      "duration_min": 5,
+      "instruction": "把累计约 80% 以上的因素列为关键少数，其余归为次要多数。",
+      "checkpoint": "关键少数被标出；且其余被归为次要多数",
+      "output": "关键少数清单"
+    },
+    {
+      "id": "act",
+      "name": "只攻关键少数",
+      "duration_min": 15,
+      "instruction": "本周期只对关键少数投入改进资源，次要多数维持不动，记录关键少数改进后的变化。",
+      "checkpoint": "仅关键少数获得改进资源；且记录了改进后变化",
+      "output": "改进结果",
+      "fail_to": "cumulative"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "贡献值是真数据还是估的？",
+      "关键少数我真的在攻，还是又摊平了？"
+    ],
+    "success_criteria": [
+      "关键少数贡献占比进一步提升",
+      "单位投入产出比上升"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "items"
+    ],
+    "output": [
+      "贡献排序表",
+      "关键少数清单",
+      "改进结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：列表排序并手算累计占比"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

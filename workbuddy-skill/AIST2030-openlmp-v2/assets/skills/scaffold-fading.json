@@ -1,0 +1,100 @@
+{
+  "lmp": "0.1",
+  "id": "scaffold-fading",
+  "name": "脚手架渐隐",
+  "name_en": "Scaffold Fading",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "技能习得",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "先给足提示和模板把事情做成，然后一轮轮抽掉辅助，最后不留痕迹也能独立做。",
+  "when_to_use": [
+    "学新东西总做不出来",
+    "带教/培训场景",
+    "想摆脱对模板的依赖"
+  ],
+  "when_not_to_use": [
+    "已经能独立完成、只是想提速"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "task"
+    ],
+    "properties": {
+      "task": {
+        "type": "string",
+        "description": "要掌握的具体任务"
+      },
+      "rounds": {
+        "type": "integer",
+        "default": 3,
+        "description": "渐隐轮数"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "full",
+      "name": "第一轮：全模板",
+      "instruction": "提供完整模板、步骤与示例，让学习者照着做一遍做出成品。",
+      "duration_min": 20,
+      "checkpoint": "学习者在全模板辅助下产出了 1 件成品",
+      "output": "首轮成品"
+    },
+    {
+      "id": "partial",
+      "name": "第二轮：抽掉细节",
+      "instruction": "保留步骤框架，隐去具体写法与提示，让学习者补齐空缺部分。",
+      "duration_min": 20,
+      "checkpoint": "学习者在仅保留框架的情况下补齐了空缺并产出成品",
+      "output": "二轮成品"
+    },
+    {
+      "id": "bare",
+      "name": "第三轮：只给目标",
+      "instruction": "只说明要做什么和验收标准，不给任何模板。让学习者独立完成。",
+      "duration_min": 20,
+      "checkpoint": "学习者无任何模板辅助下独立完成并通过验收标准",
+      "output": "三轮成品",
+      "fail_to": "partial"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我去掉的是「辅助」，还是把「要求」也一起去掉了？",
+      "不给模板时卡住的地方，是记忆问题还是判断问题？"
+    ],
+    "success_criteria": [
+      "无模板独立产出且达标",
+      "每轮辅助递减且成品质量不下降"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "task",
+      "rounds"
+    ],
+    "output": [
+      "各轮成品"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：对话式逐步撤除提示"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

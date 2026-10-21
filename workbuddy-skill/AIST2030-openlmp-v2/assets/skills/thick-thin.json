@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "thick-thin",
+  "name": "薄厚互返法",
+  "name_en": "Thick-then-Thin Reading",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "理解构建",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "第一遍把书读厚：大量批注、联想、质疑；第二遍再把书读薄：压缩成几张骨架卡，一厚一薄完成输入到内化。",
+  "when_to_use": [
+    "啃一本重要的书或长篇材料",
+    "读过就忘、留不下东西",
+    "想真正吃透一部经典"
+  ],
+  "when_not_to_use": [
+    "查资料找答案（只需检索，不必读厚）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "material"
+    ],
+    "properties": {
+      "material": {
+        "type": "string",
+        "description": "要精读的书或长篇材料"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "thick",
+      "name": "读厚——密集批注",
+      "duration_min": 40,
+      "instruction": "第一遍细读，在边缘大量批注：联想、质疑、举例、反驳。禁止只画线不写字。",
+      "checkpoint": "每章至少 3 处含文字的批注；且批注含联想、质疑、举例中的至少一类",
+      "output": "批注版材料"
+    },
+    {
+      "id": "harvest",
+      "name": "捞出批注里的真问题",
+      "duration_min": 10,
+      "instruction": "把所有批注过一遍，挑出其中真正的困惑与分歧，写成问题清单，丢掉纯感叹。",
+      "checkpoint": "问题清单至少 5 条；且每条为可回答的问题而非感叹",
+      "output": "问题清单"
+    },
+    {
+      "id": "thin",
+      "name": "读薄——压成骨架",
+      "duration_min": 20,
+      "instruction": "合上材料，仅凭记忆与问题清单，把全书压缩成 1 张骨架图加若干要点卡，每张卡一句话。",
+      "checkpoint": "产出 1 张骨架图；且要点卡每张仅一句话",
+      "output": "骨架图与要点卡"
+    },
+    {
+      "id": "reconcile",
+      "name": "对照补漏",
+      "duration_min": 10,
+      "instruction": "重新打开材料，对照骨架图补遗漏的重要结构，但只补结构级遗漏，不把细节倒回去。",
+      "checkpoint": "列出了结构级遗漏并已补入骨架；且未把大段细节倒回要点卡",
+      "output": "定稿骨架",
+      "fail_to": "thin"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我读薄时是靠记忆，还是又翻回了原文？",
+      "骨架图能不能支撑我给别人讲这本书？"
+    ],
+    "success_criteria": [
+      "能凭骨架图复述全书结构",
+      "要点卡覆盖了全部主要章节"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "material"
+    ],
+    "output": [
+      "骨架图",
+      "要点卡"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸质批注加手绘骨架"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

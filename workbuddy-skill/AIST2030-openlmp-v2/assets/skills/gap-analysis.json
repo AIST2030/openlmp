@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "gap-analysis",
+  "name": "差距分析",
+  "name_en": "Gap Analysis",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "分析方法",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "对比现状与目标的差距，定位差距出在哪，并按事实、解释、行动三步落地，避免只有愿望没有动作。",
+  "when_to_use": [
+    "知道要提升却不知差多少",
+    "想定位差距环节",
+    "把目标变成行动"
+  ],
+  "when_not_to_use": [
+    "现状数据缺失、无法量化差距时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "goal"
+    ],
+    "properties": {
+      "goal": {
+        "type": "string",
+        "description": "想达成改进的目标"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "measure",
+      "name": "量化现状与目标",
+      "duration_min": 6,
+      "instruction": "给目标和现状各定一个可衡量的数值，算出差距大小。",
+      "checkpoint": "目标与现状都有数值；且算出了差距",
+      "output": "差距数值"
+    },
+    {
+      "id": "locate",
+      "name": "定位差距环节",
+      "duration_min": 10,
+      "instruction": "把整体差距拆到具体环节，找出贡献最大的差距环节。",
+      "checkpoint": "差距被拆到环节级；且标出了最大差距环节",
+      "output": "差距分解"
+    },
+    {
+      "id": "explain",
+      "name": "解释原因",
+      "duration_min": 8,
+      "instruction": "对最大差距环节给出原因解释，并附上作为依据的事实，事实与解释分开写。",
+      "checkpoint": "给出了带事实依据的原因解释；且事实与解释分开",
+      "output": "原因解释"
+    },
+    {
+      "id": "act",
+      "name": "给行动",
+      "duration_min": 6,
+      "instruction": "针对原因写下下一步行动，每条对应一个差距环节，并带上完成时间。",
+      "checkpoint": "每个目标差距环节都有对应行动；且行动带时间",
+      "output": "行动计划",
+      "fail_to": "locate"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "差距是真量化的，还是拍脑袋？",
+      "行动真的对准最大差距环节了吗？"
+    ],
+    "success_criteria": [
+      "差距可量化到环节",
+      "行动实施后差距收窄"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "goal"
+    ],
+    "output": [
+      "差距分解",
+      "行动计划"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纸面算差距并按事实、解释、行动三步记录"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

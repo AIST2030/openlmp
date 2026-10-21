@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "thirty-second-recall",
+  "name": "30 秒速览",
+  "name_en": "Thirty-Second Recall",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "评测验证",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "对每个知识点限时 30 秒自测能否立刻想出要点，想不出的当场标记，用反应速度区分真会和眼熟。",
+  "when_to_use": [
+    "复习时快速筛查薄弱点",
+    "分不清眼熟和真会",
+    "考前过一遍知识点"
+  ],
+  "when_not_to_use": [
+    "第一次学的新知识（还没内容可回忆）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "scope"
+    ],
+    "properties": {
+      "scope": {
+        "type": "string",
+        "description": "要速览的知识范围"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "list",
+      "name": "列知识点",
+      "duration_min": 6,
+      "instruction": "把要测的范围拆成知识点清单，每条一个可独立回忆的点。",
+      "checkpoint": "清单条目至少 8 条；且每条为可独立回忆的单个知识点",
+      "output": "知识点清单"
+    },
+    {
+      "id": "rapid",
+      "name": "逐条 30 秒回想",
+      "duration_min": 10,
+      "instruction": "从第一条开始，限时 30 秒内写出或说出该点要点；时间到或想不出即停并标记，不拖延。",
+      "checkpoint": "每条都有 30 秒内的产出；且想不出的条目标记为未通过",
+      "output": "速览结果"
+    },
+    {
+      "id": "bucket",
+      "name": "分三堆",
+      "duration_min": 5,
+      "instruction": "把结果分为秒出、犹豫后出、想不出三堆，统计各堆数量。",
+      "checkpoint": "每条被归入三堆之一；且给出了三堆各自的数量",
+      "output": "分堆统计"
+    },
+    {
+      "id": "attack",
+      "name": "只攻后两堆",
+      "duration_min": 15,
+      "instruction": "对犹豫后出和想不出两堆重点复习并重测；秒出堆本轮不再占用时间。",
+      "checkpoint": "后两堆被重测；且秒出堆本轮未重复占用时间",
+      "output": "重测结果",
+      "fail_to": "rapid"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "秒出的是真会，还是刚好看到提示？",
+      "想不出的点，我是真补上了还是又看了一遍？"
+    ],
+    "success_criteria": [
+      "重测后想不出堆清零或显著减少",
+      "同一知识点二次能进入秒出堆"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "scope"
+    ],
+    "output": [
+      "速览结果",
+      "分堆统计",
+      "重测结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头逐条 30 秒自测"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

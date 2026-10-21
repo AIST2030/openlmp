@@ -1,0 +1,110 @@
+{
+  "lmp": "0.1",
+  "id": "teach-back-circle",
+  "name": "互讲圈",
+  "name_en": "Teach-Back Circle",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "协作学习",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "几个人轮流讲同一个知识点，每人讲完由其他人复述并挑错，靠同伴的压力把盲区挤出来。",
+  "when_to_use": [
+    "小组复习备考",
+    "团队知识对齐",
+    "自己讲容易自我欺骗时"
+  ],
+  "when_not_to_use": [
+    "独自学习或时间极紧"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "本轮要互讲的知识点"
+      },
+      "people": {
+        "type": "integer",
+        "default": 3,
+        "description": "参与人数"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "teach",
+      "name": "一人主讲",
+      "instruction": "指定一人主讲该知识点，其他人只听不打断，记录听不懂的地方。",
+      "duration_min": 12,
+      "checkpoint": "主讲完成；且听众记录了听不懂处",
+      "output": "讲解与疑问清单"
+    },
+    {
+      "id": "echo",
+      "name": "听众复述",
+      "instruction": "由一名听众不看任何资料复述刚才的内容，主讲不得提示。",
+      "duration_min": 6,
+      "checkpoint": "复述完成；且复述期间主讲未给提示",
+      "output": "复述记录"
+    },
+    {
+      "id": "challenge",
+      "name": "集体挑错",
+      "instruction": "所有人指出复述里遗漏或说错的地方，逐条记下。只记录事实偏差，不争论措辞。",
+      "duration_min": 8,
+      "checkpoint": "列出了遗漏/错误条目；且每条为可核对的事实偏差",
+      "output": "错题清单"
+    },
+    {
+      "id": "rotate",
+      "name": "换人重讲",
+      "instruction": "换下一个人主讲同一知识点，重点补上刚才的错题清单。讲完再复盘一次。",
+      "duration_min": 12,
+      "checkpoint": "换人后重讲覆盖了错题清单；且复盘给出了剩余问题",
+      "output": "二轮讲解与复盘",
+      "fail_to": "echo"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我挑出来的错是事实偏差，还是只是说法不同？",
+      "换人讲之后，第一轮的问题真的解决了吗？"
+    ],
+    "success_criteria": [
+      "二轮复述遗漏数少于首轮",
+      "同一盲区不再复现"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic",
+      "people"
+    ],
+    "output": [
+      "讲解记录",
+      "复述记录",
+      "错题清单"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "单人时：让 Agent 扮演听众，负责复述与挑错"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

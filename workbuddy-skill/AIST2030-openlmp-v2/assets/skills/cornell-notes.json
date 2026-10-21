@@ -1,0 +1,110 @@
+{
+  "lmp": "0.1",
+  "id": "cornell-notes",
+  "name": "康奈尔笔记",
+  "name_en": "Cornell Notes",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "知识管理",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "把纸（或文档）分成「主笔记 / 提示栏 / 摘要」三块，逼自己在记完当场提炼，而不是事后补救。",
+  "when_to_use": [
+    "上课或听讲座",
+    "会后整理纪要",
+    "读书做笔记"
+  ],
+  "when_not_to_use": [
+    "需要快速记录流水账的场合"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "本次笔记的主题"
+      },
+      "cues": {
+        "type": "integer",
+        "default": 5,
+        "description": "提示栏关键词数量上限"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "record",
+      "name": "主栏记要点",
+      "instruction": "在右侧主栏记录内容要点。每条一行，用自己的话，不抄原文长句。",
+      "duration_min": 15,
+      "checkpoint": "主栏条目 ≥ 5 条，且每条为单行的要点表述",
+      "output": "主栏笔记"
+    },
+    {
+      "id": "cue",
+      "name": "左栏提炼提示词",
+      "instruction": "在左侧提示栏写出能唤起主栏内容的关键词或问题，不超过 5 个。",
+      "duration_min": 6,
+      "checkpoint": "提示词数量 ≤ 上限，且每个提示都能对应到主栏的具体条目",
+      "output": "提示栏"
+    },
+    {
+      "id": "summary",
+      "name": "底部写摘要",
+      "instruction": "在底部用 2-3 句话概括这一页的核心。必须包含一条结论或行动项。",
+      "duration_min": 5,
+      "checkpoint": "摘要 2-3 句，且其中含明确的结论或待办项",
+      "output": "底部摘要"
+    },
+    {
+      "id": "recite",
+      "name": "盖住主栏复述",
+      "instruction": "只看左栏提示词，复述主栏内容。复述不出的条目标出，回去补关键词。",
+      "duration_min": 8,
+      "checkpoint": "遍历全部提示词一次；复述失败的条目被标出且已补充关键词",
+      "output": "复述结果",
+      "fail_to": "cue"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的提示词真能唤起内容，还是只是个标题？",
+      "摘要里有没有一句是可以马上执行的？"
+    ],
+    "success_criteria": [
+      "盖住主栏能复述 ≥80% 的要点",
+      "一周后看摘要仍能想起要点"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic",
+      "cues"
+    ],
+    "output": [
+      "主栏笔记",
+      "提示栏",
+      "底部摘要"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：纯对话完成三栏整理"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

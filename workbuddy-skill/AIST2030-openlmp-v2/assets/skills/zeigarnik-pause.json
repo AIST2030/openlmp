@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "zeigarnik-pause",
+  "name": "留一点学习法",
+  "name_en": "Zeigarnik Pause",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "计划执行",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "在状态正佳或情节紧要处主动停下，利用未完成更难忘的心理，让下次更容易重新进入并保持念想。",
+  "when_to_use": [
+    "长篇材料一次啃不完",
+    "想保持对一件事的持续惦记",
+    "容易开头难、难在续上"
+  ],
+  "when_not_to_use": [
+    "需要一口气打完的战斗或调试（强停会丢上下文）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "material"
+    ],
+    "properties": {
+      "material": {
+        "type": "string",
+        "description": "要分段推进的材料"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "setup",
+      "name": "规划停顿点",
+      "duration_min": 4,
+      "instruction": "开读前先标出几个预定停顿点，如每章末或悬念处，而不是读到哪算哪。",
+      "checkpoint": "标出了至少 2 个预定停顿点；且停顿点位于章节末或悬念处",
+      "output": "停顿点计划"
+    },
+    {
+      "id": "pause",
+      "name": "到点即停",
+      "duration_min": 3,
+      "instruction": "到达停顿点立刻停，哪怕还想继续；在停处写一句接下来最想弄清的 1 个问题。",
+      "checkpoint": "在每个停顿点停下；且每处都写下了一个接下来想弄清的问题",
+      "output": "带问题的停点"
+    },
+    {
+      "id": "resume",
+      "name": "先答题再继续",
+      "duration_min": 20,
+      "instruction": "下次回来先尝试回答上次留下的问题，再往下读；答不上就带着问题读。",
+      "checkpoint": "继续前先尝试回答了上次的问题；答不上者带着问题继续",
+      "output": "续读记录"
+    },
+    {
+      "id": "close",
+      "name": "收尾时清问题",
+      "duration_min": 10,
+      "instruction": "全部读完后，把过程中积累的待答问题逐条了结或明确搁置，避免只剩一堆悬案。",
+      "checkpoint": "待答问题逐条有了结果，已答或明确搁置；无未处理的悬留问题",
+      "output": "问题了结清单",
+      "fail_to": "resume"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我停的时候是真到点，还是其实已经读腻了？",
+      "留下的问题，下次真的推动我回来了吗？"
+    ],
+    "success_criteria": [
+      "停顿点问题多数在续读时被回答",
+      "同一材料重启次数少于无停顿时"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "material"
+    ],
+    "output": [
+      "停顿点计划",
+      "问题了结清单"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：书签加便签记录待答问题"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

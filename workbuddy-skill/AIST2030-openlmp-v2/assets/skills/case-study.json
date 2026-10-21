@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "case-study",
+  "name": "案例研习",
+  "name_en": "Case Study Method",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "理解构建",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "拆解真实案例：还原情境、决策与结果，提炼可迁移的规律，再用新案例验证规律是否成立。",
+  "when_to_use": [
+    "想把理论用起来",
+    "学管理、策略、诊断类知识",
+    "从他人成败中学教训"
+  ],
+  "when_not_to_use": [
+    "只有理论、无真实案例可依时"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "domain"
+    ],
+    "properties": {
+      "domain": {
+        "type": "string",
+        "description": "要研习的领域"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "collect",
+      "name": "选 3 个同域案例",
+      "duration_min": 15,
+      "instruction": "选 3 个同一领域、结果不同的真实案例，至少 1 个成功、1 个失败，各写清背景。",
+      "checkpoint": "案例数为 3；且成功与失败案例都至少 1 个，背景已写明",
+      "output": "案例包"
+    },
+    {
+      "id": "decompose",
+      "name": "按同框架拆解",
+      "duration_min": 25,
+      "instruction": "用同一套维度拆每个案例：情境、关键决策、依据、结果，逐项填写，不写评价。",
+      "checkpoint": "每个案例的四个维度都已填写；且内容为事实描述",
+      "output": "拆解表"
+    },
+    {
+      "id": "extract",
+      "name": "提炼可迁移规律",
+      "duration_min": 15,
+      "instruction": "对比三个案例，写下 2-3 条「在什么条件下、什么做法、导致什么结果」的规律，每条注明来自哪些案例。",
+      "checkpoint": "规律 2-3 条；且每条含条件、做法、结果三要素并标注案例来源",
+      "output": "规律清单"
+    },
+    {
+      "id": "transfer",
+      "name": "用新案例验证",
+      "duration_min": 12,
+      "instruction": "找 1 个没拆过的新案例，只用上面的规律预测其结果，再对照真实结果。",
+      "checkpoint": "用规律给出了预测；且对照了真实结果并记录是否命中",
+      "output": "验证结论",
+      "fail_to": "extract"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我提炼的是可迁移的规律，还是对单个案例的复述？",
+      "新案例预测命中了吗？没命中是规律错还是漏了条件？"
+    ],
+    "success_criteria": [
+      "规律能预测新案例结果",
+      "每条规律都能追溯到一个以上案例"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "domain"
+    ],
+    "output": [
+      "拆解表",
+      "规律清单",
+      "验证结论"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头拆解并记录规律"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

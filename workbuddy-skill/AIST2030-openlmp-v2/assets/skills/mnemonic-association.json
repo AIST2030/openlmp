@@ -1,0 +1,103 @@
+{
+  "lmp": "0.1",
+  "id": "mnemonic-association",
+  "name": "谐音联想法",
+  "name_en": "Mnemonic Association",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "记忆巩固",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "把要记的无意义材料用谐音、图像、故事强行挂到熟悉事物上，化抽象为具体、化无序为有序。",
+  "when_to_use": [
+    "记无意义材料，如术语、编号、词表",
+    "纯死记总忘",
+    "需要快速记一批条目"
+  ],
+  "when_not_to_use": [
+    "需要精确用法的复杂概念（联想只作钩子，会引入偏差）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "items"
+    ],
+    "properties": {
+      "items": {
+        "type": "string",
+        "description": "要记的条目清单"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "list",
+      "name": "列出待记条目",
+      "duration_min": 5,
+      "instruction": "把要记的条目列成清单，每条限定为一个最小记忆单元。",
+      "checkpoint": "清单条目至少 5 条；且每条为最小记忆单元",
+      "output": "待记清单"
+    },
+    {
+      "id": "hook",
+      "name": "逐条造联想",
+      "duration_min": 15,
+      "instruction": "为每条造一个谐音或形象联想，写成一个具体画面或小故事，越夸张越好。",
+      "checkpoint": "每条都配了一个具体画面或故事；且无空白联想的条目",
+      "output": "联想表"
+    },
+    {
+      "id": "encode",
+      "name": "复述联想",
+      "duration_min": 8,
+      "instruction": "盖住原条目，只看联想表复述对应内容，卡住的强化那个画面。",
+      "checkpoint": "每条都经过一次据联想复述；且卡住条目被强化",
+      "output": "复述结果"
+    },
+    {
+      "id": "decay",
+      "name": "隔时重测",
+      "duration_min": 8,
+      "instruction": "隔一段时间，如当晚和隔天，重测并统计仍靠联想才想起的条目，淘汰想不起来的联想并重造。",
+      "checkpoint": "完成了隔时重测；且想不起来的联想被重造",
+      "output": "重测与迭代",
+      "fail_to": "hook"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我的联想是真有画面，还是只是换个词？",
+      "隔天后，是联想在帮我还是我已直接记住了？"
+    ],
+    "success_criteria": [
+      "隔时重测保持率高于纯死记",
+      "多数条目最终脱离联想也能想起"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "items"
+    ],
+    "output": [
+      "联想表",
+      "重测结果"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：口头编故事并复述"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

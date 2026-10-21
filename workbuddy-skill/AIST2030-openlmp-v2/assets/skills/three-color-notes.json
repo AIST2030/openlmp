@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "three-color-notes",
+  "name": "三色笔记法",
+  "name_en": "Three-Color Notes",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "知识管理",
+  "evidence": "anecdotal",
+  "evidence_refs": [],
+  "description": "固定三种颜色各司其职：一色记要点、一色记疑点、一色记补充或行动，用颜色规则让笔记自带优先级。",
+  "when_to_use": [
+    "笔记混成一锅粥",
+    "分不清哪些是重点哪些是疑问",
+    "复习时想快速定位疑点"
+  ],
+  "when_not_to_use": [
+    "电子环境无法方便用色时（可改用三种标记符号）"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "topic"
+    ],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "本次笔记主题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "rules",
+      "name": "先定三色规则",
+      "duration_min": 4,
+      "instruction": "开记前先写下三色各自代表什么，分别对应要点、疑点、补充或行动，并固定下来不中途改。",
+      "checkpoint": "写明了三色各自的含义；且三种颜色互不重复指代",
+      "output": "配色规则"
+    },
+    {
+      "id": "record",
+      "name": "按色记录",
+      "duration_min": 20,
+      "instruction": "记录时严格按规则着色，要点、疑点、补充分别用对应颜色，一条一色不混用。",
+      "checkpoint": "每条记录都归属且仅归属一种颜色；且无未着色的裸条目",
+      "output": "三色笔记"
+    },
+    {
+      "id": "triage",
+      "name": "疑点优先处理",
+      "duration_min": 12,
+      "instruction": "复习时先只扫疑点色的条目，逐条解决或转成问题；要点色快速过，补充色仅在有行动时看。",
+      "checkpoint": "疑点条目被逐条处理；且每条给出了解决结果或转化为待答问题",
+      "output": "疑点处理结果"
+    },
+    {
+      "id": "distill",
+      "name": "提炼行动项",
+      "duration_min": 6,
+      "instruction": "从补充或行动色里挑出真正要做的，写成带截止时间的待办，其余归档。",
+      "checkpoint": "产出了含截止时间的待办；且非行动类补充被归档不占待办",
+      "output": "行动待办",
+      "fail_to": "rules"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我是先想清楚内容再上色，还是随手涂颜色？",
+      "疑点色里的问题，真的被解决了吗？"
+    ],
+    "success_criteria": [
+      "疑点全部有处理结果",
+      "行动待办均可执行且带期限"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "topic"
+    ],
+    "output": [
+      "三色笔记",
+      "疑点处理",
+      "行动待办"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无颜色时：用【要】【疑】【补】三种前缀符号替代"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}

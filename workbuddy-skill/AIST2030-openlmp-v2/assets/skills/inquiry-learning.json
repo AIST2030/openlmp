@@ -1,0 +1,104 @@
+{
+  "lmp": "0.1",
+  "id": "inquiry-learning",
+  "name": "探究式学习",
+  "name_en": "Inquiry-Based Learning",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [
+    "OpenLMP 公共领域贡献"
+  ],
+  "category": "理解构建",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "以一个真问题为起点，自己提假设、找证据、下结论并反思过程，把学结论变成重走发现之路。",
+  "when_to_use": [
+    "想真正吃透一个现象",
+    "培养独立解决问题的能力",
+    "研究入门"
+  ],
+  "when_not_to_use": [
+    "只需套用现成步骤的操作性任务"
+  ],
+  "params": {
+    "type": "object",
+    "required": [
+      "question"
+    ],
+    "properties": {
+      "question": {
+        "type": "string",
+        "description": "想探究的问题"
+      }
+    }
+  },
+  "requires": {
+    "tools": [],
+    "assets": []
+  },
+  "steps": [
+    {
+      "id": "frame",
+      "name": "把好奇变成可研究的问题",
+      "duration_min": 8,
+      "instruction": "把一个模糊的好奇写成一个具体、可查证的问题，界定范围和变量。",
+      "checkpoint": "问题被改写为含范围和变量的可查证问句",
+      "output": "研究问题"
+    },
+    {
+      "id": "hypothesize",
+      "name": "先提可证伪的假设",
+      "duration_min": 10,
+      "instruction": "写下 2 个相互竞争的假设，各附一条「如果看到 X 就支持我」的判据。",
+      "checkpoint": "假设数为 2；且每个假设都附了一条可判真伪的观察判据",
+      "output": "假设与判据"
+    },
+    {
+      "id": "gather",
+      "name": "按判据找证据",
+      "duration_min": 30,
+      "instruction": "针对每个假设收集证据，只记录支持或反对的事实，并标注来源。",
+      "checkpoint": "每条证据都标注了支持或反对哪个假设及其来源",
+      "output": "证据表"
+    },
+    {
+      "id": "conclude",
+      "name": "下结论并反思",
+      "duration_min": 12,
+      "instruction": "对照判据给出结论，说明哪个假设被支持或否决、依据是什么；再反思过程里哪一步最可能出错。",
+      "checkpoint": "给出了明确结论及对应证据；且写出了过程中最可能出错的环节",
+      "output": "结论与反思",
+      "fail_to": "hypothesize"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我先有了结论再去找证据，还是先有判据？",
+      "被否决的假设，我是据理否的还是舍不得丢？"
+    ],
+    "success_criteria": [
+      "结论可由所列证据推出",
+      "能指出本次探究最脆弱的环节"
+    ]
+  },
+  "agent_contract": {
+    "input": [
+      "question"
+    ],
+    "output": [
+      "假设与判据",
+      "证据表",
+      "结论"
+    ],
+    "side_effects": [
+      "仅写本地文件"
+    ],
+    "degrade_to": "无工具时：以对话推进假设、证据、结论"
+  },
+  "resources": [],
+  "metadata": {
+    "created_at": "2026-10-22",
+    "updated_at": "2026-10-22",
+    "contributors": []
+  }
+}
