@@ -6,10 +6,10 @@
 set -euo pipefail
 
 REPO="AIST2030/openlmp"
-DESC="让学习方法成为公共资产。OpenLMP 学习方法协议：50 个方法、214 步可判定验收线，纯 JSON + 零依赖 Python 执行器，CC0-1.0 公共领域，可商用。"
+DESC="让学习方法成为公共资产。OpenLMP 学习方法协议：主库 107 个方法 / 445 步可判定验收线 + 商业子库 15 个商业决策框架，纯 JSON + 零依赖 Python 执行器，CC0-1.0 公共领域，可商用。"
 HOMEPAGE="https://atomgit.com/gcw_QqOH7CjT/openlmp"
 
-TOPICS='["openlmp","lmp","learning-methods","learning-protocol","learning-science","study-skills","spaced-repetition","active-recall","feynman-technique","zettelkasten","deliberate-practice","interleaving","metacognition","self-explanation","retrieval-practice","knowledge-management","self-directed-learning","cc0","public-domain","zero-dependency"]'
+TOPICS='["openlmp","lmp","learning-methods","learning-protocol","learning-science","study-skills","spaced-repetition","active-recall","feynman-technique","zettelkasten","deliberate-practice","metacognition","retrieval-practice","knowledge-management","self-directed-learning","cc0","public-domain","zero-dependency","business-framework","thinking-analysis-methods"]'
 
 if [ -z "${GH_TOKEN:-}" ]; then
   echo "错误：请先设置 GH_TOKEN 环境变量。"
