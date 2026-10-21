@@ -1,0 +1,64 @@
+{
+  "lmp": "0.1",
+  "id": "dual-coding",
+  "name": "双重编码",
+  "name_en": "Dual Coding",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "记忆巩固",
+  "evidence": "medium",
+  "evidence_refs": ["Paivio 1986, Cognitive Psychology 18(1) 1-31"],
+  "description": "同一个概念用文字 + 图像/图示两套编码各讲一遍，让大脑有两条提取路径。",
+  "when_to_use": ["纯文字记忆效率低", "抽象概念（流程/结构/比例）难记"],
+  "when_not_to_use": ["纯技能动作（用 deliberate-practice）", "已经能轻松回忆的内容"],
+  "params": {
+    "type": "object",
+    "required": ["concept"],
+    "properties": { "concept": { "type": "string" }, "visual_style": { "type": "string", "default": "ASCII 图示或流程箭头" } }
+  },
+  "requires": { "tools": ["text"], "assets": [] },
+  "steps": [
+    {
+      "id": "verbal",
+      "name": "先写文字版",
+      "instruction": "用 100 字以内把这个概念说清楚，包含一个具体例子。",
+      "duration_min": 3,
+      "checkpoint": "产出了一段含具体例子的文字说明",
+      "output": "verbal"
+    },
+    {
+      "id": "visual",
+      "name": "再画图示版",
+      "instruction": "画一个能表达同样意思的图（流程箭头 / 结构图 / 示意图）。图必须能在不看文字的情况下单独传达核心。",
+      "duration_min": 5,
+      "checkpoint": "产出图示；盖住文字后，第三方能说出概念含义",
+      "output": "visual"
+    },
+    {
+      "id": "link",
+      "name": "写出连接关系",
+      "instruction": "用一句话说明「图里的哪个部分对应文字里的哪句话」，这是双编码真正起作用的地方。",
+      "duration_min": 2,
+      "checkpoint": "映射句覆盖图中所有关键元素，无「大概对应」",
+      "output": "mapping"
+    },
+    {
+      "id": "cross-recall",
+      "name": "交叉提取测试",
+      "instruction": "随机给一个元素（文字片段或图中某部分），要求用另一套编码说出来。",
+      "duration_min": 3,
+      "checkpoint": "双向提取均成功，≥4/5 项",
+      "output": "cross test"
+    }
+  ],
+  "evaluate": {
+    "self_check": ["我的图是不是只是把文字抄了一遍？", "两套编码是真的两条路径，还是同一句话说了两遍？"],
+    "success_criteria": ["一周后只看图能复原文字含义", "只看文字能复原图结构"]
+  },
+  "agent_contract": {
+    "input": ["concept", "visual_style"], "output": ["verbal", "visual", "mapping"], "side_effects": [], "degrade_to": "无法绘图时：强制输出结构化文本图（缩进树/编号序列），仍满足「不看文字可传达」的要求"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}

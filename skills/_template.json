@@ -1,0 +1,60 @@
+{
+  "lmp": "0.1",
+  "id": "_template",
+  "name": "方法名称",
+  "name_en": "Method Name",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": [],
+  "category": "理解构建",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "一句话：解决什么问题",
+  "when_to_use": ["触发场景 A", "触发场景 B"],
+  "when_not_to_use": ["不适用场景"],
+  "params": {
+    "type": "object",
+    "required": ["topic"],
+    "properties": {
+      "topic": { "type": "string", "description": "要处理的具体知识点" }
+    }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "step-1",
+      "name": "第一步",
+      "instruction": "Agent 要执行的具体动作。写清楚：读什么/写什么/用什么格式。不要写「用户自行决定」。",
+      "duration_min": 10,
+      "checkpoint": "客观可判定的完成标准。禁止「理解」「掌握」「熟悉」。",
+      "output": "产出物的结构描述"
+    },
+    {
+      "id": "step-2",
+      "name": "第二步",
+      "instruction": "Agent 要执行的具体动作。",
+      "duration_min": 5,
+      "checkpoint": "客观可判定的完成标准。",
+      "output": "产出物的结构描述",
+      "fail_to": "step-1"
+    }
+  ],
+  "evaluate": {
+    "self_check": ["必须逐条回答的自检问题"],
+    "success_criteria": ["判定本方法生效的客观标准"]
+  },
+  "agent_contract": {
+    "input": ["topic"],
+    "output": ["结构化学习产物"],
+    "side_effects": ["只写本地文件"],
+    "degrade_to": "工具缺失时：改为纯文本对话完成，不调用任何外部服务"
+  },
+  "resources": [
+    { "type": "url", "locator": "https://example.org/...", "license_hint": "CC-BY-SA-4.0" }
+  ],
+  "metadata": {
+    "created_at": "2026-10-21",
+    "updated_at": "2026-10-21",
+    "contributors": []
+  }
+}

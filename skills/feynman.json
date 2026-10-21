@@ -1,0 +1,86 @@
+{
+  "lmp": "0.1",
+  "id": "feynman",
+  "name": "费曼学习法",
+  "name_en": "Feynman Technique",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "理解构建",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "用「讲给外行听」的方式逼出知识盲区，把「读懂了」变成「真能讲清」。",
+  "when_to_use": ["读了很多遍但说不清", "要向别人讲明白一个概念", "准备考试，需要暴露盲区"],
+  "when_not_to_use": ["需要精确记忆公式和步骤（用 active-recall）", "刚开始接触全新领域，连基本术语都不熟"],
+  "params": {
+    "type": "object",
+    "required": ["topic"],
+    "properties": {
+      "topic": { "type": "string", "description": "要讲清的知识点" },
+      "audience": { "type": "string", "default": "完全外行的初中生", "description": "假装要讲给谁听" }
+    }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "pick",
+      "name": "选定知识点",
+      "instruction": "让用户明确一个具体知识点，写到纸上或让 Agent 记下。不要写「整个学科」。",
+      "duration_min": 3,
+      "checkpoint": "写出了一个可以用一句话说清边界的知识点，例如「间隔重复为什么有效」，而不是「学习方法论」",
+      "output": "topic 字符串"
+    },
+    {
+      "id": "explain",
+      "name": "假装讲给外行听",
+      "instruction": "让 Agent 以「给 #{audience} 解释 #{topic}」的口吻写出讲解，全程禁止使用专业术语；每出现一个术语，必须当场用日常语言解释一遍。",
+      "duration_min": 10,
+      "checkpoint": "产出 3 段以上连贯讲解；统计术语数，凡未当场解释的术语数 = 0",
+      "output": "markdown 讲解稿"
+    },
+    {
+      "id": "identify-gaps",
+      "name": "标出卡壳点",
+      "instruction": "逐段扫描讲解稿，把所有「这里我其实说不清」「只能靠背」「只能引用定义」的位置列成清单。不要修复，只标注。",
+      "duration_min": 5,
+      "checkpoint": "产出一份卡壳点清单；即使为空也必须显式写「无卡壳点」",
+      "output": "gap list"
+    },
+    {
+      "id": "repair",
+      "name": "只回头补一个最弱的洞",
+      "instruction": "从卡壳清单里挑影响最大的 1 个（不要全补），只针对这一个重新查资料，然后重写讲解稿对应段落。",
+      "duration_min": 10,
+      "checkpoint": "该段落术语数为 0，且讲解中不再出现「大概」「差不多」「应该是」",
+      "output": "修订后的讲解稿",
+      "fail_to": "explain"
+    },
+    {
+      "id": "compress",
+      "name": "压成一句话",
+      "instruction": "把最终讲解稿压缩成一句话，必须包含因果关系（不只是定义）。",
+      "duration_min": 3,
+      "checkpoint": "产出恰好 1 句话，包含「因为…所以…」或「…导致…」的因果结构，≤60 字",
+      "output": "一句话总结"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我能不能不看资料就把这个知识点讲给别人听懂？",
+      "我在讲解中有没有用到自己其实不理解的术语来撑场面？",
+      "我标出的卡壳点，今天真的补掉了吗？"
+    ],
+    "success_criteria": [
+      "3 天后仍能说出那句因果总结",
+      "被追问细节时不会崩"
+    ]
+  },
+  "agent_contract": {
+    "input": ["topic", "audience"],
+    "output": ["markdown 讲解稿", "gap list", "一句话总结"],
+    "side_effects": ["仅写本地文件"],
+    "degrade_to": "无工具时：纯对话完成全部五步，不检索任何资料"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}

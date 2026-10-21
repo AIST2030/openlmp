@@ -1,0 +1,149 @@
+{
+  "registry": "openlmp-skill-index",
+  "lmp": "0.1",
+  "generated_at": "2026-10-21",
+  "note": "本清单不是唯一真理。任何人都可本地维护并提供 diff；我们不设唯一官方 registry。",
+  "count": 10,
+  "skills": [
+    {
+      "id": "active-recall",
+      "name": "主动回忆练习",
+      "name_en": "Active Recall",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "记忆巩固",
+      "evidence": "high",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:e3pravg62vn86ej4106h1u2d8fih35bb",
+      "file": "skills/active-recall.json"
+    },
+    {
+      "id": "concept-map",
+      "name": "概念图构建",
+      "name_en": "Concept Mapping",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "知识管理",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:4l09f97rtcgnijvi6moho2plof76kvg3",
+      "file": "skills/concept-map.json"
+    },
+    {
+      "id": "deliberate-practice",
+      "name": "刻意练习",
+      "name_en": "Deliberate Practice",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "技能习得",
+      "evidence": "high",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:dtiqtjn202aksicquv620ea1epda6ilk",
+      "file": "skills/deliberate-practice.json"
+    },
+    {
+      "id": "dual-coding",
+      "name": "双重编码",
+      "name_en": "Dual Coding",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "记忆巩固",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:nltaq6v7ujas078325eepdmodqangkma",
+      "file": "skills/dual-coding.json"
+    },
+    {
+      "id": "elaborative-interrogation",
+      "name": "精细追问法",
+      "name_en": "Elaborative Interrogation",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "理解构建",
+      "evidence": "high",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:e4osmvefha6r96leg9umm21o41bg0tjr",
+      "file": "skills/elaborative-interrogation.json"
+    },
+    {
+      "id": "feynman",
+      "name": "费曼学习法",
+      "name_en": "Feynman Technique",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "理解构建",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:kiv2252di24io0lpaa5dmfphj614fo73",
+      "file": "skills/feynman.json"
+    },
+    {
+      "id": "learning-journal",
+      "name": "学习日志与错因归因",
+      "name_en": "Learning Journal",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "元认知",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:mfa1ln1q829aqidf7rabrhlda7ea65fs",
+      "file": "skills/learning-journal.json"
+    },
+    {
+      "id": "retrieval-spread",
+      "name": "高频短时提取",
+      "name_en": "High-Frequency Short Retrieval",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "记忆巩固",
+      "evidence": "medium",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:rr1mjmm2qoqs2bddt8lfpf7fjr6qobue",
+      "file": "skills/retrieval-spread.json"
+    },
+    {
+      "id": "spaced-repetition",
+      "name": "间隔重复调度",
+      "name_en": "Spaced Repetition (SM-2)",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "记忆巩固",
+      "evidence": "high",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:16enniqmjv6008e5rkdspokn8voto199",
+      "file": "skills/spaced-repetition.json"
+    },
+    {
+      "id": "transfer-question",
+      "name": "迁移提问训练",
+      "name_en": "Transfer of Training",
+      "version": "0.1.0",
+      "license": "CC0-1.0",
+      "category": "元认知",
+      "evidence": "high",
+      "authors": [
+        "OpenLMP 公共领域贡献"
+      ],
+      "cid": "lmp:6qbfjeaqa5i1c1g9r9s3j1q8hkq1bbh7",
+      "file": "skills/transfer-question.json"
+    }
+  ]
+}

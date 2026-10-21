@@ -1,0 +1,36 @@
+name: selftest
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      # Skill 全部符合 schema + 纯度规则
+      - name: Validate all skills
+        run: python runtime/lmp.py validate skills/
+      # 端到端自检（含 3 类反向测试 + SM-2 边界 + CID 稳定性）
+      - name: End-to-end selftest
+        run: python runtime/lmp.py selftest
+      # 确认无第三方依赖：运行在裸解释器上即为证明
+      - name: Confirm zero dependencies
+        run: |
+          python -c "
+          import sys, os, json, glob
+          std = set(sys.stdlib_module_names)
+          src = open('runtime/lmp.py', encoding='utf-8').read()
+          import re
+          mods = set(re.findall(r'^import (\\w+)', src, re.M)) | set(re.findall(r'^from (\\w+)', src, re.M))
+          ext = mods - std
+          assert not ext, '发现非标准库依赖: %s' % ext
+          print('OK 零第三方依赖，导入模块:', sorted(mods))
+          "

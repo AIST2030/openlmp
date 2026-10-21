@@ -1,0 +1,14 @@
+# 本地学习状态 —— 绝不入库（协议核心承诺：数据不出本地）
+learner-state.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# 编辑器
+.idea/
+.vscode/
+*.swp
+.DS_Store

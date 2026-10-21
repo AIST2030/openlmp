@@ -1,0 +1,73 @@
+{
+  "lmp": "0.1",
+  "id": "active-recall",
+  "name": "主动回忆练习",
+  "name_en": "Active Recall",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "记忆巩固",
+  "evidence": "high",
+  "evidence_refs": ["Dunlosky et al. 2013, Psychological Science in the Public Interest, 14(1) 4-58"],
+  "description": "关掉资料，凭记忆主动提取信息，把「看着眼熟」换成「真的想得出」。",
+  "when_to_use": ["感觉记住了但考不出来", "背了就忘", "考前冲刺"],
+  "when_not_to_use": ["第一次接触全新材料（此时还没东西可提取）"],
+  "params": {
+    "type": "object",
+    "required": ["material"],
+    "properties": {
+      "material": { "type": "string", "description": "要记住的材料（关键词表/步骤/公式/问答对）" },
+      "items": { "type": "integer", "default": 10, "description": "本轮条目数上限" }
+    }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "chunk",
+      "name": "切成可独立提取的条目",
+      "instruction": "把材料拆成互不依赖的最小单元（一个术语、一组步骤、一个问答对）。每条控制在 20 秒内能说完。",
+      "duration_min": 5,
+      "checkpoint": "条目数 ≥ 3，且每条都不需要看其他条目才能回答",
+      "output": "item list"
+    },
+    {
+      "id": "blank-sheet",
+      "name": "合上资料，空白输出",
+      "instruction": "严禁 Agent 先展示答案。让 Agent 或用户在不看原资料的情况下，把每条内容写出来。允许写不出，但不允许对照修改。",
+      "duration_min": 8,
+      "checkpoint": "产出了一份明确标记了「想不出」的完整回忆稿；回忆稿在核对前不可修改",
+      "output": "blank-sheet recall"
+    },
+    {
+      "id": "diff",
+      "name": "对照差异",
+      "instruction": "现在才打开原资料，逐条标：✓ 全对 / △ 漏了关键点 / ✗ 完全错。",
+      "duration_min": 5,
+      "checkpoint": "每一条都有 ✓/△/✗ 标记，且 △ 行的「漏了什么」被具体写出",
+      "output": "diff report"
+    },
+    {
+      "id": "score",
+      "name": "给分并写入调度",
+      "instruction": "为每条给 self_score（0=完全想不出，5=毫不费力）。把 ✗ 和 △ 的条目写入复习队列，next_due 由 SM-2 计算。",
+      "duration_min": 3,
+      "checkpoint": "全部条目都有 0-5 的分数，且所有 ≤4 分的条目都有 next_due 时间",
+      "output": "SRS entries"
+    }
+  ],
+  "evaluate": {
+    "self_check": [
+      "我刚才回忆的时候，是真的在看资料，还是只是「认得」？",
+      "标 ✗ 的条目里，有多少是我以为自己会但其实不会的？"
+    ],
+    "success_criteria": ["第二轮回忆时 ✗ 数量显著下降", "回忆速度（每条耗时）逐轮缩短"]
+  },
+  "agent_contract": {
+    "input": ["material", "items"],
+    "output": ["item list", "recall", "diff report", "srs state"],
+    "side_effects": ["写本地 learner-state.json"],
+    "degrade_to": "无外部工具时：以对话形式做，Agent 负责出题—等待—核对—评分"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}

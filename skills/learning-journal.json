@@ -1,0 +1,64 @@
+{
+  "lmp": "0.1",
+  "id": "learning-journal",
+  "name": "学习日志与错因归因",
+  "name_en": "Learning Journal",
+  "version": "0.1.0",
+  "license": "CC0-1.0",
+  "authors": ["OpenLMP 公共领域贡献"],
+  "category": "元认知",
+  "evidence": "medium",
+  "evidence_refs": [],
+  "description": "每天三行：我以为会了什么 / 实际不会什么 / 下次怎么改。把「感觉懂了」变成可追踪记录。",
+  "when_to_use": ["备考期", "自学超过一个月没进展", "想搞清自己到底卡在哪"],
+  "when_not_to_use": ["只是临时抱佛脚的突击（来不及）"],
+  "params": {
+    "type": "object",
+    "required": ["days"],
+    "properties": { "days": { "type": "integer", "default": 7, "description": "复盘周期天数" } }
+  },
+  "requires": { "tools": [], "assets": [] },
+  "steps": [
+    {
+      "id": "daily",
+      "name": "每日三行",
+      "instruction": "每天结束时写三行：①今天我以为我掌握了什么 ②实际做题/回忆时错在哪 ③明天第一件事改什么。要求非常短，不许写长篇。",
+      "duration_min": 5,
+      "checkpoint": "连续 days 天均有三行记录，缺任一天必须补写并标注「断更」",
+      "output": "journal"
+    },
+    {
+      "id": "classify",
+      "name": "错因分类",
+      "instruction": "把②中的错误归到四类之一：知识缺口 / 审题错 / 记忆提取失败 / 粗心失误。每条必须归到且仅归一类。",
+      "duration_min": 5,
+      "checkpoint": "每条错误有且仅有一个类别标签，且四类中至少被使用过两类（否则说明归类过粗）",
+      "output": "error taxonomy"
+    },
+    {
+      "id": "top-cause",
+      "name": "找本周主因",
+      "instruction": "统计各类占比，只针对占比最高的一类设计下周干预。若某类占比 <20% 仍为主因，检查是否是归类错误。",
+      "duration_min": 5,
+      "checkpoint": "产出一条针对主因的具体干预动作，且该动作可在一周内执行完",
+      "output": "intervention"
+    },
+    {
+      "id": "verify",
+      "name": "下周回检",
+      "instruction": "一周后回到步骤 1，检查干预是否有效。主因占比下降则固化；没下降则换类别或换干预方式。",
+      "duration_min": 5,
+      "checkpoint": "明确回答「干预有效/无效」，并据此决定保留或更换",
+      "output": "verdict"
+    }
+  ],
+  "evaluate": {
+    "self_check": ["这一周我错的主因换了吗，还是同一个错反复犯？", "我的记录是真写了还是只是列了计划？"],
+    "success_criteria": ["主因占比逐周下降", "断更天数 < 每周 1 天"]
+  },
+  "agent_contract": {
+    "input": ["days"], "output": ["journal", "error taxonomy", "intervention"], "side_effects": ["写本地日志文件"], "degrade_to": "无外部工具时：以对话形式维护，Agent 负责每日提醒与分类统计"
+  },
+  "resources": [],
+  "metadata": { "created_at": "2026-10-21", "updated_at": "2026-10-21", "contributors": [] }
+}
