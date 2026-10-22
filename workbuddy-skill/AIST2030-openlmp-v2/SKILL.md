@@ -4,8 +4,8 @@ name: AIST2030 OpenLMP 结构化学习方法库
 displayName: OpenLMP 结构化学习方法库
 slug: aist2030-openlmp
 module: 知识库(kb)
-version: 2.0.0
-internal_version: v2.0
+version: 2.0.1
+internal_version: v2.0.1
 owner: AIST2030
 author: AIST2030
 summary: 107 个可执行的学习方法（费曼、间隔重复、卡片盒、刻意练习、SQ3R、六顶思考帽、MECE、帕累托等），每步都有可判定的验收线，附零依赖执行器与结构化数据，可被 AI 直接调度。CC0 公共领域，零注册、零依赖、数据不出本机。
