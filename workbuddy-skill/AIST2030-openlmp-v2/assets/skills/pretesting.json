@@ -11,7 +11,7 @@
   "category": "元认知",
   "evidence": "high",
   "evidence_refs": [
-    "Pan 2015, Psychological Bulletin, 141(4) 785-806",
+    "Kornell, Hays & Bjork 2009, Journal of Experimental Psychology: Learning, Memory, and Cognition, 35(4) 989-998（DOI 10.1037/a0015729；预测试效应：先猜即使全错也能提升后续学习）",
     "Roediger & Karpicke 2006, Psychological Science, 17(3) 249-255"
   ],
   "description": "学之前先硬猜一遍，哪怕全错也行；猜错会让后面正式学时印象更深。",
@@ -107,7 +107,7 @@
   "resources": [],
   "metadata": {
     "created_at": "2026-10-21",
-    "updated_at": "2026-10-21",
+    "updated_at": "2026-10-22",
     "contributors": []
   }
 }

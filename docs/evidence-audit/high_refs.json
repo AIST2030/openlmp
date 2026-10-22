@@ -1,0 +1,134 @@
+{
+ "total": 15,
+ "records": [
+  {
+   "id": "active-recall",
+   "name": "主动回忆练习",
+   "category": "记忆巩固",
+   "evidence_refs": [
+    "Dunlosky et al. 2013, Psychological Science in the Public Interest, 14(1) 4-58"
+   ]
+  },
+  {
+   "id": "closed-book-writing",
+   "name": "合书写作",
+   "category": "评测验证",
+   "evidence_refs": [
+    "Kang, McDermott & Roediger 2007, Psychological Science 18(6) 409-414（测试效应：先提取再学比先学再提取效果更好）"
+   ]
+  },
+  {
+   "id": "critical-thinking",
+   "name": "批判性思维核查",
+   "category": "评测验证",
+   "evidence_refs": [
+    "Murphy et al. 2009, Journal of Educational Psychology 101(3) 740-764（批判性思维讨论的元分析，效应量 g=0.55）",
+    "Paul & Elder 2007, Critical Thinking: The Art of Socratic Questioning（论证要素识别）"
+   ]
+  },
+  {
+   "id": "deliberate-practice",
+   "name": "刻意练习",
+   "category": "技能习得",
+   "evidence_refs": [
+    "Ericsson et al. 1993, Psychological Review 100(3) 363-406"
+   ]
+  },
+  {
+   "id": "distributed-practice",
+   "name": "分散练习",
+   "category": "计划执行",
+   "evidence_refs": [
+    "Cepeda et al. 2006, Psychological Bulletin, 132(3) 354-380",
+    "Dunlosky et al. 2013, Psychological Science in the Public Interest, 14(1) 4-58"
+   ]
+  },
+  {
+   "id": "elaborative-interrogation",
+   "name": "精细追问法",
+   "category": "理解构建",
+   "evidence_refs": [
+    "Pressley et al. 1987/1989, Journal of Educational Psychology"
+   ]
+  },
+  {
+   "id": "error-notebook",
+   "name": "错题本溯源",
+   "category": "评测验证",
+   "evidence_refs": [
+    "Dunlosky et al. 2013, Psychological Science in the Public Interest 14(1) 4-58（提取练习优于重复阅读）",
+    "Bahrick et al. 1993, Psychological Science 4(3) 316-321（间隔提取优于间隔重复阅读）"
+   ]
+  },
+  {
+   "id": "interleaving",
+   "name": "交错练习",
+   "category": "记忆巩固",
+   "evidence_refs": [
+    "Taylor & Rohrer 2010, Journal of Educational Psychology, 102(3) 837-844",
+    "Dunlosky et al. 2013, Psychological Science in the Public Interest, 14(1) 4-58"
+   ]
+  },
+  {
+   "id": "practice-testing",
+   "name": "练习测验",
+   "category": "评测验证",
+   "evidence_refs": [
+    "Roediger & Karpicke 2006, Psychological Science, 17(3) 249-255",
+    "Dunlosky et al. 2013, Psychological Science in the Public Interest, 14(1) 4-58"
+   ]
+  },
+  {
+   "id": "pretesting",
+   "name": "预测试效应",
+   "category": "元认知",
+   "evidence_refs": [
+    "Pan 2015, Psychological Bulletin, 141(4) 785-806",
+    "Roediger & Karpicke 2006, Psychological Science, 17(3) 249-255"
+   ]
+  },
+  {
+   "id": "self-explanation",
+   "name": "自我解释",
+   "category": "理解构建",
+   "evidence_refs": [
+    "Chi et al. 1994, Cognitive Science, 18(3) 439-477",
+    "Atkinson et al. 2000, Journal of Educational Psychology, 92(1) 43-53"
+   ]
+  },
+  {
+   "id": "sleep-consolidation",
+   "name": "睡眠巩固",
+   "category": "记忆巩固",
+   "evidence_refs": [
+    "Walker & Stickgold 2004, Neuron, 44(1) 121-133",
+    "McClelland et al. 1995, Psychological Review, 102(3) 419-457"
+   ]
+  },
+  {
+   "id": "spaced-repetition",
+   "name": "间隔重复调度",
+   "category": "记忆巩固",
+   "evidence_refs": [
+    "Roediger & Karpicke 2006, Psychological Science 17(3) 249-255"
+   ]
+  },
+  {
+   "id": "transfer-question",
+   "name": "迁移提问训练",
+   "category": "元认知",
+   "evidence_refs": [
+    "Bromley 1990, Educational Researcher 19(4) 102-111"
+   ]
+  },
+  {
+   "id": "worked-examples",
+   "name": "例题研习",
+   "category": "理解构建",
+   "evidence_refs": [
+    "Atkinson et al. 2000, Journal of Educational Psychology, 92(1) 43-53",
+    "Sweller 1988, Cognitive Science, 12(2) 257-285"
+   ]
+  }
+ ]
+}

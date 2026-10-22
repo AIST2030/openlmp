@@ -19,6 +19,10 @@ jobs:
       # Skill 全部符合 schema + 纯度规则
       - name: Validate all skills
         run: python runtime/lmp.py validate skills/
+      # evidence:high 的引用必须命中「已核验白名单」——防张冠李戴 / 卷期错 / 查无来源
+      # （schema 校验看不到引用真假，这是补上那个死角）
+      - name: Citation lint (evidence:high refs)
+        run: python tools/citation_lint.py
       # 端到端自检（含 3 类反向测试 + SM-2 边界 + CID 稳定性）
       - name: End-to-end selftest
         run: python runtime/lmp.py selftest

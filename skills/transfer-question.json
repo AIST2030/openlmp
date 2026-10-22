@@ -11,7 +11,7 @@
   "category": "元认知",
   "evidence": "high",
   "evidence_refs": [
-    "Bromley 1990, Educational Researcher 19(4) 102-111"
+    "Gick & Holyoak 1983, Cognitive Psychology, 15(1) 1-38（DOI 10.1016/0010-0285(83)90002-6；类比迁移：归纳出通用图式才迁移得动，单靠一个例子不够）"
   ],
   "description": "每学一个概念，立刻问「这在什么别的场景能用」，把知识从课堂搬到真实问题。",
   "when_to_use": [
@@ -111,7 +111,7 @@
   "resources": [],
   "metadata": {
     "created_at": "2026-10-21",
-    "updated_at": "2026-10-21",
+    "updated_at": "2026-10-22",
     "contributors": []
   }
 }

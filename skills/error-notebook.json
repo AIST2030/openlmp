@@ -12,7 +12,7 @@
   "evidence": "high",
   "evidence_refs": [
     "Dunlosky et al. 2013, Psychological Science in the Public Interest 14(1) 4-58（提取练习优于重复阅读）",
-    "Bahrick et al. 1993, Psychological Science 4(3) 316-321（间隔提取优于间隔重复阅读）"
+    "Bahrick et al. 1993, Psychological Science 4(5) 316-321（DOI 10.1111/j.1467-9280.1993.tb00571.x；间隔提取优于间隔重复阅读）"
   ],
   "description": "错一道要会一类：每道错题必须归到错因类型并配同类变式题，考的是「迁移」不是「记住这道」。",
   "when_to_use": [
@@ -124,7 +124,7 @@
   "resources": [],
   "metadata": {
     "created_at": "2026-10-21",
-    "updated_at": "2026-10-21",
+    "updated_at": "2026-10-22",
     "contributors": []
   }
 }

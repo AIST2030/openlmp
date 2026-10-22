@@ -11,7 +11,8 @@
   "category": "理解构建",
   "evidence": "high",
   "evidence_refs": [
-    "Pressley et al. 1987/1989, Journal of Educational Psychology"
+    "Pressley, McDaniel, Turnure, Wood & Ahmad 1987, Journal of Experimental Psychology: Learning, Memory, and Cognition, 13(2) 291-300（精细追问经典实验：自生成解释优于现成解释）",
+    "Dunlosky et al. 2013, Psychological Science in the Public Interest, 14(1) 4-58（精细追问评为中等效用，对事实性知识有效）"
   ],
   "description": "对每个知识点连续追问「为什么」，把孤立事实挂到已有知识网络上。",
   "when_to_use": [
@@ -106,7 +107,7 @@
   "resources": [],
   "metadata": {
     "created_at": "2026-10-21",
-    "updated_at": "2026-10-21",
+    "updated_at": "2026-10-22",
     "contributors": []
   }
 }

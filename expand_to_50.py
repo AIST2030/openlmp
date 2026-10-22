@@ -22,7 +22,7 @@ REF_DUNLOSKY = "Dunlosky et al. 2013, Psychological Science in the Public Intere
 REF_ROEDIGER = "Roediger & Karpicke 2006, Psychological Science, 17(3) 249-255"
 REF_CEPEDA = "Cepeda et al. 2006, Psychological Bulletin, 132(3) 354-380"
 REF_CHI = "Chi et al. 1994, Cognitive Science, 18(3) 439-477"
-REF_ATKINSON = "Atkinson et al. 2000, Journal of Educational Psychology, 92(1) 43-53"
+REF_ATKINSON = "Atkinson, Derry, Renkl & Wortham 2000, Review of Educational Research, 70(2) 181-214"
 REF_PAAS = "Paas et al. 2003, Educational Psychologist, 38(1) 23-32"
 REF_RICKEY = "Rittle-Johnson & Star 2007, Journal of Educational Psychology, 99(3) 561-574"
 REF_SWELLER = "Sweller 1988, Cognitive Science, 12(2) 257-285"
@@ -34,7 +34,7 @@ REF_WALKER = "Walker & Stickgold 2004, Neuron, 44(1) 121-133"
 REF_KORNELL = "Kornell et al. 2009, Psychonomic Bulletin & Review, 16(5) 942-948"
 REF_TAYLOR = "Taylor & Rohrer 2010, Journal of Educational Psychology, 102(3) 837-844"
 REF_COLLINS = "Collins et al. 1989, 收录于 Knowing, Learning, and Instruction (Resnick 编), 453-494"
-REF_PAN = "Pan 2015, Psychological Bulletin, 141(4) 785-806"
+REF_PAN = "Kornell, Hays & Bjork 2009, Journal of Experimental Psychology: Learning, Memory, and Cognition, 35(4) 989-998"
 REF_FIORELLA = "Fiorella & Mayer 2016, Educational Psychology Review, 28(3) 339-368"
 
 NEW = [

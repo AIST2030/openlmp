@@ -12,7 +12,7 @@
   "evidence": "high",
   "evidence_refs": [
     "Chi et al. 1994, Cognitive Science, 18(3) 439-477",
-    "Atkinson et al. 2000, Journal of Educational Psychology, 92(1) 43-53"
+    "Atkinson, Derry, Renkl & Wortham 2000, Review of Educational Research, 70(2) 181-214（DOI 10.3102/00346543070002181；例题研习的教学设计原则）"
   ],
   "description": "边看例题边对自己讲「这一步为什么这么做」，把每一步跟背后的原理对上号，而不是只记操作步骤。",
   "when_to_use": [
@@ -107,7 +107,7 @@
   "resources": [],
   "metadata": {
     "created_at": "2026-10-21",
-    "updated_at": "2026-10-21",
+    "updated_at": "2026-10-22",
     "contributors": []
   }
 }

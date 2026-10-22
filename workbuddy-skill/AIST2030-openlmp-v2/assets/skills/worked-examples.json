@@ -11,7 +11,7 @@
   "category": "理解构建",
   "evidence": "high",
   "evidence_refs": [
-    "Atkinson et al. 2000, Journal of Educational Psychology, 92(1) 43-53",
+    "Atkinson, Derry, Renkl & Wortham 2000, Review of Educational Research, 70(2) 181-214（DOI 10.3102/00346543070002181；例题研习的教学设计原则）",
     "Sweller 1988, Cognitive Science, 12(2) 257-285"
   ],
   "description": "先用完整解答的例题把思路看透，再自己做，避免新手在还没建立模式时就硬做题卡死。",
@@ -99,7 +99,7 @@
   "resources": [],
   "metadata": {
     "created_at": "2026-10-21",
-    "updated_at": "2026-10-21",
+    "updated_at": "2026-10-22",
     "contributors": []
   }
 }
