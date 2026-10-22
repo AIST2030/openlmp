@@ -48,7 +48,8 @@
    "name": "精细追问法",
    "category": "理解构建",
    "evidence_refs": [
-    "Pressley et al. 1987/1989, Journal of Educational Psychology"
+    "Pressley, McDaniel, Turnure, Wood & Ahmad 1987, Journal of Experimental Psychology: Learning, Memory, and Cognition, 13(2) 291-300（精细追问经典实验：自生成解释优于现成解释）",
+    "Dunlosky et al. 2013, Psychological Science in the Public Interest, 14(1) 4-58（精细追问评为中等效用，对事实性知识有效）"
    ]
   },
   {
@@ -57,7 +58,7 @@
    "category": "评测验证",
    "evidence_refs": [
     "Dunlosky et al. 2013, Psychological Science in the Public Interest 14(1) 4-58（提取练习优于重复阅读）",
-    "Bahrick et al. 1993, Psychological Science 4(3) 316-321（间隔提取优于间隔重复阅读）"
+    "Bahrick et al. 1993, Psychological Science 4(5) 316-321（DOI 10.1111/j.1467-9280.1993.tb00571.x；间隔提取优于间隔重复阅读）"
    ]
   },
   {
@@ -83,7 +84,7 @@
    "name": "预测试效应",
    "category": "元认知",
    "evidence_refs": [
-    "Pan 2015, Psychological Bulletin, 141(4) 785-806",
+    "Kornell, Hays & Bjork 2009, Journal of Experimental Psychology: Learning, Memory, and Cognition, 35(4) 989-998（DOI 10.1037/a0015729；预测试效应：先猜即使全错也能提升后续学习）",
     "Roediger & Karpicke 2006, Psychological Science, 17(3) 249-255"
    ]
   },
@@ -93,7 +94,7 @@
    "category": "理解构建",
    "evidence_refs": [
     "Chi et al. 1994, Cognitive Science, 18(3) 439-477",
-    "Atkinson et al. 2000, Journal of Educational Psychology, 92(1) 43-53"
+    "Atkinson, Derry, Renkl & Wortham 2000, Review of Educational Research, 70(2) 181-214（DOI 10.3102/00346543070002181；例题研习的教学设计原则）"
    ]
   },
   {
@@ -118,7 +119,7 @@
    "name": "迁移提问训练",
    "category": "元认知",
    "evidence_refs": [
-    "Bromley 1990, Educational Researcher 19(4) 102-111"
+    "Gick & Holyoak 1983, Cognitive Psychology, 15(1) 1-38（DOI 10.1016/0010-0285(83)90002-6；类比迁移：归纳出通用图式才迁移得动，单靠一个例子不够）"
    ]
   },
   {
@@ -126,7 +127,7 @@
    "name": "例题研习",
    "category": "理解构建",
    "evidence_refs": [
-    "Atkinson et al. 2000, Journal of Educational Psychology, 92(1) 43-53",
+    "Atkinson, Derry, Renkl & Wortham 2000, Review of Educational Research, 70(2) 181-214（DOI 10.3102/00346543070002181；例题研习的教学设计原则）",
     "Sweller 1988, Cognitive Science, 12(2) 257-285"
    ]
   }
