@@ -4,7 +4,7 @@ name: AIST2030 OpenLMP 结构化学习方法库
 displayName: OpenLMP 结构化学习方法库
 slug: aist2030-openlmp
 module: 知识库(kb)
-version: 2.0.1
+version: 2.0.2
 internal_version: v2.0.1
 owner: AIST2030
 author: AIST2030
@@ -223,6 +223,7 @@ python assets/lmp.py selftest
 分层释出（完整见仓库根目录 `LICENSE`）：
 - **107 个方法定义与数据**：CC0-1.0 公共领域贡献——可自由使用、修改、商用、闭源分发，无署名义务
 - **协议规范与执行器**：木兰宽松许可证 v2（MulanPSL-2.0，OSI 批准）——同样可自由使用、修改、商用，唯一义务是分发时随附许可证副本并保留声明
+- 许可证全文随包分发：`references/licenses/MulanPSL-2.0.txt`、`references/licenses/CC0-1.0.txt`
 - **商标**：「OpenLMP」名称与标识不在两层许可证授权范围内
 
 源码与完整规范：https://github.com/AIST2030/openlmp
