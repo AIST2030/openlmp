@@ -61,4 +61,4 @@ skillhub install aist2030-openlmp
 > `--dir` 让同一个执行器既能服务主库也能服务子库：主库命令省略该参数即用 `skills/`。
 
 索引见 [`registry/registry.json`](registry/registry.json)（含每个框架的 CID）。
-全部以 **CC0-1.0** 释出，可自由商用。
+15 个框架定义全部以 **CC0-1.0** 释出，可自由商用；执行器等代码随主库为木兰宽松许可证 v2（见根目录 `LICENSE` 分层说明）。

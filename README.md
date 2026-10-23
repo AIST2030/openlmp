@@ -79,7 +79,12 @@ skillhub install aist2030-openlmp-business
 
 > 商业与管理框架（SWOT、波特五力、商业模式画布、OKR……）另入 **[商业子库 `business/`](business/README.md)**，与主库同协议、独立成库。
 
-全部以 **CC0-1.0** 释出到公共领域（见 `LICENSE`）。
+**分层释出，两层都是宽松许可**（见 [`LICENSE`](LICENSE)）：
+
+- **方法内容**（`skills/`、`business/`、`registry/`、`docs/`）→ **CC0-1.0 公共领域贡献**，零义务：可商用、可闭源、可不署名
+- **协议与代码**（`SPEC.md`、`schema/`、`runtime/`、`tools/`）→ **木兰宽松许可证 v2**（MulanPSL-2.0，OSI 批准），唯一义务是分发时保留许可证副本与声明
+
+「OpenLMP」商标不在两层许可证授权范围内（见 `LICENSE` 商标节）。
 
 ---
 
@@ -140,11 +145,14 @@ cp skills/_template.json skills/my-method.json
 python runtime/lmp.py validate skills/my-method.json
 ```
 
-评审只看三件事（见 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)）：
+流程与**贡献者声明**见 [CONTRIBUTING.md](CONTRIBUTING.md)（PR 模板 `.github/PULL_REQUEST_TEMPLATE.md`，必须逐项勾选）。
+
+评审只看四件事（见 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)）：
 
 1. checkpoint 是否客观可判定
 2. 是否违反纯度规则（无注册 / 无 Key / 无云端同步）
-3. evidence 标注是否诚实
+3. evidence 标注是否诚实（`high` 引用须过 `tools/citation_lint.py` 白名单）
+4. 与既有方法不重复
 
 你的贡献不会给你钱，也不会给你流量。
 它会给你一个永远跟着你的名字。
@@ -154,9 +162,12 @@ python runtime/lmp.py validate skills/my-method.json
 ## 目录结构
 
 ```
-SPEC.md                          协议规范 v0.1（含「不做什么」）
+SPEC.md                          协议规范 v0.1（含「不做什么」与分层许可）
 CODE_OF_CONDUCT.md               贡献者准则
-LICENSE                         CC0-1.0 官方全文
+CONTRIBUTING.md                  贡献流程 + 贡献者声明
+LICENSE                          分层许可说明（L1 木兰 v2 / L2 CC0-1.0）
+licenses/MulanPSL-2.0.txt        木兰宽松许可证 v2 全文（OSI 批准）
+licenses/CC0-1.0.txt             CC0-1.0 官方全文
 schema/skill-0.1.json            Skill JSON Schema
 schema/learner-state-0.1.json    本地状态 Schema
 skills/*.json                    方法库（107 个 + 样板）

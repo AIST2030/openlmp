@@ -9,7 +9,7 @@ internal_version: v2.0.1
 owner: AIST2030
 author: AIST2030
 summary: 107 个可执行的学习方法（费曼、间隔重复、卡片盒、刻意练习、SQ3R、六顶思考帽、MECE、帕累托等），每步都有可判定的验收线，附零依赖执行器与结构化数据，可被 AI 直接调度。CC0 公共领域，零注册、零依赖、数据不出本机。
-license: CC0-1.0
+license: MulanPSL-2.0
 capability: learning_method_library
 pricing:
   model: free
@@ -185,7 +185,7 @@ python assets/lmp.py selftest
 
 - **Skill**：`assets/schema/skill-0.1.json`
 - **学习状态**：`assets/schema/learner-state-0.1.json`
-- **协议规范**：OpenLMP Learning Method Protocol（LMP），CC0-1.0 公共领域贡献
+- **协议规范**：OpenLMP Learning Method Protocol（LMP），分层释出：方法内容 CC0-1.0 / 协议与执行器木兰宽松许可证 v2（MulanPSL-2.0）
 
 ## 案例
 
@@ -220,6 +220,9 @@ python assets/lmp.py selftest
 
 ## License
 
-CC0-1.0（公共领域贡献）。协议规范与 107 个方法定义可自由使用、修改、商用、闭源分发，无署名义务。
+分层释出（完整见仓库根目录 `LICENSE`）：
+- **107 个方法定义与数据**：CC0-1.0 公共领域贡献——可自由使用、修改、商用、闭源分发，无署名义务
+- **协议规范与执行器**：木兰宽松许可证 v2（MulanPSL-2.0，OSI 批准）——同样可自由使用、修改、商用，唯一义务是分发时随附许可证副本并保留声明
+- **商标**：「OpenLMP」名称与标识不在两层许可证授权范围内
 
 源码与完整规范：https://github.com/AIST2030/openlmp

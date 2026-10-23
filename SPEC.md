@@ -169,10 +169,13 @@ cp skills/_template.json skills/my-method.json
 python runtime/lmp.py validate skills/my-method.json
 python runtime/lmp.py selftest skills/my-method.json    # 用运行时实跑一遍
 
-# 3. 提交 PR。评审只看三件事：
+# 3. 提交 PR。提交前必须勾选 .github/PULL_REQUEST_TEMPLATE.md 的贡献者声明，
+#    确认：有权释出、不侵权、人身权维度已授予项目不可撤销的实施许可。
+#    评审只看四件事：
 #    - checkpoint 是否客观可判定
 #    - 是否违反纯度规则
-#    - evidence 标注是否诚实
+#    - evidence 标注是否诚实（high 引用须过 tools/citation_lint.py 白名单）
+#    - 与既有方法不重复
 ```
 
 没有注册、没有审批网关、没有商标、没有「官方认证」标记。
@@ -193,6 +196,21 @@ python runtime/lmp.py run feynman --topic "间隔重复的原理"
 ```
 
 三条命令都在 `runtime/lmp.py`，零第三方依赖，Python 3.8+。
+
+---
+
+## 11. 释出许可（分层，v0.1 起）
+
+协议与代码、方法内容分层释出，两层均为宽松许可：
+
+| 层 | 范围 | 许可证 | 义务 |
+|---|---|---|---|
+| L1 协议与代码 | 本 SPEC、`schema/`、`runtime/`、`tools/`、生成脚本 | 木兰宽松许可证 v2（MulanPSL-2.0，OSI 批准，SPDX: MulanPSL-2.0） | 分发时随附许可证副本并保留声明 |
+| L2 方法内容 | `skills/`、`business/`、`registry/`、`docs/` | CC0-1.0 公共领域贡献 | 无 |
+
+选木兰 v2 而非 CC0 承载代码层，是因为它带明示专利授予（第 2 条）与专利反诉终止条款，且以中文为优先文本——这是为「贡献者可能来自中国法域」准备的兜底。贡献者声明见 `CONTRIBUTING.md`，PR 必须逐项勾选；未勾选的 PR 不予评审。
+
+**商标不随任何一层授权**：「OpenLMP」名称与标识的商标权不在木兰 v2 第 3 条与 CC0 的授权范围内，注册与维权另行办理。
 
 ---
 

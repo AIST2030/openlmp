@@ -12,3 +12,6 @@ __pycache__/
 .vscode/
 *.swp
 .DS_Store
+# 外部研究报告（非仓库资产，不跟踪）
+OpenLMP深度研究研究报告.docx
+OpenLMP深度研究研究报告_全文.txt

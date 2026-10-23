@@ -32,7 +32,7 @@ OpenLMP/
 ├── schema/
 │   ├── skill-0.1.json            Skill JSON Schema
 │   └── learner-state-0.1.json    本地状态 Schema
-├── skills/                       107 个学习方法（全部 CC0，另含 _template 贡献者样板）
+├── skills/                       107 个学习方法（方法内容 CC0-1.0，另含 _template 贡献者样板）
 │   ├── _template.json            贡献者样板
 │   ├── feynman.json              费曼学习法
 │   ├── active-recall.json        主动回忆练习

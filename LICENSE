@@ -1,121 +1,62 @@
-Creative Commons Legal Code
+# OpenLMP 分层许可说明
 
-CC0 1.0 Universal
+本仓库采用「协议与代码 / 内容与数据」两层许可。两层都是宽松许可：均可自由使用、修改、分发、商用，均不收版税。选哪一层，看你拿的是代码还是内容。
 
-    CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
-    LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
-    ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
-    INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
-    REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
-    PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
-    THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
-    HEREUNDER.
+---
 
-Statement of Purpose
+## 第一层：协议规范与代码 —— 木兰宽松许可证 v2（MulanPSL-2.0）
 
-The laws of most jurisdictions throughout the world automatically confer
-exclusive Copyright and Related Rights (defined below) upon the creator
-and subsequent owner(s) (each and all, an "owner") of an original work of
-authorship and/or a database (each, a "Work").
+**适用范围**
 
-Certain owners wish to permanently relinquish those rights to a Work for
-the purpose of contributing to a commons of creative, cultural and
-scientific works ("Commons") that the public can reliably and without fear
-of later claims of infringement build upon, modify, incorporate in other
-works, reuse and redistribute as freely as possible in any form whatsoever
-and for any purposes, including without limitation commercial purposes.
-These owners may contribute to the Commons to promote the ideal of a free
-culture and the further production of creative, cultural and scientific
-works, or to gain reputation or greater distribution for their Work in
-part through the use and efforts of others.
+| 路径 | 内容 |
+|---|---|
+| `SPEC.md` | 协议规范（LMP v0.1） |
+| `schema/` | Skill / Learner-State JSON Schema |
+| `runtime/` | 参考执行器 `lmp.py` |
+| `tools/` | 构建、校验、发布、引用闸门工具 |
+| `expand_*.py` | 方法库生成脚本 |
 
-For these and/or other purposes and motivations, and without any
-expectation of additional consideration or compensation, the person
-associating CC0 with a Work (the "Affirmer"), to the extent that he or she
-is an owner of Copyright and Related Rights in the Work, voluntarily
-elects to apply CC0 to the Work and publicly distribute the Work under its
-terms, with knowledge of his or her Copyright and Related Rights in the
-Work and the meaning and intended legal effect of CC0 on those rights.
+**许可全文**：`licenses/MulanPSL-2.0.txt`
+（OSI 批准的开源许可证，2020-02-14 通过，SPDX 标识 `MulanPSL-2.0`）
 
-1. Copyright and Related Rights. A Work made available under CC0 may be
-protected by copyright and related or neighboring rights ("Copyright and
-Related Rights"). Copyright and Related Rights include, but are not
-limited to, the following:
+**为什么这层不用 CC0**：代码层需要版权声明与专利条款兜底。木兰 v2 第 1 条授予永久性、全球性、不可撤销的版权许可，第 2 条含明示专利授予与「专利反诉即终止」条款；分发时的唯一义务是向接收者提供许可证副本并保留声明。该许可证以中英文双语书写、中文优先，适配中国法语境。
 
-  i. the right to reproduce, adapt, distribute, perform, display,
-     communicate, and translate a Work;
- ii. moral rights retained by the original author(s) and/or performer(s);
-iii. publicity and privacy rights pertaining to a person's image or
-     likeness depicted in a Work;
- iv. rights protecting against unfair competition in regards to a Work,
-     subject to the limitations in paragraph 4(a), below;
-  v. rights protecting the extraction, dissemination, use and reuse of data
-     in a Work;
- vi. database rights (such as those arising under Directive 96/9/EC of the
-     European Parliament and of the Council of 11 March 1996 on the legal
-     protection of databases, and under any national implementation
-     thereof, including any amended or successor version of such
-     directive); and
-vii. other similar, equivalent or corresponding rights throughout the
-     world based on applicable law or treaty, and any national
-     implementations thereof.
+## 第二层：方法库与内容 —— CC0-1.0 公共领域贡献
 
-2. Waiver. To the greatest extent permitted by, but not in contravention
-of, applicable law, Affirmer hereby overtly, fully, permanently,
-irrevocably and unconditionally waives, abandons, and surrenders all of
-Affirmer's Copyright and Related Rights and associated claims and causes
-of action, whether now known or unknown (including existing as well as
-future claims and causes of action), in the Work (i) in all territories
-worldwide, (ii) for the maximum duration provided by applicable law or
-treaty (including future time extensions), (iii) in any current or future
-medium and for any number of copies, and (iv) for any purpose whatsoever,
-including without limitation commercial, advertising or promotional
-purposes (the "Waiver"). Affirmer makes the Waiver for the benefit of each
-member of the public at large and to the detriment of Affirmer's heirs and
-successors, fully intending that such Waiver shall not be subject to
-revocation, rescission, cancellation, termination, or any other legal or
-equitable action to disrupt the quiet enjoyment of the Work by the public
-as contemplated by Affirmer's express Statement of Purpose.
+**适用范围**
 
-3. Public License Fallback. Should any part of the Waiver for any reason
-be judged legally invalid or ineffective under applicable law, then the
-Waiver shall be preserved to the maximum extent permitted taking into
-account Affirmer's express Statement of Purpose. In addition, to the
-extent the Waiver is so judged Affirmer hereby grants to each affected
-person a royalty-free, non transferable, non sublicensable, non exclusive,
-irrevocable and unconditional license to exercise Affirmer's Copyright and
-Related Rights in the Work (i) in all territories worldwide, (ii) for the
-maximum duration provided by applicable law or treaty (including future
-time extensions), (iii) in any current or future medium and for any number
-of copies, and (iv) for any purpose whatsoever, including without
-limitation commercial, advertising or promotional purposes (the
-"License"). The License shall be deemed effective as of the date CC0 was
-applied by Affirmer to the Work. Should any part of the License for any
-reason be judged legally invalid or ineffective under applicable law, such
-partial invalidity or ineffectiveness shall not invalidate the remainder
-of the License, and in such case Affirmer hereby affirms that he or she
-will not (i) exercise any of his or her remaining Copyright and Related
-Rights in the Work or (ii) assert any associated claims and causes of
-action with respect to the Work, in either case contrary to Affirmer's
-express Statement of Purpose.
+| 路径 | 内容 |
+|---|---|
+| `skills/` | 107 个学习方法定义 |
+| `business/` | 商业子库（15 个商业决策框架） |
+| `registry/` | 内容寻址清单（CID） |
+| `docs/` | 全部文档 |
+| `README.md` `CONTRIBUTING.md` 等 | 全部 Markdown 文档 |
 
-4. Limitations and Disclaimers.
+**许可全文**：`licenses/CC0-1.0.txt`
 
- a. No trademark or patent rights held by Affirmer are waived, abandoned,
-    surrendered, licensed or otherwise affected by this document.
- b. Affirmer offers the Work as-is and makes no representations or
-    warranties of any kind concerning the Work, express, implied,
-    statutory or otherwise, including without limitation warranties of
-    title, merchantability, fitness for a particular purpose, non
-    infringement, or the absence of latent or other defects, accuracy, or
-    the present or absence of errors, whether or not discoverable, all to
-    the greatest extent permissible under applicable law.
- c. Affirmer disclaims responsibility for clearing rights of other persons
-    that may apply to the Work or any use thereof, including without
-    limitation any person's Copyright and Related Rights in the Work.
-    Further, Affirmer disclaims responsibility for obtaining any necessary
-    consents, permissions or other rights required for any use of the
-    Work.
- d. Affirmer understands and acknowledges that Creative Commons is not a
-    party to this document and has no duty or obligation with respect to
-    this CC0 or use of the Work.
+**这层零义务**：可商用、可闭源分发、可不署名。需明示一点：中国《著作权法》第二十条规定的署名权、修改权、保护作品完整权依法不可放弃，CC0 放弃的是财产权与合同权利——这是法域现实，不是许可缺陷。
+
+---
+
+## 贡献者授权（提交 PR 即生效）
+
+向本仓库提交贡献，即表示你确认以下全部条款（完整版见 `CONTRIBUTING.md`，PR 模板见 `.github/PULL_REQUEST_TEMPLATE.md`）：
+
+1. **权利保证**：你对贡献内容拥有合法权益，有权按上述分层许可向公众释出；贡献不侵犯任何第三方的专利、商标、著作权、商业秘密、肖像权或其他权利。
+2. **人身权维度的不可撤销授权**：你保留依法不可放弃的人身权利（署名权等），同时授予 OpenLMP 项目及其维护者一项永久的、不可撤销的、全球范围内的、免费的非独占许可，以实施、复制、修改、分发、再许可你的贡献——用于在 CC0 无法覆盖人身权的法域内提供合同兜底。
+3. **许可落层**：方法定义与数据入 CC0-1.0，协议规范与代码入木兰宽松许可证 v2。
+
+> 历史贡献说明：2026 年 10 月 23 日之前以 CC0-1.0 提交的贡献，仍可按 CC0-1.0 使用；CC0 无保留义务，后续并入木兰 v2 许可的文件不受影响。
+
+## 商标
+
+「OpenLMP」名称、标识与品牌**不受本仓库任何许可证覆盖**（木兰 v2 第 3 条「无商标许可」；CC0 同样不授予商标权）。使用本仓库的代码与内容，不等于获得 OpenLMP 商标使用权。商标注册与维权另行办理。
+
+## 无担保
+
+两层内容均按「原样」（AS IS）提供，不带任何明示或默示的担保，详见两份许可证全文第 5 条。
+
+---
+
+Copyright (c) 2026 AIST2030（贵州省团之家智付科技有限公司）
